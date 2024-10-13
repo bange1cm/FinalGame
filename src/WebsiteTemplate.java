@@ -48,7 +48,7 @@ public class WebsiteTemplate extends Application{
         	navigationButtons[i].setStyle("-fx-font: 20 arial; fx-padding:10");
         	navBar.getChildren().add(navigationButtons[i]);
         }
-        navBar.setStyle("-fx-background-color: red");
+        navBar.setStyle("-fx-background-color: indianred");
         navBar.setPadding(new Insets(10));
         
         //create the body
