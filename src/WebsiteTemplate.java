@@ -2,56 +2,32 @@
  * WebsiteTemplate.java
  * CPS 240 Final Project
  * Cora Bangert
- * This outlines the overall look of the website
+ * This outlines the overall look of the website. Edit the body to change the individual webpage
  */
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
+
 
 public class WebsiteTemplate extends Application{
 	
 	public void start(Stage stage) {
-		//creating WebView and WebEngine
-		//final WebView browser = new WebView();
-        //final WebEngine webEngine = browser.getEngine();
 		
         //create Header
-        Text logo = new Text("Your Unc's Clothing");
-        logo.setStyle("-fx-font: 36 Stencil; ");
-        HBox header = new HBox(logo);
-        HBox.setMargin(logo, new Insets(40, 50, 40, 50));
-        header.setStyle("-fx-background-color: grey");
+        Header header = new Header();
         
         //create navigation bar
-        Button[] navigationButtons = new Button[4];
-        navigationButtons[0] = new Button("Home");
-        navigationButtons[1] = new Button("Products");
-        navigationButtons[2] = new Button("About");
-        navigationButtons[3] = new Button("Contact");
-        VBox navBar = new VBox(10);
-        for (int i = 0; i < navigationButtons.length; i++) {
-        	navigationButtons[i].setMaxWidth(Double.MAX_VALUE - 10);
-        	navigationButtons[i].setStyle("-fx-font: 20 arial; fx-padding:10");
-        	navBar.getChildren().add(navigationButtons[i]);
-        }
-        navBar.setStyle("-fx-background-color: indianred");
-        navBar.setPadding(new Insets(10));
+        NavSidebar navBar = new NavSidebar();
         
-        //create the body
+        //create the body 
+        //this is the part that will change for each page of the website
         BorderPane body = new BorderPane();
         Text title = new Text("Welcome");
         title.setStyle("-fx-font: 45 arial");
@@ -61,7 +37,7 @@ public class WebsiteTemplate extends Application{
         body.setCenter(temp);
         
         
-		//create layout
+		//create website layout
         BorderPane layout = new BorderPane();
         layout.setTop(header);
         layout.setLeft(navBar);
@@ -71,9 +47,6 @@ public class WebsiteTemplate extends Application{
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(layout);
         scrollPane.setFitToWidth(true);
-        
-        
-        
 		
         //set scene and stage
 		Scene scene = new Scene(scrollPane);
