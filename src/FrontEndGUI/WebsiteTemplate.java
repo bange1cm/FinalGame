@@ -4,6 +4,7 @@
  * Cora Bangert
  * This outlines the overall look of the website. Edit the body to change the individual webpage
  */
+package FrontEndGUI;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

@@ -1,3 +1,4 @@
+package FrontEndGUI;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
