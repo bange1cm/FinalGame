@@ -12,14 +12,14 @@ public class WebsiteTemplate extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-    	Parent root = FXMLLoader.load(getClass().getResource("WebsiteTemplate.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("TestScrollTab.fxml"));
         Scene scene = new Scene(root);
         
 
         // Add scrolling
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
+//        ScrollPane scrollPane = new ScrollPane();
+//        scrollPane.setContent(root);
+//        scrollPane.setFitToWidth(true);
 
         // Set scene and stage
         stage.setScene(scene);
