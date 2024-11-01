@@ -64,3 +64,56 @@ class Virus extends Enemy {
 	}
 
 }
+
+class Samsa extends Virus {
+	
+	private static int metaRNG;
+	private static int trackBoost;
+	
+	public Samsa(int hp, int atk, int def, int extId) {
+		super(hp, atk, def, extId);
+	}
+	
+	public void metamorphosize() {
+		metaRNG = (int) Math.random() * 3;
+		
+		if(metaRNG == 0) {
+			this.atk = this.atk - trackBoost;
+			this.def = this.def - trackBoost;
+			trackBoost = 0;
+		} else {
+			this.atk += metaRNG;
+			this.def += metaRNG;
+			trackBoost += metaRNG;
+		}
+	}
+}
+
+class LagWitch extends Virus{
+	
+	private static Boolean trackVenom;
+	
+	public LagWitch(int hp, int atk, int def, int extId) {
+		super(hp, atk, def, extId);
+	}
+	
+	@Override
+	public void attack() {
+		//call utility method to attack player
+		trackVenom = true;
+	}
+	
+	public static void venom() {
+		if(trackVenom) {
+			// call utility method to attack player for half of atk stat
+			trackVenom = false;
+		}
+	}
+}
+
+class Trojan extends Virus{ //unsure how to implement currently. probably depends on combat interface
+	
+	public Trojan(int hp, int atk, int def, int extId) {
+		super(hp, atk, def, extId);
+	}
+}
