@@ -1,3 +1,14 @@
+/*follow traditional css, and use fx styling
+ . makes a class
+   node.getStyleClass().add("class-name");
+ # makes a id
+   node.setId("id-name");
+   
+   use to make classes or specific ids that we need to repeat or have easy access to
+   
+*/
+
+
 /*button styles*/
 .normal-buttons {
     -fx-background-color: indianred;
