@@ -33,3 +33,16 @@
 #logo{
 	-fx-font: 46 Stencil;
 }
+
+/*default html elements*/
+.h1{
+	-fx-font: 40 arial;
+}
+
+.h2{
+	-fx-font: 25 arial;
+}
+
+.p{
+	-fx-font: 18 arial;
+}
