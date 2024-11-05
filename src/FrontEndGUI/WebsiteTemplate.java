@@ -23,12 +23,18 @@ public class WebsiteTemplate extends Application{
 	Header header;
 	NavSidebar navBar;
 	static BorderPane layout;
-	static BorderPane mainHome;
+	static TestHome mainHome;
 	static BorderPane mainProducts;
 	static TabPane tabPane;
+	static Scene websiteScene;
+	static Scene fightScene;
+	
+	private static Stage primaryStageRef;
 	
 	
-	public void start(Stage stage) {
+	public void start(Stage primaryStage) {
+		//create reference to stage so we can change the scenes outside of start method
+		primaryStageRef = primaryStage;
 		
 		//create StartHelp
 		StartHelp startHelp = new StartHelp();
@@ -41,7 +47,7 @@ public class WebsiteTemplate extends Application{
         
         //create the bodies 
         //this is the part that will change for each page of the website
-        mainHome = new BorderPane(new Label("Home"));
+        mainHome = new TestHome();
         mainProducts = new BorderPane(new Label("Products"));
         
         
@@ -69,13 +75,17 @@ public class WebsiteTemplate extends Application{
         mainTab.setClosable(false);
         tabPane.getTabs().add(mainTab);
         
+        //create fighting scene
+        Fight fight = new Fight();
+        fightScene = new Scene(fight);
+        
         //set scene and stage
-		Scene scene = new Scene(tabPane);
-		scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        stage.setScene(scene);
-		stage.setWidth(1200);
-		stage.setHeight(800);
-		stage.show();
+		websiteScene = new Scene(tabPane);
+		websiteScene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+		primaryStage.setScene(websiteScene);
+		primaryStage.setWidth(1200);
+		primaryStage.setHeight(800);
+		primaryStage.show();
 	}
 	
 
@@ -105,6 +115,14 @@ public class WebsiteTemplate extends Application{
 			tabPane.getSelectionModel().select(1);
 		}
 		
+	}
+	
+	public static void startFight(ActionEvent e) {
+		primaryStageRef.setScene(fightScene);
+	}
+	
+	public static void endFight(ActionEvent e) {
+		primaryStageRef.setScene(websiteScene);
 	}
 
 }
