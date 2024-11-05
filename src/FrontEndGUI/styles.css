@@ -46,3 +46,7 @@
 .p{
 	-fx-font: 18 arial;
 }
+
+.main-padding{
+	-fx-padding: 30px 20px;
+}

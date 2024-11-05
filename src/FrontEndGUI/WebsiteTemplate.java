@@ -24,6 +24,7 @@ public class WebsiteTemplate extends Application{
 	NavSidebar navBar;
 	static BorderPane layout;
 	static TestHome mainHome;
+	static About mainAbout;
 	static BorderPane mainProducts;
 	static TabPane tabPane;
 	static Scene websiteScene;
@@ -49,7 +50,7 @@ public class WebsiteTemplate extends Application{
         //this is the part that will change for each page of the website
         mainHome = new TestHome();
         mainProducts = new BorderPane(new Label("Products"));
-        
+        mainAbout = new About();
         
 		//create website layout
         layout = new BorderPane();
@@ -106,7 +107,7 @@ public class WebsiteTemplate extends Application{
 			layout.setCenter(mainProducts);
 			break;
 		case "About":
-			layout.setCenter(mainHome);
+			layout.setCenter(mainAbout);
 			break;
 		case "Contact":
 			layout.setCenter(mainHome);
