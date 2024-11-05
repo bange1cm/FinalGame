@@ -7,52 +7,72 @@
 package FrontEndGUI;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 
 public class WebsiteTemplate extends Application{
+	Header header;
+	NavSidebar navBar;
+	static BorderPane layout;
+	static BorderPane mainHome;
+	static BorderPane mainProducts;
+	static TabPane tabPane;
+	
 	
 	public void start(Stage stage) {
 		
+		//create StartHelp
+		StartHelp startHelp = new StartHelp();
+		
         //create Header
-        Header header = new Header();
+        header = new Header();
         
         //create navigation bar
-        NavSidebar navBar = new NavSidebar();
+        navBar = new NavSidebar();
         
-        //create the body 
+        //create the bodies 
         //this is the part that will change for each page of the website
-        BorderPane body = new BorderPane();
-        Text title = new Text("Welcome");
-        title.setStyle("-fx-font: 45 arial");
-        body.setMargin(title, new Insets(50));
-        body.setTop(title);;
-        Rectangle temp = new Rectangle(10, 1000);
-        body.setCenter(temp);
+        mainHome = new BorderPane(new Label("Home"));
+        mainProducts = new BorderPane(new Label("Products"));
         
         
 		//create website layout
-        BorderPane layout = new BorderPane();
+        layout = new BorderPane();
         layout.setTop(header);
         layout.setLeft(navBar);
-        layout.setCenter(body);
+        layout.setCenter(mainHome);
         
         //add scrolling
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(layout);
         scrollPane.setFitToWidth(true);
-		
+        
+        //add tab
+        tabPane = new TabPane();
+        //tab 1 for the intro and help
+        Tab helpTab = new Tab("Help");
+        helpTab.setContent(startHelp);
+        helpTab.setClosable(false);
+        tabPane.getTabs().add(helpTab);
+        //tab 2 for website
+        Tab mainTab = new Tab("https.notascam.com");
+        mainTab.setContent(scrollPane);
+        mainTab.setClosable(false);
+        tabPane.getTabs().add(mainTab);
+        
         //set scene and stage
-		Scene scene = new Scene(scrollPane);
+		Scene scene = new Scene(tabPane);
+		scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setScene(scene);
-		stage.setTitle("https.notascam.com");
 		stage.setWidth(1200);
 		stage.setHeight(800);
 		stage.show();
@@ -64,7 +84,28 @@ public class WebsiteTemplate extends Application{
 
 	}
 
-	
+	public static void navigation(ActionEvent e) {
+		Button sourceButton = (Button) e.getSource();
+		String buttonText = sourceButton.getText();
+		System.out.println(buttonText);
+		switch(buttonText) {
+		case "Home":
+			layout.setCenter(mainHome);
+			break;
+		case "Products":
+			layout.setCenter(mainProducts);
+			break;
+		case "About":
+			layout.setCenter(mainHome);
+			break;
+		case "Contact":
+			layout.setCenter(mainHome);
+			break;
+		case "Go":
+			tabPane.getSelectionModel().select(1);
+		}
+		
+	}
 
 }
 
