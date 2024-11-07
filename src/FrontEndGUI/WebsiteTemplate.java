@@ -26,6 +26,7 @@ public class WebsiteTemplate extends Application{
 	static TestHome mainHome;
 	static About mainAbout;
 	static BorderPane mainProducts;
+	static Reviews mainReviews;
 	static TabPane tabPane;
 	static Scene websiteScene;
 	static Scene fightScene;
@@ -51,6 +52,7 @@ public class WebsiteTemplate extends Application{
         mainHome = new TestHome();
         mainProducts = new BorderPane(new Label("Products"));
         mainAbout = new About();
+        mainReviews = new Reviews();
         
 		//create website layout
         layout = new BorderPane();
@@ -112,9 +114,13 @@ public class WebsiteTemplate extends Application{
 		case "Contact":
 			layout.setCenter(mainHome);
 			break;
+		case "Reviews":
+			layout.setCenter(mainReviews);
+			break;
 		case "Go":
 			tabPane.getSelectionModel().select(1);
 		}
+		
 		
 	}
 	
