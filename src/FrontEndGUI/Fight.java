@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 
 public class Fight extends VBox{
 	public Fight() {
-		//rough temporary fight scene
+		//rough temporary fight scene using temp image
 		
 		ImageView bugImg = new ImageView("https://www.koppertus.com/content/_processed_/5/e/csm_southern_green_stink_bug_nezara_viridula_nymph_3_koppert_4e0725bc70.jpg");
 		Label hpLabel = new Label("HP: ");
