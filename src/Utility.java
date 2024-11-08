@@ -7,13 +7,16 @@ public class Utility {
 	
 	public static void damage(int dmg) {
 		playerHP -= (dmg - (playerDEF/2));
+		System.out.println("You take damage");
 	}
 	
 	public static void heal(int hp) {
 		playerHP += hp;
+		System.out.println("You heal");
 	}
 	
-	public static int attack(Enemy e) {
-		e.setHP(e.getHP - (playerATK - (e.getDef() / 2)));
+	public static void attack(Enemy e) {
+		e.setHp(e.getHp() - (playerATK - (e.getDef() / 2)));
+		System.out.println("You attack");
 	}
 }
