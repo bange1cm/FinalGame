@@ -27,6 +27,7 @@
 /*labels for the starthelp page*/
 .starthelp-labels{
 	-fx-font: 20 arial;
+	-fx-padding: 0px 10px 0px 0px;
 }
 
 /*logo style for header*/
@@ -49,4 +50,15 @@
 
 .main-padding{
 	-fx-padding: 30px 20px;
+}
+
+.email-content-area {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: green; 
+}
+
+text-area:focused {
+    -fx-background-color: white; /* Adjust based on your background */
+    -fx-border-color: transparent;
 }

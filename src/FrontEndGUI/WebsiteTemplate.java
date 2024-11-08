@@ -20,16 +20,16 @@ import javafx.stage.Stage;
 
 
 public class WebsiteTemplate extends Application{
-	Header header;
-	NavSidebar navBar;
-	static BorderPane layout;
-	static TestHome mainHome;
-	static About mainAbout;
-	static BorderPane mainProducts;
-	static Reviews mainReviews;
-	static TabPane tabPane;
-	static Scene websiteScene;
-	static Scene fightScene;
+	private Header header;
+	private NavSidebar navBar;
+	private static BorderPane layout;
+	private static TestHome mainHome;
+	private static About mainAbout;
+	private static BorderPane mainProducts;
+	private static Reviews mainReviews;
+	private static TabPane tabPane;
+	private static Scene websiteScene;
+	private static Scene fightScene;
 	
 	private static Stage primaryStageRef;
 	
@@ -68,12 +68,12 @@ public class WebsiteTemplate extends Application{
         //add tab
         tabPane = new TabPane();
         //tab 1 for the intro and help
-        Tab helpTab = new Tab("Help");
+        Tab helpTab = new Tab("email.com");
         helpTab.setContent(startHelp);
         helpTab.setClosable(false);
         tabPane.getTabs().add(helpTab);
         //tab 2 for website
-        Tab mainTab = new Tab("https.notascam.com");
+        Tab mainTab = new Tab("notascam.com");
         mainTab.setContent(scrollPane);
         mainTab.setClosable(false);
         tabPane.getTabs().add(mainTab);
@@ -117,8 +117,6 @@ public class WebsiteTemplate extends Application{
 		case "Reviews":
 			layout.setCenter(mainReviews);
 			break;
-		case "Go":
-			tabPane.getSelectionModel().select(1);
 		}
 		
 		
