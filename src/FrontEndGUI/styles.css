@@ -55,7 +55,19 @@
 .email-content-area {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-text-fill: green; 
+}
+
+.email-content-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.email-content-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.email-content-area .scroll-pane .content{
+    -fx-background-color: transparent;
 }
 
 text-area:focused {
