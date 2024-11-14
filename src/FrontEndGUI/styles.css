@@ -1,13 +1,66 @@
-/*follow traditional css, and use fx styling
- . makes a class
-   node.getStyleClass().add("class-name");
- # makes a id
-   node.setId("id-name");
-   
-   use to make classes or specific ids that we need to repeat or have easy access to
-   
-*/
+/* button styles */
+.normal-buttons {
+    -fx-background-color: indianred;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 15px 20px;
+    -fx-background-radius: 5px;
+}
 
+/* navigation buttons for navsidebar */
+.navigation-buttons {
+    -fx-font: 20 arial;
+    -fx-padding: 10px;
+}
+
+/* labels for the starthelp page */
+.starthelp-labels {
+    -fx-font: 20 arial;
+}
+
+/* logo style for header */
+#logo {
+    -fx-font: 46 Stencil;
+}
+
+/* Home Page content */
+.home-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-padding: 20px 0;
+    -fx-text-fill: darkblue;
+}
+
+.tile-pane {
+    -fx-hgap: 20px;
+    -fx-vgap: 20px;
+    -fx-padding: 20px;
+    -fx-background-color: #f8f8f8;
+}
+
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 4, 4);
+    -fx-border-color: lightgray;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+}
+
+/* Sale Text */
+.sale-text {
+    -fx-font: 22px "System Bold Italic";
+    -fx-text-fill: #d32f2f;
+    -fx-padding: 10px 0 0;
+}
+
+.discount-text {
+    -fx-font: 18px "System Bold";
+    -fx-padding: 5px 0;
+}
+
+.note-text {
+    -fx-font: 12px Arial;
+    -fx-text-fill: darkgray;
+}
 
 /*button styles*/
 .normal-buttons {
@@ -20,57 +73,80 @@
 
 /*navigation buttons for navsidebar*/
 .navigation-buttons {
-	-fx-font: 20 arial; 
-	-fx-padding:10px;
+    -fx-font: 20 arial;
+    -fx-padding:10px;
 }
 
 /*labels for the starthelp page*/
 .starthelp-labels{
-	-fx-font: 20 arial;
-	-fx-padding: 0px 10px 0px 0px;
+    -fx-font: 20 arial;
 }
 
 /*logo style for header*/
 #logo{
-	-fx-font: 46 Stencil;
+    -fx-font: 46 Stencil;
 }
 
 /*default html elements*/
 .h1{
-	-fx-font: 40 arial;
+    -fx-font: 40 arial;
 }
 
 .h2{
-	-fx-font: 25 arial;
+    -fx-font: 25 arial;
 }
 
 .p{
-	-fx-font: 18 arial;
+    -fx-font: 18 arial;
 }
 
 .main-padding{
-	-fx-padding: 30px 20px;
+    -fx-padding: 30px 20px;
 }
 
-.email-content-area {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+/* ContactPage specific styles */
+.contact-header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
 }
 
-.email-content-area .scroll-pane {
-    -fx-background-color: transparent;
+.contact-labels {
+    -fx-font-size: 18px;
 }
 
-.email-content-area .scroll-pane .viewport{
-    -fx-background-color: transparent;
+/* ProductsPage specific styles */
+.products-header {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkred;
+    -fx-padding: 20px 0;
 }
 
-
-.email-content-area .scroll-pane .content{
-    -fx-background-color: transparent;
+.product-box {
+    -fx-border-color: gray;
+    -fx-border-width: 1px;
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-background-radius: 8px;
 }
 
-text-area:focused {
-    -fx-background-color: white; /* Adjust based on your background */
-    -fx-border-color: transparent;
+.product-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.product-description {
+    -fx-font-size: 16px;
+    -fx-text-fill: #666;
+}
+
+.buy-button {
+    -fx-background-color: darkred;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
 }
