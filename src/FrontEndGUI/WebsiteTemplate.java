@@ -15,6 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -33,6 +34,7 @@ public class WebsiteTemplate extends Application{
 	private static Scene endScene;
 	
 	private static Stage primaryStageRef;
+	public static HasBug mainPaneRef;
 	
 	
 	public void start(Stage primaryStage) {
@@ -60,6 +62,7 @@ public class WebsiteTemplate extends Application{
         layout.setTop(header);
         layout.setLeft(navBar);
         layout.setCenter(mainHome);
+//        mainPaneRef = mainHome;
         
         //add scrolling
         ScrollPane scrollPane = new ScrollPane();
@@ -105,31 +108,37 @@ public class WebsiteTemplate extends Application{
 		switch(buttonText) {
 		case "Home":
 			layout.setCenter(mainHome);
+//			mainPaneRef = mainHome;
 			break;
 		case "Products":
 			layout.setCenter(mainProducts);
+//			mainPaneRef = mainProducts;
 			break;
 		case "About":
 			layout.setCenter(mainAbout);
+//			mainPaneRef = mainAbout;
 			break;
 		case "Contact":
 			layout.setCenter(mainHome);
+//			mainPaneRef = mainHome;
 			break;
 		case "Reviews":
 			layout.setCenter(mainReviews);
+			mainPaneRef = mainReviews;
 			break;
 		}
 		
 		
 	}
 	
-	public static void startFight(ActionEvent e) {
+	public static void startFight(ActionEvent e, Pane mainPaneRef) {
 		primaryStageRef.setScene(fightScene);
 		System.out.println("Enemy encountered!");
 	}
 	
 	public static void endFight(ActionEvent e) {
 		primaryStageRef.setScene(websiteScene);
+		mainPaneRef.removeBug();
 	}
 
 }
