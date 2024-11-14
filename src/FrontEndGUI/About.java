@@ -30,7 +30,7 @@ public class About extends VBox{
 		uncImg.setPreserveRatio(true);
 		
 		Button bugButton = new Button("Bug");
-        bugButton.setOnAction(e -> WebsiteTemplate.startFight(e));
+        bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
 		
 		//create a flowpane for this section
 		FlowPane flow = new FlowPane(aboutText, uncImg, bugButton);
