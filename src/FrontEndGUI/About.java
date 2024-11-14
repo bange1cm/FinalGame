@@ -2,6 +2,7 @@ package FrontEndGUI;
 
 import java.io.File;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -31,6 +32,9 @@ public class About extends VBox{
 		
 		Button bugButton = new Button("Bug");
         bugButton.setOnAction(e -> WebsiteTemplate.startFight(e));
+        
+        Button itemButton = new Button("Item");
+        itemButton.setOnAction(e -> System.out.println("Item collected"));
 		
 		//create a flowpane for this section
 		FlowPane flow = new FlowPane(aboutText, uncImg, bugButton);
@@ -60,7 +64,7 @@ public class About extends VBox{
 			FAQs[i].setWrapText(true);
 		}
 		
-		
+		this.getChildren().add(itemButton);
 		this.getStyleClass().add("main-padding");
 		this.setSpacing(20);
 	}
