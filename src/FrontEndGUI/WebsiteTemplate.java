@@ -30,6 +30,7 @@ public class WebsiteTemplate extends Application{
 	private static TabPane tabPane;
 	private static Scene websiteScene;
 	private static Scene fightScene;
+	private static Scene endScene;
 	
 	private static Stage primaryStageRef;
 	

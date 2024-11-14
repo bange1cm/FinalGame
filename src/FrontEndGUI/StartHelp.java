@@ -33,7 +33,8 @@ public class StartHelp extends ScrollPane{
 				+ "I'm tellin you there be something wrong with it. Nobody is buying my clothes and there be strange stuff happenin I didnt ever add.\n"
 				+ "I hired someone to make me this website a some time ago but they ghosted me and aint fixing it now.\n\n\n"
 				+ "Instructions: go to my website notascam.com and see what u can find. "
-				+ "Click on bugs and viruses to resolve them issues, and collect items to help you.\n"
+				+ "If you find anything that looks wrong like a bug in my website, click on it and see what happends. "
+				+ "Resolve any bugs or viruses you find, and collect items to help you.\n"
 				+ "When yur done, respond to this here email so i know.");
 		content1.setWrapText(true);
 		content1.setEditable(false);
@@ -75,13 +76,13 @@ public class StartHelp extends ScrollPane{
 
 		
 		//button to guide user to website
-		Button go = new Button("Send Response");
-		go.getStyleClass().add("normal-buttons");
-		go.setOnAction(e -> WebsiteTemplate.navigation(e));
+		Button done = new Button("Send Response");
+		done.getStyleClass().add("normal-buttons");
+		done.setOnAction(e -> WebsiteTemplate.navigation(e));
 		
 		//the overall content for ScrollPane
 		VBox content = new VBox();
-		content.getChildren().addAll(subject, email1, line, email2, go);
+		content.getChildren().addAll(subject, email1, line, email2, done);
 		content.setSpacing(60);
 		content.setPadding(new Insets(40, 40, 100, 40));
 		this.setContent(content);
