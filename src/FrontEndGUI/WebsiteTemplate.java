@@ -125,6 +125,7 @@ public class WebsiteTemplate extends Application{
 	
 	public static void startFight(ActionEvent e) {
 		primaryStageRef.setScene(fightScene);
+		System.out.println("Enemy encountered!");
 	}
 	
 	public static void endFight(ActionEvent e) {

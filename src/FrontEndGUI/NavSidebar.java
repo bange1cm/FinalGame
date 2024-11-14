@@ -1,5 +1,6 @@
 package FrontEndGUI;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
@@ -11,6 +12,10 @@ public class NavSidebar extends VBox{
 		Button aboutButton = new Button("About");
 		Button contactButton = new Button("Contact");
 		
+		Button itemButton = new Button("Item");
+		itemButton.setAlignment(Pos.BOTTOM_LEFT);
+		itemButton.setOnAction(e -> System.out.println("Item collected"));
+		
         navigationButtons[0] = homeButton;
         navigationButtons[1] = productsButton;
         navigationButtons[2] = aboutButton;
@@ -21,6 +26,8 @@ public class NavSidebar extends VBox{
         	navigationButtons[i].getStyleClass().add("navigation-buttons");
         	this.getChildren().add(navigationButtons[i]);
         }
+        
+        this.getChildren().add(itemButton);
         this.setStyle("-fx-background-color: indianred");
         this.setPadding(new Insets(10));
         
