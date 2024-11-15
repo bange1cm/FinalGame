@@ -1,0 +1,66 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class ItemMap {
+
+	private static Map<Item, Integer> itemMap = new LinkedHashMap<Item, Integer>();
+	
+	public static void initializeMap() {
+		itemMap.put(new Cookie(0), 0);
+		itemMap.put(new Cookie(1), 0);
+		itemMap.put(new Cookie(2), 0);
+	}
+	
+	public static Map<Item, Integer> getItemMap(){
+		return itemMap;
+	}
+	
+	public static void obtain(Item item) {
+		itemMap.put(item, itemMap.get(item) + 1);
+	}
+	
+	public static void use(Item item) {
+		if(itemMap.get(item) == 0) {
+			return;
+		}
+		
+		switch(item.getName()) {
+			case "Cookie":
+				Utility.heal(5);
+				itemMap.put(item, itemMap.get(item) - 1);
+				break;
+			case "Search":
+				Utility.useSearch();
+				itemMap.put(item, itemMap.get(item) - 1);
+				break;
+			case "Password":
+				Utility.usePassword();
+				itemMap.put(item, itemMap.get(item) - 1);
+				break;
+			case "RNG Seed":
+				Utility.install(0);
+				itemMap.remove(item);
+				break;
+			case "High-Speed Connection":
+				Utility.install(1);
+				itemMap.remove(item);
+				break;
+			case "Firewall":
+				Utility.install(2);
+				itemMap.remove(item);
+				break;
+			case "AI Assistant":
+				Utility.install(3);
+				itemMap.remove(item);
+				break;
+			case "VPN":
+				Utility.install(4);
+				itemMap.remove(item);
+				break;
+			case "AdBlock":
+				Utility.install(5);
+				itemMap.remove(item);
+				break;
+		}
+	}
+}
