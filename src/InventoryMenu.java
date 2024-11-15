@@ -72,10 +72,13 @@ public class InventoryMenu extends VBox{
         });
         
         backButton.setOnAction(event -> {
+        	WebsiteTemplate.backInventory();
         	// i'm not sure what to do here yet lol
         });
         
         VBox layout = new VBox(10);  // 10px spacing between elements
         layout.getChildren().addAll(itemTable, itemDescription, bp, useButton, backButton);
+        
+        this.getChildren().add(layout);
 	}
 }

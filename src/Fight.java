@@ -62,11 +62,11 @@ public class Fight extends VBox{
 		cc.setPercentWidth(50);
 		gp.getColumnConstraints().add(cc);
 		
-		endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
+		endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage);
 		attackEnemy.setOnAction(e -> attackEnemy());
 		scanEnemy.setOnAction(e -> scanEnemy());
-		//add in use item method/allow access to items
-		//useItem.setOnAction(e -> useItemMethod);
+		useItem.setOnAction(e -> WebsiteTemplate.enterInventory(e) );
+		
 		
 		this.getChildren().addAll(gp);
 			

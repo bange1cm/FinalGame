@@ -21,3 +21,12 @@
 /styles.css
 /InventoryMenu.class
 /ItemMap.class
+/Bug$LagWitch.class
+/Bug$Samsa.class
+/Bug$Trojan.class
+/Bug$Virus.class
+/LagWitch.class
+/Samsa.class
+/Trojan.class
+/Virus.class
+/ImagePaths.class
