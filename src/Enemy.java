@@ -4,6 +4,8 @@ public class Enemy {
 	protected int hp;
 	protected int atk;
 	protected int def;
+	
+	protected Boolean isDead;
 
 	// constructor
 	public Enemy(int hp, int atk, int def) {
@@ -11,6 +13,7 @@ public class Enemy {
 		this.hp = hp;
 		this.atk = atk;
 		this.def = def;
+		this.isDead = false;
 	}
 
 	// attacks player
@@ -43,6 +46,15 @@ public class Enemy {
 	public void setDef(int def) {
 		this.def = def;
 	}
+
+	public Boolean getIsDead() {
+		return isDead;
+	}
+
+	public void setIsDead(Boolean isDead) {
+		this.isDead = isDead;
+	}
+	
 }
 
 class Bug extends Enemy {
