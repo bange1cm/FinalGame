@@ -12,12 +12,16 @@ import javafx.scene.text.Text;
 
 public class Fight extends VBox{
 	static HasBug mainPage;
-	public Fight() {
+	static Enemy enemy;
+	
+	private static Text updateText;
+	private static Label hpLabel, ppLabel; 
+	
+	public Fight(Enemy enemy) {
 		//rough temporary fight scene using temp image
-		
-		ImageView bugImg = new ImageView("https://www.koppertus.com/content/_processed_/5/e/csm_southern_green_stink_bug_nezara_viridula_nymph_3_koppert_4e0725bc70.jpg");
-		Label hpLabel = new Label("HP: ");
-		Label ppLabel = new Label("PP: ");
+		ImageView bugImg = new ImageView();
+		hpLabel = new Label("HP: " + enemy.getHp());
+		ppLabel = new Label("PP: " + Utility.getPlayerHP());
 		Button endFight = new Button("FLEE");
 		Button attackEnemy = new Button("ATTACK");
 		Button useItem = new Button("ITEM");
@@ -40,8 +44,8 @@ public class Fight extends VBox{
 		scanEnemy.setMinSize(250, 50);
 		
 		//sets up scrollpane to update damage, attacks, etc
-		Text updateText = new Text("BUG encountered!");
-		ScrollPane updateBox = new ScrollPane();
+		updateText = new Text("ENEMY encountered!");
+		ScrollPane updateBox = new ScrollPane(updateText);
 		
 		VBox bugInfo = new VBox(20, bugImg, hpLabel, updateBox);
 		VBox buttons = new VBox(20, ppLabel, attackEnemy, useItem, scanEnemy, endFight);
@@ -59,8 +63,8 @@ public class Fight extends VBox{
 		gp.getColumnConstraints().add(cc);
 		
 		endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
-		// change packages to allow utility class to be used
-		//attackEnemy.setOnAction(e -> Utility.attack());
+		attackEnemy.setOnAction(e -> attackEnemy());
+		scanEnemy.setOnAction(e -> scanEnemy());
 		//add in use item method/allow access to items
 		//useItem.setOnAction(e -> useItemMethod);
 		
@@ -68,8 +72,20 @@ public class Fight extends VBox{
 			
 	}
 	
+	private static void scanEnemy() {
+		System.out.println("Scan enemy");
+		updateText.setText(updateText.getText() + "\n Scanning enemy...\n" + "Attack: " + enemy.getAtk() + "\nDefense: " + enemy.getDef());
+	}
+	
 	//get the main page from websitetemplate
-	public static void startedFightPage(HasBug page) {
+	public static void startedFightPage(HasBug page, Enemy e) {
 		mainPage = page;
+		enemy = e;
+	}
+	
+	private static void attackEnemy() {
+		enemy = Utility.attack(enemy);
+		System.out.println("YOU attack the enemy!");
+		hpLabel.setText("HP: " + enemy.getHp());
 	}
 }
