@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 
 public class WebsiteTemplate extends Application{
+	//declare website components that need to be accessed outside of start
 	private Header header;
 	private NavSidebar navBar;
 	private static BorderPane layout;
@@ -32,7 +33,6 @@ public class WebsiteTemplate extends Application{
 	private static Scene fightScene;
 	private static Scene inventoryScene;
 	private static Scene endScene;
-	
 	private static Stage primaryStageRef;
 	
 	
@@ -105,12 +105,14 @@ public class WebsiteTemplate extends Application{
 		primaryStage.show();
 	}
 	
-
+	//main method for entire game. Launch the UI
 	public static void main(String[] args) {
 		Application.launch(args);
 
 	}
 
+	//general page navigation inside of the webpage
+	//take the text of the source button and use that to decide what the center of the webpage layout should be
 	public static void navigation(ActionEvent e) {
 		Button sourceButton = (Button) e.getSource();
 		String buttonText = sourceButton.getText();
@@ -136,10 +138,12 @@ public class WebsiteTemplate extends Application{
 		
 	}
 	
+	//start scene for inventory
 	public static void enterInventory(ActionEvent e) {
 		primaryStageRef.setScene(inventoryScene);
 	}
 	
+	//end scene or switch tabs for inventory
 	public static void backInventory() {
 		Scene currentScene = primaryStageRef.getScene();
 		if(currentScene.equals(inventoryScene)) {
@@ -169,5 +173,7 @@ public class WebsiteTemplate extends Application{
 		page.removeBug();
 		
 	}
+	
+	//end scene
 }
 
