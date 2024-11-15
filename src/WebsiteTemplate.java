@@ -93,7 +93,7 @@ public class WebsiteTemplate extends Application{
         tabPane.getTabs().add(inventoryTab);
         
         //create fighting scene
-        Fight fight = new Fight();
+        Fight fight = new Fight(new Bug(20, 5, 5));
         fightScene = new Scene(fight);
         
         //create inventory scene
@@ -155,9 +155,9 @@ public class WebsiteTemplate extends Application{
 	}
 	
 	//change scene to start fight
-	public static void startFight(ActionEvent e, HasBug page) {
+	public static void startFight(ActionEvent e, HasBug page, Enemy enemy) {
 		primaryStageRef.setScene(fightScene);
-		Fight.startedFightPage(page);
+		Fight.startedFightPage(page, enemy);
 		System.out.println("Enemy encountered!");
 	}
 	
