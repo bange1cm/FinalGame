@@ -19,6 +19,7 @@ public class ProductsPage extends GridPane {
         Label productsHeader = new Label("Exclusive Deals Just for You!");
         productsHeader.getStyleClass().add("products-header");
         this.add(productsHeader, 0, 0, 3, 1);
+        
 
         // Sample sketchy products
         addProduct(

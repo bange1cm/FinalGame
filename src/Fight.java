@@ -6,12 +6,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Fight extends VBox{
+	static HasBug mainPage;
 	public Fight() {
 		//rough temporary fight scene using temp image
 		
@@ -58,7 +58,7 @@ public class Fight extends VBox{
 		cc.setPercentWidth(50);
 		gp.getColumnConstraints().add(cc);
 		
-		endFight.setOnAction(e -> WebsiteTemplate.endFight(e));
+		endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
 		// change packages to allow utility class to be used
 		//attackEnemy.setOnAction(e -> Utility.attack());
 		//add in use item method/allow access to items
@@ -66,5 +66,10 @@ public class Fight extends VBox{
 		
 		this.getChildren().addAll(gp);
 			
+	}
+	
+	//get the main page from websitetemplate
+	public static void startedFightPage(HasBug page) {
+		mainPage = page;
 	}
 }

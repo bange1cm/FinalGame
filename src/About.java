@@ -1,7 +1,6 @@
 
 import java.io.File;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,7 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
-public class About extends VBox{
+public class About extends VBox implements HasBug{
+	static Button bugButton;
 	public About() {
 		//main title
 		Label title = new Label("About");
@@ -29,12 +29,12 @@ public class About extends VBox{
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);
 		
-		Button bugButton = new Button("Bug");
-    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
+		bugButton = new Button("Bug");
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
 
         
-    Button itemButton = new Button("Item");
-    itemButton.setOnAction(e -> System.out.println("Item collected"));
+		Button itemButton = new Button("Item");
+		itemButton.setOnAction(e -> System.out.println("Item collected"));
 		
 		//create a flowpane for this section
 		FlowPane flow = new FlowPane(aboutText, uncImg, bugButton);
@@ -67,5 +67,10 @@ public class About extends VBox{
 		this.getChildren().add(itemButton);
 		this.getStyleClass().add("main-padding");
 		this.setSpacing(20);
+	}
+
+	@Override
+	public void removeBug() {
+		bugButton.setVisible(false);
 	}
 }

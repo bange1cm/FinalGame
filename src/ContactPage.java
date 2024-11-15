@@ -7,8 +7,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class ContactPage extends GridPane {
-
+public class ContactPage extends GridPane implements HasBug{
+	static Label ssnLabel, cardLabel, addressLabel;
+	static TextField ssnField, cardField, addressField;
+	
     public ContactPage() {
         // Set up the layout
         this.setPadding(new Insets(20));
@@ -22,9 +24,9 @@ public class ContactPage extends GridPane {
         // Sketchy information labels
         Label emailLabel = new Label("Email Address:");
         Label phoneLabel = new Label("Phone Number:");
-        Label ssnLabel = new Label("Social Security Number:");
-        Label cardLabel = new Label("Credit Card Number:");
-        Label addressLabel = new Label("Home Address:");
+        ssnLabel = new Label("Social Security Number:");
+        cardLabel = new Label("Credit Card Number:");
+        addressLabel = new Label("Home Address:");
         emailLabel.getStyleClass().add("contact-labels");
         phoneLabel.getStyleClass().add("contact-labels");
         ssnLabel.getStyleClass().add("contact-labels");
@@ -36,11 +38,11 @@ public class ContactPage extends GridPane {
         emailField.setPromptText("Enter your email here...");
         TextField phoneField = new TextField();
         phoneField.setPromptText("Enter your phone number here...");
-        TextField ssnField = new TextField();
+        ssnField = new TextField();
         ssnField.setPromptText("Enter your SSN here...");
-        TextField cardField = new TextField();
+        cardField = new TextField();
         cardField.setPromptText("Enter your credit card number here...");
-        TextField addressField = new TextField();
+        addressField = new TextField();
         addressField.setPromptText("Enter your home address here...");
 
         // Message text area
@@ -80,4 +82,15 @@ public class ContactPage extends GridPane {
             messageArea.clear();
         });
     }
+
+	@Override
+	public void removeBug() {
+		ssnField.setVisible(false);
+		cardField.setVisible(false);
+		addressField.setVisible(false);
+		ssnLabel.setVisible(false);
+		cardLabel.setVisible(false);
+		addressLabel.setVisible(false);
+		
+	}
 }
