@@ -34,6 +34,9 @@ public class WebsiteTemplate extends Application{
 	
 	
 	public void start(Stage primaryStage) {
+		//initialize stats and player inventory slots
+		Utility.initialize();
+		
 		//create reference to stage so we can change the scenes outside of start method
 		primaryStageRef = primaryStage;
 		
