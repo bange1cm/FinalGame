@@ -25,9 +25,12 @@ public class WebsiteTemplate extends Application{
 	private static ProductsPage mainProducts;
 	private static Reviews mainReviews;
 	private static ContactPage mainContact;
+	private static InventoryMenu inventory;
 	private static TabPane tabPane;
+	private static Tab mainTab;
 	private static Scene websiteScene;
 	private static Scene fightScene;
+	private static Scene inventoryScene;
 	private static Scene endScene;
 	
 	private static Stage primaryStageRef;
@@ -42,6 +45,9 @@ public class WebsiteTemplate extends Application{
 		
 		//create StartHelp
 		StartHelp startHelp = new StartHelp();
+		
+		//create inventory 
+		inventory = new InventoryMenu();
 		
         //create Header
         header = new Header();
@@ -76,14 +82,22 @@ public class WebsiteTemplate extends Application{
         helpTab.setClosable(false);
         tabPane.getTabs().add(helpTab);
         //tab 2 for website
-        Tab mainTab = new Tab("notascam.com");
+        mainTab = new Tab("notascam.com");
         mainTab.setContent(scrollPane);
         mainTab.setClosable(false);
         tabPane.getTabs().add(mainTab);
+        //tab 3 for inventory
+        Tab inventoryTab = new Tab("fightinginventory.local");
+        inventoryTab.setContent(inventory);
+        inventoryTab.setClosable(false);
+        tabPane.getTabs().add(inventoryTab);
         
         //create fighting scene
         Fight fight = new Fight();
         fightScene = new Scene(fight);
+        
+        //create inventory scene
+        inventoryScene = new Scene(inventory);
         
         //set scene and stage
 		websiteScene = new Scene(tabPane);
@@ -122,6 +136,21 @@ public class WebsiteTemplate extends Application{
 			break;
 		}
 		
+		
+	}
+	
+	public static void enterInventory(ActionEvent e) {
+		primaryStageRef.setScene(inventoryScene);
+	}
+	
+	public static void backInventory() {
+		Scene currentScene = primaryStageRef.getScene();
+		if(currentScene.equals(inventoryScene)) {
+			primaryStageRef.setScene(fightScene);
+		}
+		else if(currentScene.equals(websiteScene)) {
+			 tabPane.getSelectionModel().select(mainTab);
+		}
 		
 	}
 	

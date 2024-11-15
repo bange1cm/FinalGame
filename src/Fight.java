@@ -59,10 +59,9 @@ public class Fight extends VBox{
 		gp.getColumnConstraints().add(cc);
 		
 		endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
-		// change packages to allow utility class to be used
-		//attackEnemy.setOnAction(e -> Utility.attack());
-		//add in use item method/allow access to items
-		//useItem.setOnAction(e -> useItemMethod);
+//		attackEnemy.setOnAction(e -> Utility.attack());
+		useItem.setOnAction(e -> WebsiteTemplate.enterInventory(e) );
+		
 		
 		this.getChildren().addAll(gp);
 			
