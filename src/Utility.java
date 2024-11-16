@@ -1,5 +1,8 @@
 
 public class Utility {
+	
+	public static int bugsDefeated = 0;
+	public static int totalBugs = 5;
 
 	private static int playerMaxHP;
 	private static int playerHP;

@@ -27,6 +27,7 @@ public class WebsiteTemplate extends Application{
 	private static Reviews mainReviews;
 	private static ContactPage mainContact;
 	private static InventoryMenu inventory;
+	private static End end;
 	private static TabPane tabPane;
 	private static Tab mainTab;
 	private static Scene websiteScene;
@@ -95,6 +96,11 @@ public class WebsiteTemplate extends Application{
         
         //create inventory scene
         inventoryScene = new Scene(inventory);
+        
+        //create end scene
+        end = new End();
+        endScene = new Scene(end);
+        endScene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         
         //set scene and stage
 		websiteScene = new Scene(tabPane);
@@ -175,5 +181,8 @@ public class WebsiteTemplate extends Application{
 	}
 	
 	//end scene
+	public static void endScene() {
+		primaryStageRef.setScene(endScene);
+	}
 }
 
