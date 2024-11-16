@@ -82,21 +82,17 @@
     -fx-font: 20 arial;
 }
 
-.email-content-area {
+.text-area {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
-text-area:focused {
-    -fx-background-color: white; /* Adjust based on your background */
-    -fx-border-color: transparent;
-}
-.email-content-area .scroll-pane {
+.text-area .scroll-pane {
     -fx-background-color: transparent;
 }
-.email-content-area .scroll-pane .viewport{
+.text-area .scroll-pane .viewport{
     -fx-background-color: transparent;
 }
-.email-content-area .scroll-pane .content{
+.text-area .scroll-pane .content{
     -fx-background-color: transparent;
 }
 

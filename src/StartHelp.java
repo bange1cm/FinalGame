@@ -37,7 +37,6 @@ public class StartHelp extends ScrollPane{
 				+ "When yur done, respond to this here email so i know.");
 		content1.setWrapText(true);
 		content1.setEditable(false);
-		content1.getStyleClass().add("email-content-area");
 		content1.setFocusTraversable(false);
 		
 		email1.getChildren().addAll(toFrom1, content1);
@@ -66,8 +65,9 @@ public class StartHelp extends ScrollPane{
 		content2.setWrapText(true);
 		content2.setEditable(false);
 		content2.setPrefHeight(BASELINE_OFFSET_SAME_AS_HEIGHT);
-		content2.getStyleClass().add("email-content-area");
 		content2.setFocusTraversable(false);
+		
+		Label help = new Label("(you can come back to this page at any time to end the game)");
 		
 		email2.getChildren().addAll(toFrom2, content2);
 		email2.setPrefWidth(900);
@@ -77,11 +77,11 @@ public class StartHelp extends ScrollPane{
 		//button to guide user to website
 		Button done = new Button("Send Response");
 		done.getStyleClass().add("normal-buttons");
-		done.setOnAction(e -> WebsiteTemplate.navigation(e));
+		done.setOnAction(e -> WebsiteTemplate.endScene());
 		
 		//the overall content for ScrollPane
 		VBox content = new VBox();
-		content.getChildren().addAll(subject, email1, line, email2, done);
+		content.getChildren().addAll(subject, email1, line, email2, done, help);
 		content.setSpacing(60);
 		content.setPadding(new Insets(40, 40, 100, 40));
 		this.setContent(content);
