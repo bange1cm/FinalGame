@@ -29,8 +29,9 @@ public class About extends VBox implements HasBug{
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);
 		
+		Bug bug = new Bug(20, 5, 5);
 		bugButton = new Button("Bug");
-		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
 
         
 		Button itemButton = new Button("Item");
