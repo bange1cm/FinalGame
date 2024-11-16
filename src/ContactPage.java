@@ -52,6 +52,7 @@ public class ContactPage extends GridPane implements HasBug{
         messageArea.setPrefHeight(100);
 
         // Send button
+        Bug bug = new Bug(20, 5, 5);
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");
 
@@ -73,7 +74,7 @@ public class ContactPage extends GridPane implements HasBug{
 
         // Action for the send button
         sendButton.setOnAction(e -> {
-            WebsiteTemplate.startFight(e, this);
+            WebsiteTemplate.startFight(e, this, bug);
             emailField.clear();
             phoneField.clear();
             ssnField.clear();

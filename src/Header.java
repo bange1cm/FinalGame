@@ -11,8 +11,9 @@ public class Header extends HBox implements HasBug{
 		Text logo = new Text("Your Unc's Clothing");
 	    logo.setId("logo");
 	    
+	    Bug bug = new Bug(20, 5, 1);
 	    bugButton = new Button("Bug");
-	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
+	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
 	    
 		StackPane stackPane = new StackPane(logo, bugButton);
 	    

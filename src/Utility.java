@@ -52,8 +52,9 @@ public class Utility {
 		tempDEF = 0;
 	}
 	
-	public static void attack(Enemy e) {
+	public static Enemy attack(Enemy e) {
 		e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
+		return e;
 	}
 	
 	public static void install(int id) {
