@@ -6,13 +6,16 @@ public class Enemy {
 	protected int def;
 	
 	protected Boolean isDead;
+	
+	protected String imgURL;
 
 	// constructor
-	public Enemy(int hp, int atk, int def) {
+	public Enemy(int hp, int atk, int def, String imgURL) {
 		super();
 		this.hp = hp;
 		this.atk = atk;
 		this.def = def;
+		this.imgURL = imgURL;
 		this.isDead = false;
 	}
 
@@ -46,6 +49,14 @@ public class Enemy {
 	public void setDef(int def) {
 		this.def = def;
 	}
+	
+	public String getImgURL() {
+		return imgURL;
+	}
+
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
+	}
 
 	public Boolean getIsDead() {
 		return isDead;
@@ -59,8 +70,8 @@ public class Enemy {
 
 class Bug extends Enemy {
 
-	public Bug(int hp, int atk, int def) {
-		super(hp, atk, def);
+	public Bug(int hp, int atk, int def, String imgURL) {
+		super(hp, atk, def, imgURL);
 	}
 
 }
@@ -69,8 +80,8 @@ class Virus extends Enemy {
 	// extension id
 	private int extId;
 
-	public Virus(int hp, int atk, int def, int extId) {
-		super(hp, atk, def);
+	public Virus(int hp, int atk, int def, String imgURL, int extId) {
+		super(hp, atk, def, imgURL);
 		this.extId = extId;
 		// TODO Auto-generated constructor stub
 	}
@@ -82,8 +93,8 @@ class Samsa extends Virus {
 	private static int metaRNG;
 	private static int trackBoost;
 	
-	public Samsa(int hp, int atk, int def, int extId) {
-		super(hp, atk, def, extId);
+	public Samsa(int hp, int atk, int def, String imgURL, int extId) {
+		super(hp, atk, def, imgURL, extId);
 	}
 	
 	public void metamorphosize() {
@@ -105,8 +116,8 @@ class LagWitch extends Virus{
 	
 	private static Boolean trackVenom;
 	
-	public LagWitch(int hp, int atk, int def, int extId) {
-		super(hp, atk, def, extId);
+	public LagWitch(int hp, int atk, int def, String imgURL, int extId) {
+		super(hp, atk, def, imgURL, extId);
 	}
 	
 	@Override
@@ -125,7 +136,7 @@ class LagWitch extends Virus{
 
 class Trojan extends Virus{ //unsure how to implement currently. probably depends on combat interface
 	
-	public Trojan(int hp, int atk, int def, int extId) {
-		super(hp, atk, def, extId);
+	public Trojan(int hp, int atk, int def, int extId, String imgURL) {
+		super(hp, atk, def, imgURL, extId);
 	}
 }

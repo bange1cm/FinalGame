@@ -13,6 +13,13 @@
     -fx-padding: 10px;
 }
 
+/* buttons for enemies*/
+.enemy-buttons {
+    -fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
+
 /* labels for the starthelp page */
 .starthelp-labels {
     -fx-font: 20 arial;
