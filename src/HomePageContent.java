@@ -47,16 +47,16 @@ static ImageView imageView4;
         productsGrid.setAlignment(Pos.CENTER);
 
         // Add sample products with images
-        ImageView imageView1 = createImageView("https://gallery.yopriceville.com/downloadfullsize/send/6461");
+        ImageView imageView1 = createImageView("Images/homeHat.png");
         Label productLabel1 = new Label("Top Hat\n$49.99");
         VBox productBox1 = new VBox(10, imageView1, productLabel1);
         productBox1.setAlignment(Pos.CENTER);
 
-        ImageView imageView2 = createImageView("https://pics.clipartpng.com/Green_Hoodie_PNG_Clipart-936.png");
+        ImageView imageView2 = createImageView("Images/homeJacket.png");
         Label productLabel2 = new Label("Stylish Hoodie\n$39.99");
         VBox productBox2 = new VBox(10, imageView2, productLabel2);
         productBox2.setAlignment(Pos.CENTER);
-        ImageView imageView3 = createImageView("https://cdn-icons-png.flaticon.com/512/6122/6122876.png");
+        ImageView imageView3 = createImageView("Images/homeBugPic.png");
        
         bugButton = new Button(null, imageView3);
         
@@ -64,7 +64,7 @@ static ImageView imageView4;
         
         Label productLabel3 = new Label("Fancy Pants\n$20.99");
         
-        bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
+        //bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
         imageView4 = createImageView("Images/productPants.png");
         imageView4.setVisible(false);
 
@@ -81,7 +81,7 @@ static ImageView imageView4;
         productsGrid.add(productBox1, 0, 0);
         productsGrid.add(productBox2, 1, 0);
         productsGrid.add(productBox3, 2, 0);
-       // productsGrid.add(productBox4, 2, 1);
+        productsGrid.add(productBox4, 2, 0);
 
         // Sales and Discount Section
         VBox salesSection = new VBox(10);
