@@ -1,6 +1,8 @@
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,9 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class HomePageContent extends BorderPane {
-
+public class HomePageContent extends BorderPane implements HasBug {
+static Button bugButton;
+static ImageView imageView4;
     public HomePageContent() {
+    	this.setMinHeight(1000);
         // Top Header Section
         Label headerLabel = new Label("Welcome to Your UNC'S Clothing");
         headerLabel.setFont(Font.font("Arial", 24));
@@ -52,17 +56,32 @@ public class HomePageContent extends BorderPane {
         Label productLabel2 = new Label("Stylish Hoodie\n$39.99");
         VBox productBox2 = new VBox(10, imageView2, productLabel2);
         productBox2.setAlignment(Pos.CENTER);
-
         ImageView imageView3 = createImageView("https://cdn-icons-png.flaticon.com/512/6122/6122876.png");
-        Label productLabel3 = new Label("Denim Jeans\n$59.99");
-        VBox productBox3 = new VBox(10, imageView3, productLabel3);
-        productBox3.setAlignment(Pos.CENTER);
+       
+        bugButton = new Button(null, imageView3);
         
+        
+        
+        Label productLabel3 = new Label("Fancy Pants\n$20.99");
+        
+        bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
+        imageView4 = createImageView("Images/productPants.png");
+        imageView4.setVisible(false);
 
+        VBox productBox3 = new VBox(20, bugButton, productLabel3);
+        VBox productBox4 = new VBox(10, imageView4, productLabel3);
+        
+       // productBox3.setAlignment(Pos.CENTER);
+        
+       //Imageview3 bug 
+        
+        
+        
         // Add products to the grid
         productsGrid.add(productBox1, 0, 0);
         productsGrid.add(productBox2, 1, 0);
         productsGrid.add(productBox3, 2, 0);
+       // productsGrid.add(productBox4, 2, 1);
 
         // Sales and Discount Section
         VBox salesSection = new VBox(10);
@@ -89,7 +108,7 @@ public class HomePageContent extends BorderPane {
         Label footerLabel = new Label("©2024 Your UNC'S Clothing - All rights reserved");
         footerLabel.setFont(Font.font("Arial", 12));
         footerLabel.setTextFill(Color.GRAY);
-        footerLabel.setPadding(new Insets(10, 0, 10, 0));  // Ensure top and bottom padding is minimal
+        footerLabel.setPadding(new Insets(10, 0, 10, 0));  
         
         HBox footerBox = new HBox(footerLabel);
         //footerBox.setAlignment(Pos.CENTER);
@@ -106,4 +125,12 @@ public class HomePageContent extends BorderPane {
         imageView.setPreserveRatio(true);
         return imageView;
     }
+
+	@Override
+	public void removeBug() {
+		bugButton.setVisible(false);
+		imageView4.setVisible(true);
+		
+		
+	}
 }

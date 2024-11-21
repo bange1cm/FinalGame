@@ -1,4 +1,3 @@
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,39 +18,54 @@ public class ProductsPage extends GridPane {
         Label productsHeader = new Label("Exclusive Deals Just for You!");
         productsHeader.getStyleClass().add("products-header");
         this.add(productsHeader, 0, 0, 3, 1);
-        
 
-        // Sample sketchy products
+        // Add products
         addProduct(
-            "Luxury Designer Handbag - 99% Off!",
-            "Example description",
-            "https://example.com",
+            "Luxury Bag - 99% Off!",
+            "Gucci bag fake",
+            "productBag.png",
             0, 1
         );
 
         addProduct(
-            "Exclusive Brand Sneakers - Only $19.99!",
-            "Example description",      
-            "https://example.com",
+            "Exclusive Brand Pants - Only $19.99!",
+            "Example description",
+            "productPants.png",
             1, 1
         );
 
         addProduct(
-            "Latest Smartwatch - 90% Discount!",
+            "Fire Hat - 90% Discount!",
             "Example description",
-            "https://example.com",
+            "productHat.png",
             0, 2
         );
 
         addProduct(
-            "Designer tshirt - Only $40.99!",
+            "Designer T-shirt - Only $40.99!",
             "Example description",
-            "https://static.vecteezy.com/system/resources/thumbnails/044/761/955/small/elegant-black-crew-neck-t-shirt-free-png.png",
+            "productShirt.png",
             1, 2
         );
+
+        // Reviews Section
+        VBox reviewsSection = new VBox(10);
+        reviewsSection.setPadding(new Insets(10));
+        reviewsSection.getStyleClass().add("reviews-section");
+
+        Label reviewsCaption = new Label("Customers love us! Rated 4.9/5 by thousands.");
+        reviewsCaption.getStyleClass().add("reviews-caption");
+
+        Button reviewsButton = new Button("Reviews");
+        reviewsButton.getStyleClass().add("reviews-button");
+
+        reviewsSection.getChildren().addAll(reviewsCaption, reviewsButton);
+        this.add(reviewsSection, 2, 1, 1, 2); // Add to the right, spanning two rows
+        GridPane.setMargin(reviewsSection, new Insets(0, 0, 0, 20));
+        reviewsButton.setOnAction(e -> WebsiteTemplate.navigation(e));
     }
 
-    private void addProduct(String title, String description, String imageUrl, int col, int row) {
+    private void addProduct(String title, String description, String imageFileName, int col, int row) {
         VBox productBox = new VBox(5);
         productBox.setPadding(new Insets(10));
         productBox.getStyleClass().add("product-box");
@@ -64,12 +78,20 @@ public class ProductsPage extends GridPane {
         Label descriptionLabel = new Label(description);
         descriptionLabel.getStyleClass().add("product-description");
 
-        // Product Image (placeholder)
-        ImageView productImage = new ImageView(new Image(imageUrl));
+        // Product Image
+        ImageView productImage = new ImageView();
+        try {
+            String resourcePath = "Images/" + imageFileName; // Relative path to the image
+            Image image = new Image(getClass().getResourceAsStream(resourcePath));
+            productImage.setImage(image);
+        } catch (Exception e) {
+            System.err.println("Could not load image: " + imageFileName);
+            e.printStackTrace();
+            // Optionally set a placeholder image
+            productImage.setImage(new Image(getClass().getResourceAsStream("Images/placeholder.png")));
+        }
         productImage.setFitHeight(120);
-
-        productImage.preserveRatioProperty();
-        //productImage.setFitWidth(120);
+        productImage.setPreserveRatio(true);
 
         // "Buy Now" Button
         Button buyButton = new Button("Buy Now");
@@ -81,4 +103,5 @@ public class ProductsPage extends GridPane {
         // Place product box in the grid
         this.add(productBox, col, row);
     }
+
 }
