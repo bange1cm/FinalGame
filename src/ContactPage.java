@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class ContactPage extends GridPane implements HasBug{
+public class ContactPage extends GridPane implements HasBug, EnemyConstants{
 	static Label ssnLabel, cardLabel, addressLabel;
 	static TextField ssnField, cardField, addressField;
 	
@@ -52,7 +52,7 @@ public class ContactPage extends GridPane implements HasBug{
         messageArea.setPrefHeight(100);
 
         // Send button
-        Bug bug = new Bug(20, 5, 5);
+        Virus trojan = new Trojan(100, 10, 10, 2, TROJAN_HORSE);
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");
 
@@ -74,7 +74,7 @@ public class ContactPage extends GridPane implements HasBug{
 
         // Action for the send button
         sendButton.setOnAction(e -> {
-            WebsiteTemplate.startFight(e, this, bug);
+            WebsiteTemplate.startFight(e, this, trojan);
             emailField.clear();
             phoneField.clear();
             ssnField.clear();
