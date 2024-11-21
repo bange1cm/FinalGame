@@ -16,7 +16,7 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
         this.setPadding(new Insets(20));
         this.setVgap(10);
         this.setHgap(10);
-
+        this.setMinHeight(1000);
         // Contact information
         Label contactHeader = new Label("Contact Our Support");
         contactHeader.getStyleClass().add("contact-header");
