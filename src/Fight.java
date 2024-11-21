@@ -18,7 +18,7 @@ public class Fight extends VBox {
 	static Enemy enemy;
 
 	private static Text updateText;
-	private static Label hpLabel, ppLabel;
+	private static Label hpLabel, ppLabel, enemyName;
 
 	// get the main page from websitetemplate
 	public static void startedFightPage(HasBug page) {
@@ -32,6 +32,7 @@ public class Fight extends VBox {
 			ImageView img = new ImageView(new Image(file1.toURI().toString()));
 			
 			// enemy and player stats
+			enemyName = new Label("");
 			hpLabel = new Label("HP: " + enemy.getHp());
 			ppLabel = new Label("PP: " + Utility.getPlayerHP());
 			
@@ -40,10 +41,14 @@ public class Fight extends VBox {
 			Button attackEnemy = new Button("ATTACK");
 			Button useItem = new Button("ITEM");
 			Button scanEnemy = new Button("SCAN");
+			
+			//checks if enemy is a virus
+			//if(enemy instanceof Troj)
 
 			// changes fonts and size
 			hpLabel.setFont(new Font("", 20));
 			ppLabel.setFont(new Font("", 20));
+			enemyName.setFont(new Font("", 20));
 			endFight.setFont(new Font("", 40));
 			attackEnemy.setFont(new Font("", 40));
 			useItem.setFont(new Font("", 40));
