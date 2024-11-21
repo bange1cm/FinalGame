@@ -16,7 +16,8 @@ import javafx.stage.Stage;
 
 
 
-public class WebsiteTemplate extends Application{
+
+public class WebsiteTemplate extends Application implements EnemyConstants{
 	//declare website components that need to be accessed outside of start
 	private Header header;
 	private NavSidebar navBar;
@@ -93,8 +94,8 @@ public class WebsiteTemplate extends Application{
         inventoryTab.setClosable(false);
         tabPane.getTabs().add(inventoryTab);
         
-        //create fighting scene
-        Fight fight = new Fight(new Bug(20, 5, 5));
+        //create fighting scene and sets the enemy to a default bug
+        Fight fight = new Fight(new Bug(20,5,5,BUG4));
         fightScene = new Scene(fight);
         
         //create inventory scene
@@ -166,8 +167,9 @@ public class WebsiteTemplate extends Application{
 	
 	//change scene to start fight
 	public static void startFight(ActionEvent e, HasBug page, Enemy enemy) {
+		fightScene = new Scene(new Fight(enemy));
 		primaryStageRef.setScene(fightScene);
-		Fight.startedFightPage(page, enemy);
+		Fight.startedFightPage(page);
 		System.out.println("Enemy encountered!");
 	}
 	
