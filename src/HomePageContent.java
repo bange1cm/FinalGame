@@ -1,6 +1,9 @@
 
+import java.io.File;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,8 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class HomePageContent extends BorderPane {
-
+public class HomePageContent extends BorderPane implements HasBug, EnemyConstants {
+	static  Button bugButton;
     public HomePageContent() {
         // Top Header Section
         Label headerLabel = new Label("Welcome to Your UNC'S Clothing");
@@ -54,10 +57,15 @@ public class HomePageContent extends BorderPane {
         productBox2.setAlignment(Pos.CENTER);
 
         ImageView imageView3 = createImageView("https://cdn-icons-png.flaticon.com/512/6122/6122876.png");
+        bugButton = new Button();
+        Bug bug = new Bug(20, 5, 1, BUG3);
+	    bugButton = new Button();
+	    bugButton.setGraphic(imageView3);    
+	    bugButton.getStyleClass().add("enemy-buttons");
+	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
         Label productLabel3 = new Label("Denim Jeans\n$59.99");
-        VBox productBox3 = new VBox(10, imageView3, productLabel3);
+        VBox productBox3 = new VBox(10, bugButton, productLabel3);
         productBox3.setAlignment(Pos.CENTER);
-        
 
         // Add products to the grid
         productsGrid.add(productBox1, 0, 0);
@@ -106,4 +114,9 @@ public class HomePageContent extends BorderPane {
         imageView.setPreserveRatio(true);
         return imageView;
     }
+
+	@Override
+	public void removeBug() {
+		bugButton.setVisible(false);	
+	}
 }
