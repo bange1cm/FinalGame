@@ -4,6 +4,7 @@ public class Utility {
 	public static int bugsDefeated = 0;
 	public static int totalBugs = 5;
 
+	//keeps track of turns and enemy turns
 	private static int combatTurn = 0;
 	private static boolean enemyAttacked = false;
 

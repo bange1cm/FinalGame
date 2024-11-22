@@ -119,6 +119,7 @@ public class Fight extends VBox {
 		
 	}
 
+	//attacks enemy
 	private static void attackEnemy() {
 		if (enemy.getHp() > 0) {
 			Utility.attack(enemy);
