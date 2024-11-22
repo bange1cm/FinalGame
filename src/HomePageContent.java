@@ -1,4 +1,5 @@
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,7 +16,9 @@ import javafx.scene.text.Text;
 
 public class HomePageContent extends BorderPane implements HasBug, EnemyConstants {
 	static  Button bugButton;
+static ImageView imageView4;
     public HomePageContent() {
+    	this.setMinHeight(1000);
         // Top Header Section
         Label headerLabel = new Label("Welcome to Your UNC'S Clothing");
         headerLabel.setFont(Font.font("Arial", 24));
@@ -44,31 +47,32 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
         productsGrid.setAlignment(Pos.CENTER);
 
         // Add sample products with images
-        ImageView imageView1 = createImageView("https://gallery.yopriceville.com/downloadfullsize/send/6461");
+        ImageView imageView1 = createImageView("Images/homeHat.png");
         Label productLabel1 = new Label("Top Hat\n$49.99");
         VBox productBox1 = new VBox(10, imageView1, productLabel1);
         productBox1.setAlignment(Pos.CENTER);
 
-        ImageView imageView2 = createImageView("https://pics.clipartpng.com/Green_Hoodie_PNG_Clipart-936.png");
+        ImageView imageView2 = createImageView("Images/homeJacket.png");
         Label productLabel2 = new Label("Stylish Hoodie\n$39.99");
         VBox productBox2 = new VBox(10, imageView2, productLabel2);
         productBox2.setAlignment(Pos.CENTER);
 
-        ImageView imageView3 = createImageView("https://cdn-icons-png.flaticon.com/512/6122/6122876.png");
+        ImageView imageView3 = createImageView("Images/productPants.png");
         bugButton = new Button();
         Bug bug = new Bug(20, 5, 1, BUG3);
-	    bugButton = new Button();
-	    bugButton.setGraphic(imageView3);    
-	    bugButton.getStyleClass().add("enemy-buttons");
-	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+	      bugButton = new Button();
+	      bugButton.setGraphic(imageView3);    
+	      bugButton.getStyleClass().add("enemy-buttons");
+	      bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
         Label productLabel3 = new Label("Denim Jeans\n$59.99");
         VBox productBox3 = new VBox(10, bugButton, productLabel3);
         productBox3.setAlignment(Pos.CENTER);
-
+       
         // Add products to the grid
         productsGrid.add(productBox1, 0, 0);
         productsGrid.add(productBox2, 1, 0);
         productsGrid.add(productBox3, 2, 0);
+        productsGrid.add(productBox4, 2, 0);
 
         // Sales and Discount Section
         VBox salesSection = new VBox(10);
@@ -95,7 +99,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
         Label footerLabel = new Label("©2024 Your UNC'S Clothing - All rights reserved");
         footerLabel.setFont(Font.font("Arial", 12));
         footerLabel.setTextFill(Color.GRAY);
-        footerLabel.setPadding(new Insets(10, 0, 10, 0));  // Ensure top and bottom padding is minimal
+        footerLabel.setPadding(new Insets(10, 0, 10, 0));  
         
         HBox footerBox = new HBox(footerLabel);
         //footerBox.setAlignment(Pos.CENTER);
@@ -116,5 +120,6 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 	@Override
 	public void removeBug() {
 		bugButton.setVisible(false);	
+
 	}
 }

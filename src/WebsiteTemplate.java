@@ -112,6 +112,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		primaryStage.setScene(websiteScene);
 		primaryStage.setWidth(1200);
 		primaryStage.setHeight(800);
+		primaryStage.setMaximized(true);
 		primaryStage.show();
 	}
 	
