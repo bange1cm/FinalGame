@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -30,24 +31,24 @@ public class Fight extends VBox {
 		try {
 			File file1 = new File(enemy.getImgURL());
 			ImageView img = new ImageView(new Image(file1.toURI().toString()));
-			
+
 			// enemy and player stats
 			enemyName = new Label("");
 			hpLabel = new Label("HP: " + enemy.getHp());
 			ppLabel = new Label("PP: " + Utility.getPlayerHP());
-			
+
 			// menu buttons
 			Button endFight = new Button("FLEE");
 			Button attackEnemy = new Button("ATTACK");
 			Button useItem = new Button("ITEM");
 			Button scanEnemy = new Button("SCAN");
-			
-			//checks if enemy is a virus and names it
-			if(enemy instanceof Trojan)
+
+			// checks if enemy is a virus and names it
+			if (enemy instanceof Trojan)
 				enemyName.setText("TROJAN HORSE");
-			else if(enemy instanceof Samsa)
+			else if (enemy instanceof Samsa)
 				enemyName.setText("SAMSA");
-			else if(enemy instanceof LagWitch) 
+			else if (enemy instanceof LagWitch)
 				enemyName.setText("LAG WITCH");
 			else
 				enemyName.setText("BUG");
@@ -73,17 +74,16 @@ public class Fight extends VBox {
 			updateText = new Text("ENEMY encountered!");
 			ScrollPane updateBox = new ScrollPane(updateText);
 
-			//puts gui into vboxes for neater formatting
+			// puts gui into vboxes for neater formatting
 			VBox bugInfo = new VBox(20, img, enemyName, hpLabel, updateBox);
 			VBox buttons = new VBox(20, ppLabel, attackEnemy, useItem, scanEnemy, endFight);
 			buttons.setMinSize(100, 100);
 			buttons.setAlignment(Pos.TOP_CENTER);
 
-			
 			GridPane gp = new GridPane();
 			gp.addRow(0, bugInfo, buttons);
 
-			//gridpane formatting
+			// gridpane formatting
 			gp.setMinSize(500, 500);
 			gp.setHgap(20);
 			gp.setAlignment(Pos.CENTER);
@@ -91,7 +91,7 @@ public class Fight extends VBox {
 			cc.setPercentWidth(50);
 			gp.getColumnConstraints().add(cc);
 
-			//hands button presses
+			// hands button presses
 			endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
 			attackEnemy.setOnAction(e -> attackEnemy());
 			scanEnemy.setOnAction(e -> scanEnemy());
@@ -104,31 +104,47 @@ public class Fight extends VBox {
 
 	}
 
-	//helper method to provide information about the enemy
+	// helper method to provide information about the enemy
 	private static void scanEnemy() {
 		System.out.println("Scan enemy");
 		updateText.setText(updateText.getText() + "\n Scanning enemy...\n");
-		if(enemy instanceof Trojan)
-			updateText.setText(updateText.getText() + "This is a VIRUS called the TROJAN HORSE. It seems like an extension might help...\n");
-		else if(enemy instanceof Samsa)
-			updateText.setText(updateText.getText() + "This is a VIRUS called SAMSA. It seems like an extension might help...\n");
-		else if(enemy instanceof LagWitch) 
-			updateText.setText(updateText.getText() + "This is a VIRUS called the LAG WITCH. It seems like an extension might help...\n");
-		updateText.setText(updateText.getText() + "Attack: " + enemy.getAtk() + "\nDefense: "
-				+ enemy.getDef() + "\n");
-		
+		if (enemy instanceof Trojan)
+			updateText.setText(updateText.getText()
+					+ "This is a VIRUS called the TROJAN HORSE. It seems like an extension might help...\n");
+		else if (enemy instanceof Samsa)
+			updateText.setText(
+					updateText.getText() + "This is a VIRUS called SAMSA. It seems like an extension might help...\n");
+		else if (enemy instanceof LagWitch)
+			updateText.setText(updateText.getText()
+					+ "This is a VIRUS called the LAG WITCH. It seems like an extension might help...\n");
+		updateText.setText(updateText.getText() + "Attack: " + enemy.getAtk() + "\nDefense: " + enemy.getDef() + "\n");
+
 	}
 
-	//attacks enemy
+	// attacks enemy
 	private static void attackEnemy() {
 		if (enemy.getHp() > 0) {
-			Utility.attack(enemy);
-			System.out.println("Enemy hp reduced");
-			hpLabel.setText("HP: " + enemy.getHp());
-			updateText.setText("YOU attack the enemy!");
+			if (Utility.bugAttacked) {
+				Utility.attack(enemy);
+				System.out.println("Enemy hp reduced");
+				hpLabel.setText("HP: " + enemy.getHp());
+				updateText.setText(updateText.getText() + "\nYOU attack the enemy!");
+				
+				enemyAttacks();
+			}
 		} else {
 			updateText.setText("YOU win!");
 			System.out.println("Fight won");
 		}
+	}
+
+	private static void enemyAttacks() {
+		if (!Utility.bugAttacked) {
+			Utility.damage(enemy.getAtk());
+			System.out.println("player hp reduced");
+			ppLabel.setText("PP: " + Utility.getPlayerHP());
+			updateText.setText(updateText.getText() + "\nThe ENEMY attacks!");
+		}
+
 	}
 }

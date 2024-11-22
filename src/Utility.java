@@ -4,9 +4,10 @@ public class Utility {
 	public static int bugsDefeated = 0;
 	public static int totalBugs = 5;
 
-	//keeps track of turns and enemy turns
+	//keeps track of turns
 	private static int combatTurn = 0;
-	private static boolean enemyAttacked = false;
+	private static boolean hasAttacked = false;
+	public static boolean bugAttacked = true;
 
 	private static int playerMaxHP;
 	private static int playerHP;
@@ -33,6 +34,9 @@ public class Utility {
 
 	public static void damage(int dmg) {
 		playerHP -= (dmg - ((playerDEF + tempDEF) / 2));
+		hasAttacked = false;
+		bugAttacked = true;
+		combatTurn++;
 	}
 
 	public static void heal(int hp) {
@@ -57,8 +61,10 @@ public class Utility {
 	}
 
 	public static void attack(Enemy e) {
-		if (!enemyAttacked) {
+		if (!hasAttacked) {
 			e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
+			hasAttacked = true;
+			bugAttacked = false;
 		}
 	}
 
