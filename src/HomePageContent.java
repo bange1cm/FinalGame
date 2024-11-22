@@ -14,8 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class HomePageContent extends BorderPane implements HasBug {
-static Button bugButton;
+public class HomePageContent extends BorderPane implements HasBug, EnemyConstants {
+	static  Button bugButton;
 static ImageView imageView4;
     public HomePageContent() {
     	this.setMinHeight(1000);
@@ -56,27 +56,18 @@ static ImageView imageView4;
         Label productLabel2 = new Label("Stylish Hoodie\n$39.99");
         VBox productBox2 = new VBox(10, imageView2, productLabel2);
         productBox2.setAlignment(Pos.CENTER);
-        ImageView imageView3 = createImageView("Images/homeBugPic.png");
-       
-        bugButton = new Button(null, imageView3);
-        
-        
-        
-        Label productLabel3 = new Label("Fancy Pants\n$20.99");
-        
-        //bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this));
-        imageView4 = createImageView("Images/productPants.png");
-        imageView4.setVisible(false);
 
-        VBox productBox3 = new VBox(20, bugButton, productLabel3);
-        VBox productBox4 = new VBox(10, imageView4, productLabel3);
-        
-       // productBox3.setAlignment(Pos.CENTER);
-        
-       //Imageview3 bug 
-        
-        
-        
+        ImageView imageView3 = createImageView("Images/productPants.png");
+        bugButton = new Button();
+        Bug bug = new Bug(20, 5, 1, BUG3);
+	      bugButton = new Button();
+	      bugButton.setGraphic(imageView3);    
+	      bugButton.getStyleClass().add("enemy-buttons");
+	      bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+        Label productLabel3 = new Label("Denim Jeans\n$59.99");
+        VBox productBox3 = new VBox(10, bugButton, productLabel3);
+        productBox3.setAlignment(Pos.CENTER);
+       
         // Add products to the grid
         productsGrid.add(productBox1, 0, 0);
         productsGrid.add(productBox2, 1, 0);
@@ -128,9 +119,7 @@ static ImageView imageView4;
 
 	@Override
 	public void removeBug() {
-		bugButton.setVisible(false);
-		imageView4.setVisible(true);
-		
-		
+		bugButton.setVisible(false);	
+
 	}
 }
