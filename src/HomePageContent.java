@@ -1,4 +1,6 @@
 
+import java.io.File;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -127,6 +129,5 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		bugButton.setVisible(false);
 		productBox3 = new VBox(10, imageView4, productLabel3);
 		productsGrid.add(productBox3, 2, 0);
-
 	}
 }
