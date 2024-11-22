@@ -1,11 +1,9 @@
 
-public class Enemy {
+public class Enemy implements EnemyConstants {
 	// health, attack, and defense variables
 	protected int hp;
 	protected int atk;
 	protected int def;
-	
-	protected Boolean isDead;
 	
 	protected String imgURL;
 
@@ -16,13 +14,12 @@ public class Enemy {
 		this.atk = atk;
 		this.def = def;
 		this.imgURL = imgURL;
-		this.isDead = false;
 	}
 
 	// attacks player
 	public void attack() {
 		// player hp - enemy attack variable, calls from utility class method
-
+		Utility.damage(atk);
 	}
 
 	// getters and setters
@@ -58,12 +55,8 @@ public class Enemy {
 		this.imgURL = imgURL;
 	}
 
-	public Boolean getIsDead() {
-		return isDead;
-	}
-
-	public void setIsDead(Boolean isDead) {
-		this.isDead = isDead;
+	public Boolean isDead() {
+		return this.hp <= 0;
 	}
 	
 }
@@ -74,16 +67,29 @@ class Bug extends Enemy {
 		super(hp, atk, def, imgURL);
 	}
 
+	public void dropItem() {
+		if(this.imgURL.equals(BUG1)) {
+			ItemMap.obtain(new Extension(0));
+		} else if(this.imgURL.equals(BUG2)) {
+			ItemMap.obtain(new Extension(1));
+		} else if(this.imgURL.equals(TROJAN_HORSE_BUG)) {
+			ItemMap.obtain(new Extension(2));
+		} else {
+			ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		}
+	}
 }
 
 class Virus extends Enemy {
 	// extension id
-	private int extId;
+	protected int extId;
 
-	public Virus(int hp, int atk, int def, String imgURL, int extId) {
+	public Virus(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
-		this.extId = extId;
-		// TODO Auto-generated constructor stub
+	}
+	
+	public void dropItem() {
+		ItemMap.obtain(new Extension(extId));
 	}
 
 }
@@ -93,8 +99,9 @@ class Samsa extends Virus {
 	private static int metaRNG;
 	private static int trackBoost;
 	
-	public Samsa(int hp, int atk, int def, String imgURL, int extId) {
-		super(hp, atk, def, imgURL, extId);
+	public Samsa(int hp, int atk, int def, String imgURL) {
+		super(hp, atk, def, imgURL);
+		this.extId = 3;
 	}
 	
 	public void metamorphosize() {
@@ -116,19 +123,22 @@ class LagWitch extends Virus{
 	
 	private static Boolean trackVenom;
 	
-	public LagWitch(int hp, int atk, int def, String imgURL, int extId) {
-		super(hp, atk, def, imgURL, extId);
+	public LagWitch(int hp, int atk, int def, String imgURL) {
+		super(hp, atk, def, imgURL);
+		this.extId = 4;
 	}
 	
 	@Override
 	public void attack() {
 		//call utility method to attack player
+		Utility.damage(atk);
 		trackVenom = true;
 	}
 	
-	public static void venom() {
+	public void venom() {
 		if(trackVenom) {
 			// call utility method to attack player for half of atk stat
+			Utility.damage(atk/2);
 			trackVenom = false;
 		}
 	}
@@ -136,7 +146,8 @@ class LagWitch extends Virus{
 
 class Trojan extends Virus{ //unsure how to implement currently. probably depends on combat interface
 	
-	public Trojan(int hp, int atk, int def, int extId, String imgURL) {
-		super(hp, atk, def, imgURL, extId);
+	public Trojan(int hp, int atk, int def, String imgURL) {
+		super(hp, atk, def, imgURL);
+		this.extId = 5;
 	}
 }
