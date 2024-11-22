@@ -180,13 +180,13 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	}
 	
 	//change scenes when the fight in done, whether won or loss
-	public static void endFight(ActionEvent e, HasBug page) {
+	public static void endFight(HasBug page) {
 		primaryStageRef.setScene(websiteScene);
 	}
 	
 	//remove bug if the fight is won
-	public static void winFight(ActionEvent e, HasBug page) {
-		endFight(e, page);
+	public static void winFight(HasBug page) {
+		endFight(page);
 		page.removeBug();
 		
 	}
