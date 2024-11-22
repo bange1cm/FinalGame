@@ -57,22 +57,23 @@ static ImageView imageView4;
         VBox productBox2 = new VBox(10, imageView2, productLabel2);
         productBox2.setAlignment(Pos.CENTER);
 
-        ImageView imageView3 = createImageView("Images/productPants.png");
+        ImageView imageView3 = createImageView("Images/homeBugPic.png");
         bugButton = new Button();
         Bug bug = new Bug(20, 5, 1, BUG3);
-	      bugButton = new Button();
-	      bugButton.setGraphic(imageView3);    
-	      bugButton.getStyleClass().add("enemy-buttons");
-	      bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
-        Label productLabel3 = new Label("Denim Jeans\n$59.99");
+	    bugButton = new Button();
+	    bugButton.setGraphic(imageView3);    
+	    bugButton.getStyleClass().add("enemy-buttons");
+	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+        Label productLabel3 = new Label("Fancy Pants\n$20.99");
         VBox productBox3 = new VBox(10, bugButton, productLabel3);
         productBox3.setAlignment(Pos.CENTER);
+        
+        ImageView imageView4 = createImageView("Images/productPants.png");
        
         // Add products to the grid
         productsGrid.add(productBox1, 0, 0);
         productsGrid.add(productBox2, 1, 0);
         productsGrid.add(productBox3, 2, 0);
-        productsGrid.add(productBox4, 2, 0);
 
         // Sales and Discount Section
         VBox salesSection = new VBox(10);
