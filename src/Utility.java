@@ -1,3 +1,4 @@
+import java.util.concurrent.TimeUnit;
 
 public class Utility {
 
@@ -29,7 +30,7 @@ public class Utility {
 		playerMaxHP = 10;
 		playerHP = playerMaxHP;
 		playerATK = 10;
-		playerDEF = 10;
+		playerDEF = 3;
 	}
 
 	public static void damage(int dmg) {

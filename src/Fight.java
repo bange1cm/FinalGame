@@ -92,7 +92,7 @@ public class Fight extends VBox {
 			gp.getColumnConstraints().add(cc);
 
 			// hands button presses
-			endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
+			endFight.setOnAction(e -> WebsiteTemplate.endFight(mainPage));
 			attackEnemy.setOnAction(e -> attackEnemy());
 			scanEnemy.setOnAction(e -> scanEnemy());
 			useItem.setOnAction(e -> WebsiteTemplate.enterInventory(e));
@@ -123,27 +123,29 @@ public class Fight extends VBox {
 
 	// attacks enemy
 	private static void attackEnemy() {
-		if (enemy.getHp() > 0) {
+		if (!enemy.isDead()) {
 			if (Utility.bugAttacked) {
 				Utility.attack(enemy);
 				System.out.println("Enemy hp reduced");
 				hpLabel.setText("HP: " + enemy.getHp());
 				updateText.setText(updateText.getText() + "\nYOU attack the enemy!");
-				
+
 				enemyAttacks();
 			}
-		} else {
-			updateText.setText("YOU win!");
-			System.out.println("Fight won");
 		}
 	}
 
 	private static void enemyAttacks() {
-		if (!Utility.bugAttacked) {
-			Utility.damage(enemy.getAtk());
+		if (!Utility.bugAttacked && !enemy.isDead()) {
+			enemy.attack();
 			System.out.println("player hp reduced");
 			ppLabel.setText("PP: " + Utility.getPlayerHP());
 			updateText.setText(updateText.getText() + "\nThe ENEMY attacks!");
+		} else {
+			updateText.setText("YOU win!");
+			System.out.println("Fight won");
+			Utility.bugsDefeated++;
+			WebsiteTemplate.winFight(mainPage);
 		}
 
 	}
