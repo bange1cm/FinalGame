@@ -1,4 +1,6 @@
 
+import java.io.File;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,9 +16,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class HomePageContent extends BorderPane implements HasBug, EnemyConstants {
-	static  Button bugButton;
+public class HomePageContent extends BorderPane implements HasBug, EnemyConstants{
+static Button bugButton;
+static Bug bug2;
+
 static ImageView imageView4;
+static Button footerButton;
     public HomePageContent() {
     	this.setMinHeight(1000);
         // Top Header Section
@@ -102,7 +107,23 @@ static ImageView imageView4;
         footerLabel.setTextFill(Color.GRAY);
         footerLabel.setPadding(new Insets(10, 0, 10, 0));  
         
-        HBox footerBox = new HBox(footerLabel);
+        //footer bug
+        footerButton = new Button();
+        bug2 = new Bug(10, 6, 2, BUG4);
+	    File file2 = new File(bug2.getImgURL());
+	    ImageView img2 = new ImageView(new Image(file2.toURI().toString()));
+	    img2.setScaleX(2);
+	    img2.setScaleY(2);
+	    footerButton.setGraphic(img2);
+	    
+	    footerButton.setMinHeight(35);
+	    footerButton.setPrefHeight(35);
+	    footerButton.setScaleX(0.1);
+	    footerButton.setScaleY(0.1);
+	    footerButton.getStyleClass().add("enemy-buttons");
+	    footerButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug2));
+        
+        HBox footerBox = new HBox(footerLabel, footerButton);
         //footerBox.setAlignment(Pos.CENTER);
         footerBox.setAlignment(Pos.BOTTOM_CENTER);
         footerBox.setStyle("-fx-background-color: #e6e6e6;");
@@ -120,7 +141,11 @@ static ImageView imageView4;
 
 	@Override
 	public void removeBug() {
-		bugButton.setVisible(false);	
-
+		if(bug2.isDead) {
+			footerButton.setVisible(false);
+		}
+			bugButton.setVisible(false);
+			imageView4.setVisible(true);
+		
 	}
 }

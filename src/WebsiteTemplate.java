@@ -27,6 +27,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	private static ProductsPage mainProducts;
 	private static Reviews mainReviews;
 	private static ContactPage mainContact;
+	private static NotFound mainNotFound;
 	private static InventoryMenu inventory;
 	private static End end;
 	private static TabPane tabPane;
@@ -64,6 +65,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
         mainAbout = new About();
         mainReviews = new Reviews();
         mainContact = new ContactPage();
+        mainNotFound = new NotFound();
         
 		//create website layout
         layout = new BorderPane();
@@ -144,6 +146,9 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		case "Reviews":
 			layout.setCenter(mainReviews);
 			break;
+		case "110010100":
+			layout.setCenter(mainNotFound);
+			break;
 		}
 		
 		
@@ -189,6 +194,11 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	//end scene
 	public static void endScene() {
 		primaryStageRef.setScene(endScene);
+	}
+	
+	//navigate away from 404 page
+	public static void toAbout() {
+		layout.setCenter(mainAbout);
 	}
 }
 
