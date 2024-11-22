@@ -104,10 +104,11 @@ class Samsa extends Virus {
 		this.extId = 3;
 	}
 	
-	public void metamorphosize() {
+	@Override
+	public void attack() {
 		metaRNG = (int) Math.random() * 3;
 		
-		if(metaRNG == 0) {
+		if(metaRNG == 0 || (metaRNG == 1 && Utility.hasRngSeed())) {
 			this.atk = this.atk - trackBoost;
 			this.def = this.def - trackBoost;
 			trackBoost = 0;
@@ -116,6 +117,8 @@ class Samsa extends Virus {
 			this.def += metaRNG;
 			trackBoost += metaRNG;
 		}
+		
+		Utility.damage(atk);
 	}
 }
 
@@ -130,24 +133,30 @@ class LagWitch extends Virus{
 	
 	@Override
 	public void attack() {
+		if(!Utility.hasConnection() && trackVenom) {
+			// call utility method to attack player for half of atk stat
+			Utility.damage(atk/2);
+		}
 		//call utility method to attack player
 		Utility.damage(atk);
 		trackVenom = true;
-	}
-	
-	public void venom() {
-		if(trackVenom) {
-			// call utility method to attack player for half of atk stat
-			Utility.damage(atk/2);
-			trackVenom = false;
-		}
 	}
 }
 
 class Trojan extends Virus{ //unsure how to implement currently. probably depends on combat interface
 	
+	private static Boolean statsLowered = false;
+	
 	public Trojan(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
 		this.extId = 5;
+	}
+	
+	public void attack() {
+		if(!statsLowered && Utility.hasFirewall()) {
+			this.def = 0;
+			statsLowered = true;
+		}
+		Utility.damage(atk);
 	}
 }
