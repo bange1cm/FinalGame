@@ -16,12 +16,12 @@ public class Reviews extends BorderPane implements HasBug{
 		reviews.getChildren().add(title);
 		
 		Label buyer1 = new Label("Anonymous Buyer bought: : White Graphic Tee Cool Awesome T-Shirt Band Shirt....");
-		Label review1 = new Label("1/5 Stars: This review has been deleted.");
+		Label review1 = new Label("1/5 Stars: This review has been deleted.\n⭐");
 		buyer1.getStyleClass().add("h2");
 		review1.getStyleClass().add("h2");
 		
 		Label buyer2 = new Label("Real Customer bought: White Plain No Text Men’s Women’s Unisex Shirt");
-		Label review2 = new Label("5/5 Stars: This is the best White Plain No Text Men’s Women’s Unisex Shirt ever! It works so well and was so cheap. I’ll be buying this again!");
+		Label review2 = new Label("5/5 Stars: This is the best White Plain No Text Men’s Women’s Unisex Shirt ever! It works so well and was so cheap. I’ll be buying this again!\n⭐⭐⭐⭐⭐");
 		review2.setWrapText(true);
 		buyer2.getStyleClass().add("h2");
 		review2.getStyleClass().add("h2");
@@ -52,7 +52,7 @@ public class Reviews extends BorderPane implements HasBug{
 		this.setCenter(reviews);
 		this.setRight(scam);
 		this.setMinHeight(800);
-	
+
 	}
 
 	@Override
