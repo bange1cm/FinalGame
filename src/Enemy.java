@@ -1,5 +1,5 @@
 
-public class Enemy {
+public class Enemy implements EnemyConstants {
 	// health, attack, and defense variables
 	protected int hp;
 	protected int atk;
@@ -67,8 +67,16 @@ class Bug extends Enemy {
 		super(hp, atk, def, imgURL);
 	}
 
-	public static void dropItem() {
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+	public void dropItem() {
+		if(this.imgURL.equals(BUG1)) {
+			ItemMap.obtain(new Extension(0));
+		} else if(this.imgURL.equals(BUG2)) {
+			ItemMap.obtain(new Extension(1));
+		} else if(this.imgURL.equals(TROJAN_HORSE_BUG)) {
+			ItemMap.obtain(new Extension(2));
+		} else {
+			ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		}
 	}
 }
 
