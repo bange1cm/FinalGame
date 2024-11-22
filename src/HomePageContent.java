@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 public class HomePageContent extends BorderPane implements HasBug, EnemyConstants{
 static Button bugButton;
 static Bug bug2;
+static Bug bug;
 
 static ImageView imageView4;
 static Button footerButton;
@@ -64,7 +65,7 @@ static Button footerButton;
 
         ImageView imageView3 = createImageView("Images/homeBugPic.png");
         bugButton = new Button();
-        Bug bug = new Bug(20, 5, 1, BUG3);
+        bug = new Bug(20, 5, 1, BUG3);
 	    bugButton = new Button();
 	    bugButton.setGraphic(imageView3);    
 	    bugButton.getStyleClass().add("enemy-buttons");
@@ -141,11 +142,12 @@ static Button footerButton;
 
 	@Override
 	public void removeBug() {
-		if(bug2.isDead) {
+		if(bug2.isDead() ) {
 			footerButton.setVisible(false);
 		}
+		else if(bug.isDead()) {
 			bugButton.setVisible(false);
 			imageView4.setVisible(true);
-		
+		}
 	}
 }

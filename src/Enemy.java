@@ -55,7 +55,7 @@ public class Enemy implements EnemyConstants {
 		this.imgURL = imgURL;
 	}
 
-	public Boolean isDead() {
+	public boolean isDead() {
 		return this.hp <= 0;
 	}
 	
