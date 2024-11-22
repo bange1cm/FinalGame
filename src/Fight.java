@@ -42,8 +42,15 @@ public class Fight extends VBox {
 			Button useItem = new Button("ITEM");
 			Button scanEnemy = new Button("SCAN");
 			
-			//checks if enemy is a virus
-			//if(enemy instanceof Troj)
+			//checks if enemy is a virus and names it
+			if(enemy instanceof Trojan)
+				enemyName.setText("TROJAN HORSE");
+			else if(enemy instanceof Samsa)
+				enemyName.setText("SAMSA");
+			else if(enemy instanceof LagWitch) 
+				enemyName.setText("LAG WITCH");
+			else
+				enemyName.setText("BUG");
 
 			// changes fonts and size
 			hpLabel.setFont(new Font("", 20));
@@ -66,14 +73,17 @@ public class Fight extends VBox {
 			updateText = new Text("ENEMY encountered!");
 			ScrollPane updateBox = new ScrollPane(updateText);
 
-			VBox bugInfo = new VBox(20, img, hpLabel, updateBox);
+			//puts gui into vboxes for neater formatting
+			VBox bugInfo = new VBox(20, img, enemyName, hpLabel, updateBox);
 			VBox buttons = new VBox(20, ppLabel, attackEnemy, useItem, scanEnemy, endFight);
 			buttons.setMinSize(100, 100);
 			buttons.setAlignment(Pos.TOP_CENTER);
 
+			
 			GridPane gp = new GridPane();
 			gp.addRow(0, bugInfo, buttons);
 
+			//gridpane formatting
 			gp.setMinSize(500, 500);
 			gp.setHgap(20);
 			gp.setAlignment(Pos.CENTER);
@@ -81,6 +91,7 @@ public class Fight extends VBox {
 			cc.setPercentWidth(50);
 			gp.getColumnConstraints().add(cc);
 
+			//hands button presses
 			endFight.setOnAction(e -> WebsiteTemplate.endFight(e, mainPage));
 			attackEnemy.setOnAction(e -> attackEnemy());
 			scanEnemy.setOnAction(e -> scanEnemy());
@@ -93,15 +104,24 @@ public class Fight extends VBox {
 
 	}
 
+	//helper method to provide information about the enemy
 	private static void scanEnemy() {
 		System.out.println("Scan enemy");
-		updateText.setText(updateText.getText() + "\n Scanning enemy...\n" + "Attack: " + enemy.getAtk() + "\nDefense: "
-				+ enemy.getDef());
+		updateText.setText(updateText.getText() + "\n Scanning enemy...\n");
+		if(enemy instanceof Trojan)
+			updateText.setText(updateText.getText() + "This is a VIRUS called the TROJAN HORSE. It seems like an extension might help...\n");
+		else if(enemy instanceof Samsa)
+			updateText.setText(updateText.getText() + "This is a VIRUS called SAMSA. It seems like an extension might help...\n");
+		else if(enemy instanceof LagWitch) 
+			updateText.setText(updateText.getText() + "This is a VIRUS called the LAG WITCH. It seems like an extension might help...\n");
+		updateText.setText(updateText.getText() + "Attack: " + enemy.getAtk() + "\nDefense: "
+				+ enemy.getDef() + "\n");
+		
 	}
 
 	private static void attackEnemy() {
 		if (enemy.getHp() > 0) {
-			enemy = Utility.attack(enemy);
+			Utility.attack(enemy);
 			System.out.println("Enemy hp reduced");
 			hpLabel.setText("HP: " + enemy.getHp());
 			updateText.setText("YOU attack the enemy!");
