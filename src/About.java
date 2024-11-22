@@ -1,6 +1,8 @@
 
 import java.io.File;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -8,9 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class About extends VBox implements HasBug, EnemyConstants {
 	static Button bugButton;
+	static Button randomNavButton;
+	static FlowPane randomHolder;
 
 	public About() {
 		// main title
@@ -73,8 +79,17 @@ public class About extends VBox implements HasBug, EnemyConstants {
 			FAQs[i].getStyleClass().add("p");
 			FAQs[i].setWrapText(true);
 		}
+		
+		//navigation to notfound
+		randomNavButton = new Button("110010100");
+		randomNavButton.setOnAction(e -> WebsiteTemplate.navigation(e));
+		Rectangle emptyRec = new Rectangle(1, 350);
+		emptyRec.setFill(Color.TRANSPARENT);
+		randomHolder = new FlowPane(Orientation.VERTICAL , emptyRec, randomNavButton);
+		
 
 		this.getChildren().add(itemButton);
+		this.getChildren().add(randomHolder);
 		this.getStyleClass().add("main-padding");
 		this.setSpacing(20);
 	}
@@ -82,5 +97,9 @@ public class About extends VBox implements HasBug, EnemyConstants {
 	@Override
 	public void removeBug() {
 		bugButton.setVisible(false);
+	}
+	
+	public static void removeRandom() {
+		randomHolder.setVisible(false);
 	}
 }
