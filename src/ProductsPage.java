@@ -22,28 +22,28 @@ public class ProductsPage extends GridPane {
         // Add products
         addProduct(
             "Luxury Bag - 99% Off!",
-            "Gucci bag fake",
+            "Gucci bag replica",
             "productBag.png",
             0, 1
         );
 
         addProduct(
             "Exclusive Brand Pants - Only $19.99!",
-            "Example description",
+            "Super comfortable pants",
             "productPants.png",
             1, 1
         );
 
         addProduct(
             "Fire Hat - 90% Discount!",
-            "Example description",
+            "Fits any head",
             "productHat.png",
             0, 2
         );
 
         addProduct(
             "Designer T-shirt - Only $40.99!",
-            "Example description",
+            "Perfect for any weather  ",
             "productShirt.png",
             1, 2
         );

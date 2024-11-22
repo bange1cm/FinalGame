@@ -52,7 +52,7 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
         messageArea.setPrefHeight(100);
 
         // Send button
-        Virus trojan = new Trojan(100, 10, 10, 2, TROJAN_HORSE);
+        Virus trojan = new Trojan(100, 10, 10, TROJAN_HORSE);
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");
 

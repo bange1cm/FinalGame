@@ -23,7 +23,6 @@ public class Header extends HBox implements HasBug, EnemyConstants{
 	    img.setScaleY(2);
 	    bugButton.setGraphic(img);
 	    
-	    
 	    bugButton.setMinHeight(10);
 	    bugButton.setPrefHeight(10);
 	    bugButton.setScaleX(0.1);
