@@ -11,6 +11,9 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
 	static Label ssnLabel, cardLabel, addressLabel;
 	static TextField ssnField, cardField, addressField;
 	
+	static int counter = 0;
+	static boolean defeated = false;
+	
     public ContactPage() {
         // Set up the layout
         this.setPadding(new Insets(20));
@@ -53,7 +56,7 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
 
         // Send button 
         //cora will redo to lag witch
-        Trojan trojan = Trojan.getInstance();
+        LagWitch lagWitch = LagWitch.getInstance();
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");
 
@@ -75,18 +78,36 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
 
         // Action for the send button
         sendButton.setOnAction(e -> {
-            WebsiteTemplate.startFight(e, this, trojan);
-            emailField.clear();
-            phoneField.clear();
-            ssnField.clear();
-            cardField.clear();
-            addressField.clear();
-            messageArea.clear();
+        	if(defeated) {
+        		emailField.clear();
+	            phoneField.clear();
+	            messageArea.clear();
+        	}
+        	else if(clicks3()) {
+	            counter = 0;
+        		WebsiteTemplate.startFight(e, this, lagWitch);
+	            emailField.clear();
+	            phoneField.clear();
+	            ssnField.clear();
+	            cardField.clear();
+	            addressField.clear();
+	            messageArea.clear();
+        	}
         });
+    }
+    
+    public boolean clicks3() {
+    	counter++;
+    	if(counter == 3) 
+    		return true;
+    	else
+    		return false;
+    		
     }
 
 	@Override
 	public void removeBug() {
+		defeated = true;
 		ssnField.setVisible(false);
 		cardField.setVisible(false);
 		addressField.setVisible(false);
