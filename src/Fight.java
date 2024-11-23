@@ -146,6 +146,7 @@ public class Fight extends VBox {
 			updateText.setText("YOU win!");
 			System.out.println("Fight won");
 			Utility.bugsDefeated++;
+			enemy.dropItem();
 			WebsiteTemplate.winFight(mainPage);
 		}
 
