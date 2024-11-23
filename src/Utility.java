@@ -3,7 +3,7 @@ import java.util.concurrent.TimeUnit;
 public class Utility {
 
 	public static int bugsDefeated = 0;
-	public static int totalBugs = 5;
+	public static int totalBugs = 8;
 
 	//keeps track of turns
 	private static int combatTurn = 0;
