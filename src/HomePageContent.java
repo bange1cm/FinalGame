@@ -19,13 +19,13 @@ import javafx.scene.text.Text;
 
 public class HomePageContent extends BorderPane implements HasBug, EnemyConstants {
 	static Button bugButton;
-  static Button footerButton;
+    static Button footerButton;
 	static ImageView imageView4;
 	GridPane productsGrid;
 	VBox productBox3;
 	Label productLabel3;
-  static Bug bug2;
-  static Bug bug;
+    static Bug bug2;
+    static Bug bug;
 
 	public HomePageContent() {
 		this.setMinHeight(1000);
@@ -69,7 +69,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 
 		ImageView imageView3 = createImageView("Images/homeBugPic.png");
 		bugButton = new Button();
-		Bug bug = new Bug(20, 5, 1, BUG3);
+		Bug bug = new Bug(20, 5, 1, BUG2);
 		bugButton = new Button();
 		bugButton.setGraphic(imageView3);
 		bugButton.getStyleClass().add("enemy-buttons");
@@ -112,10 +112,10 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		footerLabel.setTextFill(Color.GRAY);
 		footerLabel.setPadding(new Insets(10, 0, 10, 0));
     
-    //footer bug
-    footerButton = new Button();
-    bug2 = new Bug(10, 6, 2, BUG4);
-	  File file2 = new File(bug2.getImgURL());
+        //footer bug
+		footerButton = new Button();
+		bug2 = new Bug(10, 6, 2, BUG4);
+	    File file2 = new File(bug2.getImgURL());
 	    ImageView img2 = new ImageView(new Image(file2.toURI().toString()));
 	    img2.setScaleX(2);
 	    img2.setScaleY(2);
@@ -147,10 +147,21 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 
 	@Override
 	public void removeBug() {
-    
-		bugButton.setVisible(false);
-		productBox3 = new VBox(10, imageView4, productLabel3);
-		productsGrid.add(productBox3, 2, 0);
-    footerButton.setVisible(false);
+		//generates an error. after fight is won
+		/*
+		 * Exception in thread "JavaFX Application Thread" java.lang.NullPointerException: Cannot invoke "Bug.isDead()" because "HomePageContent.bug" is null
+	at HomePageContent.removeBug(HomePageContent.java:150)
+	at WebsiteTemplate.winFight(WebsiteTemplate.java:190)
+	at Fight.enemyAttacks(Fight.java:148)
+	at Fight.attackEnemy(Fight.java:133)
+	at Fight.lambda$1(Fight.java:96)
+		 */
+		if(bug.isDead()) {
+			bugButton.setVisible(false);
+			productBox3 = new VBox(10, imageView4, productLabel3);
+			productsGrid.add(productBox3, 2, 0);
+		}else if(bug2.isDead()) {
+			footerButton.setVisible(false);
+		}
 	}
 }
