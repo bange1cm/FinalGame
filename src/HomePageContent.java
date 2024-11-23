@@ -69,11 +69,11 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 
 		ImageView imageView3 = createImageView("Images/homeBugPic.png");
 		bugButton = new Button();
-		Bug bug = new Bug(20, 5, 1, BUG2);
+		Samsa samsa = Samsa.getInstance();
 		bugButton = new Button();
 		bugButton.setGraphic(imageView3);
 		bugButton.getStyleClass().add("enemy-buttons");
-		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, samsa));
 		productLabel3 = new Label("Fancy Pants\n$20.99");
 		productBox3 = new VBox(10, bugButton, productLabel3);
 		productBox3.setAlignment(Pos.CENTER);

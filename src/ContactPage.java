@@ -53,7 +53,7 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
 
         // Send button 
         //cora will redo to lag witch
-        Virus trojan = new Trojan(100, 10, 10, TROJAN_HORSE);
+        Trojan trojan = Trojan.getInstance();
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");
 

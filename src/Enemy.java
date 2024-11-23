@@ -80,7 +80,7 @@ class Bug extends Enemy {
 	}
 }
 
-class Virus extends Enemy {
+abstract class Virus extends Enemy {
 	// extension id
 	protected int extId;
 
@@ -92,15 +92,18 @@ class Virus extends Enemy {
 		ItemMap.obtain(new Extension(extId));
 		ItemMap.obtain(new Cookie((int) Math.random() * 3));
 	}
+	
+	public abstract void attack();
 
 }
 
 class Samsa extends Virus {
+	private static Samsa instance;
 	
 	private static int metaRNG;
 	private static int trackBoost;
 	
-	public Samsa(int hp, int atk, int def, String imgURL) {
+	private Samsa(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
 		this.extId = 3;
 	}
@@ -121,13 +124,22 @@ class Samsa extends Virus {
 		
 		Utility.damage(atk);
 	}
+	
+	public static synchronized Samsa getInstance() {
+		if(instance == null) {
+			instance = new Samsa(100, 10, 5, SAMSA);
+		}
+		
+		return instance;
+	}
 }
 
 class LagWitch extends Virus{
+	private static LagWitch instance;
 	
 	private static Boolean trackVenom;
 	
-	public LagWitch(int hp, int atk, int def, String imgURL) {
+	private LagWitch(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
 		this.extId = 4;
 	}
@@ -142,13 +154,22 @@ class LagWitch extends Virus{
 		Utility.damage(atk);
 		trackVenom = true;
 	}
+	
+	public static synchronized LagWitch getInstance() {
+		if(instance == null) {
+			instance = new LagWitch(100, 10, 5, LAG_WITCH);
+		}
+		
+		return instance;
+	}
 }
 
 class Trojan extends Virus{ //unsure how to implement currently. probably depends on combat interface
+	private static Trojan instance;
 	
 	private static Boolean statsLowered = false;
 	
-	public Trojan(int hp, int atk, int def, String imgURL) {
+	private Trojan(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
 		this.extId = 5;
 	}
@@ -159,5 +180,13 @@ class Trojan extends Virus{ //unsure how to implement currently. probably depend
 			statsLowered = true;
 		}
 		Utility.damage(atk);
+	}
+	
+	public static synchronized Trojan getInstance() {
+		if(instance == null) {
+			instance = new Trojan(100, 10, 5, TROJAN_HORSE);
+		}
+		
+		return instance;
 	}
 }
