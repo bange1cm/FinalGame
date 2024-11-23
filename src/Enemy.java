@@ -55,7 +55,7 @@ public class Enemy implements EnemyConstants {
 		this.imgURL = imgURL;
 	}
 
-	public Boolean isDead() {
+	public boolean isDead() {
 		return this.hp <= 0;
 	}
 	
@@ -74,9 +74,9 @@ class Bug extends Enemy {
 			ItemMap.obtain(new Extension(1));
 		} else if(this.imgURL.equals(TROJAN_HORSE_BUG)) {
 			ItemMap.obtain(new Extension(2));
-		} else {
-			ItemMap.obtain(new Cookie((int) Math.random() * 3));
-		}
+		} 
+
+		ItemMap.obtain(new Cookie((int) Math.random() * 3));
 	}
 }
 
@@ -90,6 +90,7 @@ abstract class Virus extends Enemy {
 	
 	public void dropItem() {
 		ItemMap.obtain(new Extension(extId));
+		ItemMap.obtain(new Cookie((int) Math.random() * 3));
 	}
 	
 	public abstract void attack();

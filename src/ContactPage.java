@@ -51,7 +51,8 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
         messageArea.setPromptText("Enter any additional details here...");
         messageArea.setPrefHeight(100);
 
-        // Send button
+        // Send button 
+        //cora will redo to lag witch
         Trojan trojan = Trojan.getInstance();
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");

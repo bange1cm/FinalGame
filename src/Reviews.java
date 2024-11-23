@@ -48,6 +48,9 @@ public class Reviews extends BorderPane implements HasBug{
 		scam.setPrefWidth(250);
 		scam.setPrefHeight(200);
 		
+		//cora will implement bug
+        //Virus trojan = new Trojan(100, 10, 10, TROJAN_HORSE);
+		
 		this.getStyleClass().add("main-padding");
 		this.setCenter(reviews);
 		this.setRight(scam);
