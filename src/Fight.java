@@ -110,21 +110,22 @@ public class Fight extends VBox {
 		updateText.setText(updateText.getText() + "\n Scanning enemy...\n");
 		if (enemy instanceof Trojan)
 			updateText.setText(updateText.getText()
-					+ "This is a VIRUS called the TROJAN HORSE. It seems like an extension might help...\n");
+					+ "This is a VIRUS called the TROJAN HORSE. It seems like an extension might help...\nMaybe something to block viruses?\n");
 		else if (enemy instanceof Samsa)
 			updateText.setText(
-					updateText.getText() + "This is a VIRUS called SAMSA. It seems like an extension might help...\n");
+					updateText.getText() + "This is a VIRUS called SAMSA. It seems like an extension might help...\nMaybe something that will reset his stats?");
 		else if (enemy instanceof LagWitch)
 			updateText.setText(updateText.getText()
-					+ "This is a VIRUS called the LAG WITCH. It seems like an extension might help...\n");
+					+ "This is a VIRUS called the LAG WITCH. It seems like an extension might help...\nMaybe something that reduces lag?");
 		updateText.setText(updateText.getText() + "Attack: " + enemy.getAtk() + "\nDefense: " + enemy.getDef() + "\n");
 
 	}
 
 	// attacks enemy
 	private static void attackEnemy() {
+		System.out.println("Trying to attack...");
 		if (!enemy.isDead()) {
-			if (Utility.bugAttacked) {
+			if (Utility.getBugAttacked()) {
 				Utility.attack(enemy);
 				System.out.println("Enemy hp reduced");
 				hpLabel.setText("HP: " + enemy.getHp());
@@ -136,7 +137,7 @@ public class Fight extends VBox {
 	}
 
 	private static void enemyAttacks() {
-		if (!Utility.bugAttacked && !enemy.isDead()) {
+		if (!Utility.getBugAttacked() && !enemy.isDead()) {
 			enemy.attack();
 			System.out.println("player hp reduced");
 			ppLabel.setText("PP: " + Utility.getPlayerHP());
