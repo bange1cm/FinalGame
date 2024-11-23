@@ -8,7 +8,7 @@ public class Utility {
 	//keeps track of turns
 	private static int combatTurn = 0;
 	private static boolean hasAttacked = false;
-	public static boolean bugAttacked = true;
+	private static boolean bugAttacked = true;
 
 	private static int playerMaxHP;
 	private static int playerHP;
@@ -27,7 +27,7 @@ public class Utility {
 
 	public static void initialize() {
 		ItemMap.initializeMap();
-		playerMaxHP = 10;
+		playerMaxHP = 50;
 		playerHP = playerMaxHP;
 		playerATK = 10;
 		playerDEF = 3;
@@ -66,6 +66,10 @@ public class Utility {
 			e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
 			hasAttacked = true;
 			bugAttacked = false;
+			if(e.isDead()) {
+				hasAttacked = false;
+				bugAttacked = true;
+			}
 		}
 	}
 
@@ -123,6 +127,10 @@ public class Utility {
 
 	public static int getTempDEF() {
 		return tempDEF;
+	}
+	
+	public static boolean getBugAttacked() {
+		return bugAttacked;
 	}
 
 	public static boolean hasRngSeed() {
