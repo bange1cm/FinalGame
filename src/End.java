@@ -25,7 +25,7 @@ public class End extends VBox{
 			msg.setStyle("-fx-text-fill: red; -fx-font: 20 arial");
 			file = new File("src/Images/uncle_angry.jpg");
 		}
-		else if (Utility.bugsDefeated > Utility.totalBugs) {
+		else if (Utility.bugsDefeated < Utility.totalBugs) {
 			msg.setText("Good job I guess. You found some bugs.\nUnc wants you to know that he has lost some of his customers because you couldn't fix everything on his website.");
 			msg.setStyle("-fx-text-fill: orange; -fx-font: 20 arial;");
 			file = new File("src/Images/uncle_angry.jpg");
