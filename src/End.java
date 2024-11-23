@@ -11,7 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class End extends VBox{
-	static TextArea msg;
+	//making msg and image file static so they can be updated
+  static TextArea msg;
 	static File file;
 	
 	public End() {
@@ -19,9 +20,8 @@ public class End extends VBox{
 		Label text = new Label("End of Game");
 		text.getStyleClass().add("h1");
 		
-		//define text and image for end game message
+		//text and label
 		msg =  new TextArea();
-		
 		msg.setText("Wow you really suck. You didn't fix anything on Unc's website.\nUnc says you're a horrible nephew. He loses all of his customers because you couldn't fix his website.");
 		msg.setStyle("-fx-text-fill: red; -fx-font: 20 arial");
 		file = new File("src/Images/uncle_angry.jpg");
@@ -49,6 +49,7 @@ public class End extends VBox{
 		this.setPadding(new Insets(60, 100, 80, 80));
 	}
 	
+  //method to check the amount of bugsDefeated and update the end scene
 	public static void updateEnd() {
 		if(Utility.bugsDefeated == 0) {
 			msg.setText("Wow you really suck. You didn't fix anything on Unc's website.\nUnc says you're a horrible nephew. He loses all of his customers because you couldn't fix his website.");
