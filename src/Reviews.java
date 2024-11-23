@@ -34,13 +34,13 @@ public class Reviews extends BorderPane implements HasBug{
 		Label text = new Label("You have won a $100 gift card.\nClaim your prize now!");
 		text.setWrapText(true);
 		text.getStyleClass().add("h2");
-		Button bug = new Button("CLICK ME");
-		bug.setStyle("-fx-text-fill: #FF0000;"
+		Button bugButton = new Button("CLICK ME");
+		bugButton.setStyle("-fx-text-fill: #FF0000;"
 				+ "    -fx-border-color: #FF0000;"
 				+ "    -fx-border-radius: 20;"
 				+ "    -fx-background-radius: 20;"
 				+ "    -fx-padding: 5;");
-		scam.getChildren().addAll(text,bug);
+		scam.getChildren().addAll(text,bugButton);
 		scam.setStyle("-fx-border-color: red;"
 				+ "    -fx-border-insets: 5;"
 				+ "    -fx-border-width: 3;"
@@ -48,8 +48,9 @@ public class Reviews extends BorderPane implements HasBug{
 		scam.setPrefWidth(250);
 		scam.setPrefHeight(200);
 		
-		//cora will implement bug
-        //Virus trojan = new Trojan(100, 10, 10, TROJAN_HORSE);
+		//trojan virus
+		Trojan trojan = Trojan.getInstance();
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, trojan));
 		
 		this.getStyleClass().add("main-padding");
 		this.setCenter(reviews);
@@ -57,6 +58,8 @@ public class Reviews extends BorderPane implements HasBug{
 		this.setMinHeight(800);
 
 	}
+	
+	
 
 	@Override
 	public void removeBug() {
