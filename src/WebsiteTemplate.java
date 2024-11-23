@@ -4,6 +4,7 @@
  */
 
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 
@@ -186,8 +188,11 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	
 	//remove bug if the fight is won
 	public static void winFight(HasBug page) {
-		endFight(page);
 		page.removeBug();
+		// Create a 1-second delay before ending the fight
+	    PauseTransition delay = new PauseTransition(Duration.seconds(1));
+	    delay.setOnFinished(event -> endFight(page)); 
+	    delay.play(); 
 		
 	}
 	
