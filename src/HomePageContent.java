@@ -24,7 +24,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 	GridPane productsGrid;
 	VBox productBox3;
 	Label productLabel3;
-    static Bug bug2;
+    static Bug footerbug;
     static Bug bug;
 
 	public HomePageContent() {
@@ -69,11 +69,11 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 
 		ImageView imageView3 = createImageView("Images/homeBugPic.png");
 		bugButton = new Button();
-		Samsa samsa = Samsa.getInstance();
+		bug = new Bug(10, 6, 2, BUG2);
 		bugButton = new Button();
 		bugButton.setGraphic(imageView3);
 		bugButton.getStyleClass().add("enemy-buttons");
-		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, samsa));
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
 		productLabel3 = new Label("Fancy Pants\n$20.99");
 		productBox3 = new VBox(10, bugButton, productLabel3);
 		productBox3.setAlignment(Pos.CENTER);
@@ -114,8 +114,8 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
     
         //footer bug
 		footerButton = new Button();
-		bug2 = new Bug(10, 6, 2, BUG4);
-	    File file2 = new File(bug2.getImgURL());
+		footerbug = new Bug(10, 6, 2, BUG4);
+	    File file2 = new File(footerbug.getImgURL());
 	    ImageView img2 = new ImageView(new Image(file2.toURI().toString()));
 	    img2.setScaleX(2);
 	    img2.setScaleY(2);
@@ -126,7 +126,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 	    footerButton.setScaleX(0.1);
 	    footerButton.setScaleY(0.1);
 	    footerButton.getStyleClass().add("enemy-buttons");
-	    footerButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug2));
+	    footerButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, footerbug));
 
 		HBox footerBox = new HBox(footerLabel, footerButton);
 		// footerBox.setAlignment(Pos.CENTER);
@@ -160,7 +160,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 			bugButton.setVisible(false);
 			productBox3 = new VBox(10, imageView4, productLabel3);
 			productsGrid.add(productBox3, 2, 0);
-		}else if(bug2.isDead()) {
+		}else if(footerbug.isDead()) {
 			footerButton.setVisible(false);
 		}
 	}

@@ -6,6 +6,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+/*
+ * ADAM
+ * here's how to create samsa virus for image
+ * Samsa samsa = Samsa.getInstance();
+ */
+
 public class ProductsPage extends GridPane {
 
     public ProductsPage() {
