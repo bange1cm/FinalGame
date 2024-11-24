@@ -158,6 +158,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	
 	//start scene for inventory
 	public static void enterInventory(ActionEvent e) {
+		InventoryMenu.updateMenu();
 		primaryStageRef.setScene(inventoryScene);
 	}
 	
@@ -183,6 +184,8 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	
 	//change scenes when the fight in done, whether won or loss
 	public static void endFight(HasBug page) {
+		InventoryMenu.updateMenu();
+		Utility.resetTempStats();
 		primaryStageRef.setScene(websiteScene);
 	}
 	
