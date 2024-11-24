@@ -16,11 +16,7 @@ public class ItemMap {
 	}
 	
 	public static void obtain(Item item) {
-		if(itemMap.containsKey(item)) {
-			itemMap.put(item, itemMap.get(item) + 1);
-		} else {
-			itemMap.put(item, 1);
-		}
+		itemMap.put(item, itemMap.get(item) + 1);
 	}
 	
 	public static void use(Item item) {
@@ -29,7 +25,7 @@ public class ItemMap {
 		}
 		
 		switch(item.getName()) {
-			case "Web Cookie":
+			case "Cookie":
 				Utility.heal(5);
 				itemMap.put(item, itemMap.get(item) - 1);
 				break;

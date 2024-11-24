@@ -16,16 +16,6 @@ public abstract class Item {
 		return this.description;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		Item item = (Item) obj;
-		return this.name.equals(item.name);
-	}
-	
-	@Override
-    public int hashCode() {
-		return name != null ? name.hashCode() : 0;
-    }
 }
 
 class Cookie extends Item {
@@ -48,6 +38,11 @@ class Cookie extends Item {
 			
 		}
 	}
+
+	public void useCookie() {
+		
+	}
+
 }
 
 class Extension extends Item {
