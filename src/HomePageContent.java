@@ -147,20 +147,11 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 
 	@Override
 	public void removeBug() {
-		//generates an error. after fight is won
-		/*
-		 * Exception in thread "JavaFX Application Thread" java.lang.NullPointerException: Cannot invoke "Bug.isDead()" because "HomePageContent.bug" is null
-	at HomePageContent.removeBug(HomePageContent.java:150)
-	at WebsiteTemplate.winFight(WebsiteTemplate.java:190)
-	at Fight.enemyAttacks(Fight.java:148)
-	at Fight.attackEnemy(Fight.java:133)
-	at Fight.lambda$1(Fight.java:96)
-		 */
 		if(bug.isDead()) {
 			bugButton.setVisible(false);
 			productBox3 = new VBox(10, imageView4, productLabel3);
 			productsGrid.add(productBox3, 2, 0);
-		}else if(footerbug.isDead()) {
+		}if(footerbug.isDead()) {
 			footerButton.setVisible(false);
 		}
 	}
