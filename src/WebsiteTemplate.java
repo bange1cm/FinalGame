@@ -193,11 +193,13 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	    PauseTransition delay = new PauseTransition(Duration.seconds(1));
 	    delay.setOnFinished(event -> endFight(page)); 
 	    delay.play(); 
+	    System.out.println(Utility.bugsDefeated);
 		
 	}
 	
 	//end scene
 	public static void endScene() {
+		End.updateEnd();
 		primaryStageRef.setScene(endScene);
 	}
 	
