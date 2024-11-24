@@ -38,6 +38,10 @@ public class Utility {
 		hasAttacked = false;
 		bugAttacked = true;
 		combatTurn++;
+		
+		if(playerHP <= 0) {
+			WebsiteTemplate.endScene();
+		}
 	}
 
 	public static void heal(int hp) {

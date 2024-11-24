@@ -144,8 +144,8 @@ public class Fight extends VBox {
 			updateText.setText(updateText.getText() + "\nThe ENEMY attacks!");
 		} else {
 			updateText.setText("YOU win!");
-			System.out.println("Fight won");
 			Utility.bugsDefeated++;
+			System.out.println("Fight won - bugs defeated: " + Utility.bugsDefeated);
 			WebsiteTemplate.winFight(mainPage);
 		}
 
