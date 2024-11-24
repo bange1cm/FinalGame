@@ -21,6 +21,9 @@ public class Enemy implements EnemyConstants {
 		// player hp - enemy attack variable, calls from utility class method
 		Utility.damage(atk);
 	}
+	
+	public void dropItem() {
+	}
 
 	// getters and setters
 	public int getHp() {
@@ -71,6 +74,7 @@ class Bug extends Enemy {
 	}
 
 	// drop item method - determines which item is dropped when killed
+	@Override
 	public void dropItem() {
 		if (this.imgURL.equals(BUG1)) {
 			ItemMap.obtain(new Extension(0));
@@ -80,7 +84,7 @@ class Bug extends Enemy {
 			ItemMap.obtain(new Extension(2));
 		}
 
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 }
 
@@ -95,9 +99,10 @@ abstract class Virus extends Enemy {
 	}
 
 	// drop item method, used to gain items to help with other boss fights
+	@Override
 	public void dropItem() {
 		ItemMap.obtain(new Extension(extId));
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 
 	// abstract attack method to be implemented by children
