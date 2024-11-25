@@ -129,6 +129,10 @@ public class InventoryMenu extends BorderPane{ // Class for displaying inventory
 	public static void updateMenu() { // updateMenu method to refresh display with new information
 		itemTable.getItems().clear();
         itemTable.getItems().addAll(inventory.entrySet());
+        Label ppDisplay = new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP());
+        ppDisplay.setFont(new Font(20));
+        statDisplay = new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")");
+        statDisplay.setFont(new Font(20));
         bp.setLeft(ppDisplay);
         bp.setRight(statDisplay);
 	}
