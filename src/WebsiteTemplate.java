@@ -184,8 +184,8 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	
 	//change scenes when the fight in done, whether won or loss
 	public static void endFight(HasBug page) {
+		Utility.resetTempStats();
 		InventoryMenu.updateMenu();
-	    Utility.resetTempStats();
 		primaryStageRef.setScene(websiteScene);
 	}
 	
