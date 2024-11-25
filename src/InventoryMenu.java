@@ -11,12 +11,15 @@ import javafx.scene.text.Text;
 
 public class InventoryMenu extends VBox{
 	
-	private Map<Item, Integer> inventory;
+	private static Map<Item, Integer> inventory;
+	private static TableView<Map.Entry<Item, Integer>> itemTable;
+	private static BorderPane bp;
 	
 	public InventoryMenu(){
+
 		inventory = ItemMap.getItemMap();
-		
-		TableView<Map.Entry<Item, Integer>> itemTable = new TableView<>();
+		itemTable = new TableView<>();
+		bp = new BorderPane();
 		
 		TableColumn<Map.Entry<Item, Integer>, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getKey().getName()));
@@ -53,7 +56,6 @@ public class InventoryMenu extends VBox{
             }
         });
         
-        BorderPane bp = new BorderPane();
         bp.setLeft(new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP()));
         bp.setRight(new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")"));
         
@@ -80,5 +82,12 @@ public class InventoryMenu extends VBox{
         layout.getChildren().addAll(itemTable, itemDescription, bp, useButton, backButton);
         
         this.getChildren().add(layout);
+	}
+	
+	public static void updateMenu() {
+		itemTable.getItems().clear();
+        itemTable.getItems().addAll(inventory.entrySet());
+        bp.setLeft(new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP()));
+        bp.setRight(new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")"));
 	}
 }
