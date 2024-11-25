@@ -18,6 +18,7 @@ public class InventoryMenu extends BorderPane{ // Class for displaying inventory
 	private static Map<Item, Integer> inventory; // Accesses ItemMap class for data modification
 	private static TableView<Map.Entry<Item, Integer>> itemTable; // TableView to display items
 	private static BorderPane bp; // BorderPane which displays health and stats
+	private static Label ppDisplay, statDisplay;
 	// these are private and static for sake of ease with updateMenu method
 	
 	public InventoryMenu(){ // Menu construction
@@ -86,9 +87,9 @@ public class InventoryMenu extends BorderPane{ // Class for displaying inventory
         });
         
         // Labels to display health and stats, respectively
-        Label ppDisplay = new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP());
+        ppDisplay = new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP());
         ppDisplay.setFont(new Font(20));
-        Label statDisplay = new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")");
+        statDisplay = new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")");
         statDisplay.setFont(new Font(20));
         
         // add Labels to BorderPane
@@ -102,13 +103,7 @@ public class InventoryMenu extends BorderPane{ // Class for displaying inventory
                 Item selectedItem = selectedEntry.getKey(); // get item from data map
                 ItemMap.use(selectedItem); // use item
 
-                // Refresh the TableView to reflect the change
-                itemTable.getItems().clear(); // refresh menu
-                itemTable.getItems().addAll(inventory.entrySet());
-                
-                // update health and stats
-                bp.setLeft(new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP()));
-                bp.setRight(new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")"));
+                updateMenu(); // refresh menu
             }
         });
         
@@ -134,7 +129,7 @@ public class InventoryMenu extends BorderPane{ // Class for displaying inventory
 	public static void updateMenu() { // updateMenu method to refresh display with new information
 		itemTable.getItems().clear();
         itemTable.getItems().addAll(inventory.entrySet());
-        bp.setLeft(new Label("PP: " + Utility.getPlayerHP() + "/" + Utility.getPlayerMaxHP()));
-        bp.setRight(new Label("ATK: " + Utility.getPlayerATK() + "(+" + Utility.getTempATK() + ")   DEF: " + Utility.getPlayerDEF() + "(+" + Utility.getTempDEF() + ")"));
+        bp.setLeft(ppDisplay);
+        bp.setRight(statDisplay);
 	}
 }
