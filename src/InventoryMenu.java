@@ -11,9 +11,10 @@ import javafx.scene.text.Text;
 
 public class InventoryMenu extends VBox{
 	
-	private final Map<Item, Integer> inventory = ItemMap.getItemMap();
+	private Map<Item, Integer> inventory;
 	
 	public InventoryMenu(){
+		inventory = ItemMap.getItemMap();
 		
 		TableView<Map.Entry<Item, Integer>> itemTable = new TableView<>();
 		

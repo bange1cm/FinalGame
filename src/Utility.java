@@ -38,6 +38,10 @@ public class Utility {
 		hasAttacked = false;
 		bugAttacked = true;
 		combatTurn++;
+		
+		if(playerHP <= 0) {
+			WebsiteTemplate.endScene();
+		}
 	}
 
 	public static void heal(int hp) {
@@ -131,6 +135,10 @@ public class Utility {
 	
 	public static boolean getBugAttacked() {
 		return bugAttacked;
+	}
+	
+	public static int getCombatTurn() {
+		return combatTurn;
 	}
 
 	public static boolean hasRngSeed() {
