@@ -136,6 +136,10 @@ public class Utility {
 	public static boolean getBugAttacked() {
 		return bugAttacked;
 	}
+	
+	public static int getCombatTurn() {
+		return combatTurn;
+	}
 
 	public static boolean hasRngSeed() {
 		return hasRngSeed;

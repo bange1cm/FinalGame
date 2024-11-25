@@ -2,6 +2,7 @@
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,15 +11,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class Fight extends VBox {
 	static HasBug mainPage;
 	static Enemy enemy;
 
-	private static Text updateText;
+	public static Text updateText;
 	private static Label hpLabel, ppLabel, enemyName;
 
 	// get the main page from websitetemplate
@@ -31,6 +35,9 @@ public class Fight extends VBox {
 		try {
 			File file1 = new File(enemy.getImgURL());
 			ImageView img = new ImageView(new Image(file1.toURI().toString()));
+			
+			Pane background = new Pane();
+			
 
 			// enemy and player stats
 			enemyName = new Label("");
@@ -96,8 +103,20 @@ public class Fight extends VBox {
 			attackEnemy.setOnAction(e -> attackEnemy());
 			scanEnemy.setOnAction(e -> scanEnemy());
 			useItem.setOnAction(e -> WebsiteTemplate.enterInventory(e));
+			
+			if(enemy instanceof BossDev) {
+				endFight.setVisible(false);
+				enemyName.setText("BOSS DEV");
+				background.setStyle("-fx-background-color: black");
+				updateText.setStyle("-fx-text-color: white");
+				hpLabel.setStyle("-fx-text-color: white");
+				ppLabel.setStyle("-fx-text-color: white");
+				enemyName.setStyle("-fx-text-color: white");
+			}
+			
+			StackPane sp = new StackPane(background, gp);
 
-			this.getChildren().addAll(gp);
+			this.getChildren().addAll(sp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -112,8 +131,8 @@ public class Fight extends VBox {
 			updateText.setText(updateText.getText()
 					+ "This is a VIRUS called the TROJAN HORSE. It seems like an extension might help...\nMaybe something to block viruses?\n");
 		else if (enemy instanceof Samsa)
-			updateText.setText(
-					updateText.getText() + "This is a VIRUS called SAMSA. It seems like an extension might help...\nMaybe something that will reset his stats?");
+			updateText.setText(updateText.getText()
+					+ "This is a VIRUS called SAMSA. It seems like an extension might help...\nMaybe something that will reset his stats?");
 		else if (enemy instanceof LagWitch)
 			updateText.setText(updateText.getText()
 					+ "This is a VIRUS called the LAG WITCH. It seems like an extension might help...\nMaybe something that reduces lag?");
@@ -131,20 +150,24 @@ public class Fight extends VBox {
 				hpLabel.setText("HP: " + enemy.getHp());
 				updateText.setText(updateText.getText() + "\nYOU attack the enemy!");
 
-				enemyAttacks();
+				PauseTransition delay = new PauseTransition(Duration.seconds(1));
+				delay.setOnFinished(event -> enemyAttacks());
+				delay.play();
 			}
 		}
 	}
 
+	//enemy attacks you if it's the enemy's turn and it's not dead
 	private static void enemyAttacks() {
 		if (!Utility.getBugAttacked() && !enemy.isDead()) {
+			updateText.setText(updateText.getText() + "\nThe ENEMY attacks!");
 			enemy.attack();
 			System.out.println("player hp reduced");
 			ppLabel.setText("PP: " + Utility.getPlayerHP());
-			updateText.setText(updateText.getText() + "\nThe ENEMY attacks!");
 		} else {
-			updateText.setText("YOU win!");
+			updateText.setText(updateText.getText() + "\nYOU win!");
 			Utility.bugsDefeated++;
+			enemy.dropItem();
 			System.out.println("Fight won - bugs defeated: " + Utility.bugsDefeated);
 			WebsiteTemplate.winFight(mainPage);
 		}
