@@ -32,7 +32,7 @@ public class ItemMap {
 		}
 
 		switch (item.getName()) {
-		case "Cookie":
+		case "Web Cookie":
 			Utility.heal(5);
 			itemMap.put(item, itemMap.get(item) - 1);
 			break;
