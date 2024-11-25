@@ -82,7 +82,7 @@ class Bug extends Enemy {
 			ItemMap.obtain(new Extension(2));
 		}
 
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 }
 
@@ -99,7 +99,7 @@ abstract class Virus extends Enemy {
 	// drop item method, used to gain items to help with other boss fights
 	public void dropItem() {
 		ItemMap.obtain(new Extension(extId));
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 
 	// abstract attack method to be implemented by children
@@ -165,14 +165,14 @@ class LagWitch extends Virus {
 	@Override
 	public void attack() {
 		if (trackVenom && Utility.getCombatTurn() % 2 == 0) {
-			if (!Utility.hasConnection() && trackVenom) {
-				// call utility method to attack player for half of atk stat
-				Utility.damage(atk / 2);
-			}
+			// call utility method to attack player for half of atk stat
+			Utility.damage(atk / 2);
 		}
 		// call utility method to attack player
 		Utility.damage(atk);
-		trackVenom = true;
+		if(!Utility.hasConnection()) {
+			trackVenom = true;
+		}
 	}
 
 	// getInstance method to create and get the only instance of LagWitch
@@ -253,16 +253,17 @@ class BossDev extends Virus {
 		}
 
 		if (trackVenom && Utility.getCombatTurn() % 2 == 0) {
-			if (!Utility.hasConnection() && trackVenom) {
-				// call utility method to attack player for half of atk stat
-				Utility.damage(atk / 2);
-				Fight.updateText.setText(Fight.updateText.getText() + "\nYOU take POISON damage!");
-			}
+			// call utility method to attack player for half of atk stat
+			Utility.damage(atk / 2);
+			Fight.updateText.setText(Fight.updateText.getText() + "\nYOU take POISON damage!");
 		}
 		
 		// call utility method to attack player
-		trackVenom = true;
+		
 		Utility.damage(atk);
+		if(!Utility.hasConnection()) {
+			trackVenom = true;
+		}
 	}
 
 	// getInstance method to create and get the only instance of BossDev

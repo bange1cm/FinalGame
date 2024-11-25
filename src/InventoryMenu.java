@@ -11,9 +11,9 @@ import javafx.scene.text.Text;
 
 public class InventoryMenu extends VBox{
 	
-	private Map<Item, Integer> inventory;
-	private TableView<Map.Entry<Item, Integer>> itemTable;
-	private BorderPane bp;
+	private static Map<Item, Integer> inventory;
+	private static TableView<Map.Entry<Item, Integer>> itemTable;
+	private static BorderPane bp;
 	
 	public InventoryMenu(){
 
