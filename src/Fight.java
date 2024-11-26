@@ -92,7 +92,7 @@ public class Fight extends VBox {
 			// gridpane formatting
 			gp.setMinSize(500, 500);
 			gp.setHgap(20);
-			gp.setAlignment(Pos.CENTER);
+			gp.setAlignment(Pos.TOP_CENTER);
 			ColumnConstraints cc = new ColumnConstraints();
 			cc.setPercentWidth(50);
 			gp.getColumnConstraints().add(cc);
@@ -107,13 +107,18 @@ public class Fight extends VBox {
 				endFight.setVisible(false);
 				enemyName.setText("BOSS DEV");
 				background.setStyle("-fx-background-color: black");
+				background.setPrefSize(USE_COMPUTED_SIZE, BASELINE_OFFSET_SAME_AS_HEIGHT);
+				background.setMinSize(4000, 4000);
 				updateText.setStyle("-fx-text-color: white");
 				hpLabel.setStyle("-fx-text-color: white");
 				ppLabel.setStyle("-fx-text-color: white");
 				enemyName.setStyle("-fx-text-color: white");
+				
 			}
 			
 			StackPane sp = new StackPane(background, gp);
+			sp.setAlignment(Pos.TOP_CENTER);
+			sp.setMinSize(500, 500);
 
 			this.getChildren().addAll(sp);
 		} catch (Exception e) {
@@ -163,6 +168,9 @@ public class Fight extends VBox {
 			enemy.attack();
 			System.out.println("player hp reduced");
 			ppLabel.setText("PP: " + Utility.getPlayerHP());
+			if(Utility.getPlayerHP() <= 0) {
+				WebsiteTemplate.endFight(mainPage);
+			}
 		} else {
 			updateText.setText(updateText.getText() + "\nYOU win!");
 			Utility.bugsDefeated++;

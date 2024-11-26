@@ -153,7 +153,7 @@ class Samsa extends Virus {
 class LagWitch extends Virus {
 	private static LagWitch instance;
 
-	private static Boolean trackVenom;
+	private static Boolean trackVenom = false;
 
 	private LagWitch(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
@@ -165,8 +165,12 @@ class LagWitch extends Virus {
 	@Override
 	public void attack() {
 		if (trackVenom && Utility.getCombatTurn() % 2 == 0) {
-			// call utility method to attack player for half of atk stat
-			Utility.damage(atk / 2);
+			if (!Utility.hasConnection()) {
+				// call utility method to attack player for half of atk stat
+				Utility.damage(atk / 2);
+				Fight.updateText.setText(Fight.updateText.getText() + "\nYOU take POISON damage!");
+				trackVenom = false;
+			}
 		}
 		// call utility method to attack player
 		Utility.damage(atk);
@@ -224,7 +228,7 @@ class BossDev extends Virus {
 	private static int metaRNG;
 	private static int trackBoost;
 	private static Boolean statsLowered = false;
-	private static Boolean trackVenom;
+	private static Boolean trackVenom = false;
 
 	private BossDev(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
@@ -253,9 +257,12 @@ class BossDev extends Virus {
 		}
 
 		if (trackVenom && Utility.getCombatTurn() % 2 == 0) {
-			// call utility method to attack player for half of atk stat
-			Utility.damage(atk / 2);
-			Fight.updateText.setText(Fight.updateText.getText() + "\nYOU take POISON damage!");
+			if (!Utility.hasConnection() && trackVenom) {
+				// call utility method to attack player for half of atk stat
+				Utility.damage(atk / 2);
+				Fight.updateText.setText(Fight.updateText.getText() + "\nYOU take POISON damage!");
+				trackVenom = false;
+			}
 		}
 		
 		// call utility method to attack player
