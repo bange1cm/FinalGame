@@ -1,5 +1,5 @@
 
-public class Enemy implements EnemyConstants {
+public abstract class Enemy implements EnemyConstants {
 	// health, attack, and defense variables
 	protected int hp;
 	protected int atk;
@@ -60,6 +60,8 @@ public class Enemy implements EnemyConstants {
 		return this.hp <= 0;
 	}
 
+	public abstract void dropItem();
+
 }
 
 // bug class used for minor enemies, drops items and has hp, atk, def variables for the health, attack, and defense
@@ -80,7 +82,7 @@ class Bug extends Enemy {
 			ItemMap.obtain(new Extension(2));
 		}
 
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 }
 
@@ -97,7 +99,7 @@ abstract class Virus extends Enemy {
 	// drop item method, used to gain items to help with other boss fights
 	public void dropItem() {
 		ItemMap.obtain(new Extension(extId));
-		ItemMap.obtain(new Cookie((int) Math.random() * 3));
+		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 
 	// abstract attack method to be implemented by children
@@ -162,13 +164,15 @@ class LagWitch extends Virus {
 	// does when attacking and whether venom is active
 	@Override
 	public void attack() {
-		if (!Utility.hasConnection() && trackVenom) {
+		if (trackVenom && Utility.getCombatTurn() % 2 == 0) {
 			// call utility method to attack player for half of atk stat
 			Utility.damage(atk / 2);
 		}
 		// call utility method to attack player
 		Utility.damage(atk);
-		trackVenom = true;
+		if(!Utility.hasConnection()) {
+			trackVenom = true;
+		}
 	}
 
 	// getInstance method to create and get the only instance of LagWitch
@@ -198,6 +202,7 @@ class Trojan extends Virus { // unsure how to implement currently. probably depe
 		if (!statsLowered && Utility.hasFirewall()) {
 			this.def = 0;
 			statsLowered = true;
+			Fight.updateText.setText(Fight.updateText.getText() + "\nTROJAN defense lowered by FIREWALL!");
 		}
 		Utility.damage(atk);
 	}
@@ -212,21 +217,68 @@ class Trojan extends Virus { // unsure how to implement currently. probably depe
 	}
 }
 
-class BossDev extends Enemy {
+class BossDev extends Virus {
 	private static BossDev instance;
+
+	// variables used in attack method
+	private static int metaRNG;
+	private static int trackBoost;
+	private static Boolean statsLowered = false;
+	private static Boolean trackVenom;
 
 	private BossDev(int hp, int atk, int def, String imgURL) {
 		super(hp, atk, def, imgURL);
 	}
 
+	// boss attack method
+	public void attack() {
+		metaRNG = (int) Math.random() * 3;
+
+		if (!statsLowered && Utility.hasFirewall()) {
+			this.def -= 5;
+			statsLowered = true;
+			Fight.updateText.setText(Fight.updateText.getText() + "\nBOSS DEV defense lowered by FIREWALL!");
+			
+		}
+
+		if (metaRNG == 0 || (metaRNG == 1 && Utility.hasRngSeed())) {
+			this.atk = this.atk - trackBoost;
+			this.def = this.def - trackBoost;
+			trackBoost = 0;
+			Fight.updateText.setText(Fight.updateText.getText() + "\nBOSS DEV stats lowered by RNG SEED!");
+		} else {
+			this.atk += metaRNG;
+			this.def += metaRNG;
+			trackBoost += metaRNG;
+		}
+
+		if (trackVenom && Utility.getCombatTurn() % 2 == 0) {
+			// call utility method to attack player for half of atk stat
+			Utility.damage(atk / 2);
+			Fight.updateText.setText(Fight.updateText.getText() + "\nYOU take POISON damage!");
+		}
+		
+		// call utility method to attack player
+		
+		Utility.damage(atk);
+		if(!Utility.hasConnection()) {
+			trackVenom = true;
+		}
+	}
+
 	// getInstance method to create and get the only instance of BossDev
 	public static synchronized BossDev getInstance() {
 		if (instance == null) {
-			instance = new BossDev(100, 10, 5, "uncle_anrgy.png");
+			instance = new BossDev(150, 15, 10, BOSS_DEV);
 		}
 
 		return instance;
 
 	}
-}
 
+	@Override
+	public void dropItem() {
+		return;
+
+	}
+}
