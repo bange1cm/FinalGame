@@ -30,7 +30,7 @@ public class Header extends HBox implements HasBug, EnemyConstants{
 	    bugButton.setScaleX(0.1);
 	    bugButton.setScaleY(0.1);    
 	    bugButton.getStyleClass().add("enemy-buttons");
-	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, bug));
 	    
 		StackPane stackPane = new StackPane(logo, bugButton);
 	    

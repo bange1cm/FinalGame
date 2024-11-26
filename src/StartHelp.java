@@ -22,8 +22,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 
 		// create everything for email 1
 		File file1 = new File("src/Images/unc.png");
-		Image unc = new Image(file1.toURI().toString());
-		ImageView uncImg = new ImageView(unc);
+		ImageView uncImg = new ImageView(new Image(file1.toURI().toString()));
 		Label toFrom1 = new Label("From: Unc \nTo: You ", uncImg);
 		toFrom1.setWrapText(true);
 		toFrom1.setStyle("-fx-font: 20 arial");
@@ -53,8 +52,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 
 		// create everything for email 2
 		File file2 = new File("src/Images/you.png");
-		Image you = new Image(file2.toURI().toString());
-		ImageView youImg = new ImageView(you);
+		ImageView youImg = new ImageView(new Image(file2.toURI().toString()));
 		Label toFrom2 = new Label("From: You \nTo: Unc ", youImg);
 		toFrom2.setWrapText(true);
 		toFrom2.setStyle("-fx-font: 20 arial");
@@ -77,7 +75,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		done.setOnAction(e -> {
 			if (Utility.bugsDefeated == Utility.totalBugs) {
 				Enemy bossDev = BossDev.getInstance();
-				WebsiteTemplate.startFight(e, this, bossDev);
+				WebsiteTemplate.startFight(this, bossDev);
 			} else
 				WebsiteTemplate.endScene();
 		});

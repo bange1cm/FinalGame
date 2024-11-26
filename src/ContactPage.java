@@ -55,7 +55,6 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
         messageArea.setPrefHeight(100);
 
         // Send button 
-        //cora will redo to lag witch
         LagWitch lagWitch = LagWitch.getInstance();
         Button sendButton = new Button("Submit Info");
         sendButton.getStyleClass().add("normal-buttons");
@@ -85,7 +84,7 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
         	}
         	else if(clicks3()) {
 	            counter = 0;
-        		WebsiteTemplate.startFight(e, this, lagWitch);
+        		WebsiteTemplate.startFight(this, lagWitch);
 	            emailField.clear();
 	            phoneField.clear();
 	            ssnField.clear();

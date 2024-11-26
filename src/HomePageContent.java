@@ -73,7 +73,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		bugButton = new Button();
 		bugButton.setGraphic(imageView3);
 		bugButton.getStyleClass().add("enemy-buttons");
-		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, bug));
 		productLabel3 = new Label("Fancy Pants\n$20.99");
 		productBox3 = new VBox(10, bugButton, productLabel3);
 		productBox3.setAlignment(Pos.CENTER);
@@ -126,7 +126,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 	    footerButton.setScaleX(0.1);
 	    footerButton.setScaleY(0.1);
 	    footerButton.getStyleClass().add("enemy-buttons");
-	    footerButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, footerbug));
+	    footerButton.setOnAction(e -> WebsiteTemplate.startFight(this, footerbug));
 
 		HBox footerBox = new HBox(footerLabel, footerButton);
 		footerBox.setAlignment(Pos.BOTTOM_CENTER);
