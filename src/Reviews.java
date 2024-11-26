@@ -60,7 +60,7 @@ public class Reviews extends BorderPane implements HasBug{
 	}
 	
 	
-
+	//contract to remove trojan virus once defeated
 	@Override
 	public void removeBug() {
 		scam.setVisible(false);

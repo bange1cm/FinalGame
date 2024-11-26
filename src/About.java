@@ -38,6 +38,7 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);
 
+		//bug
 		Bug bug = new Bug(20, 5, 5, BUG1);
 		bugButton = new Button("Bug");
 		File file1 = new File(bug.getImgURL());
@@ -93,12 +94,14 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		this.getStyleClass().add("main-padding");
 		this.setSpacing(20);
 	}
-
+	
+	//contract to remove bug
 	@Override
 	public void removeBug() {
 		bugButton.setVisible(false);
 	}
 	
+	//method to remove button that leads to notfound
 	public static void removeRandom() {
 		randomHolder.setVisible(false);
 	}

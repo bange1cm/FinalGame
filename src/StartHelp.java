@@ -71,7 +71,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		email2.setPrefWidth(900);
 		email2.getStyleClass().add("starthelp-labels");
 
-		// button to guide user to website
+		// button to end game
 		Button done = new Button("Send Response");
 		done.getStyleClass().add("normal-buttons");
 		done.setOnAction(e -> {
@@ -90,7 +90,8 @@ public class StartHelp extends ScrollPane implements HasBug {
 		this.setContent(content);
 
 	}
-
+	
+	//contract for HasBug for final dev boss
 	@Override
 	public void removeBug() {
 		WebsiteTemplate.endScene();

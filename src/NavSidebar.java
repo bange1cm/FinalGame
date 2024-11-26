@@ -6,6 +6,7 @@ import javafx.scene.layout.VBox;
 
 public class NavSidebar extends VBox{
 	public NavSidebar() {
+		//4 buttons for navigation around website
 		Button[] navigationButtons = new Button[4];
 		Button homeButton = new Button("Home");
 		Button productsButton = new Button("Products");

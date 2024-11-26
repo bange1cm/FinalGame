@@ -38,7 +38,7 @@ public class NotFound extends VBox implements HasBug, EnemyConstants{
         this.setMinHeight(700);
 	}
 	
-	
+	//contract to remove 404 error
 	@Override
 	public void removeBug() {
 		About.removeRandom();

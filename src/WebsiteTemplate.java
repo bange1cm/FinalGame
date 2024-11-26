@@ -1,6 +1,6 @@
 /*
  * WebsiteTemplate.java
- * This outlines the overall look of the website. Edit the body to change the individual webpage
+ * This is the main controller for the entire game, connecting different UI scenes and panes and calling methods from different classes
  */
 
 
@@ -48,7 +48,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		//create reference to stage so we can change the scenes outside of start method
 		primaryStageRef = primaryStage;
 		
-		//create StartHelp
+		//create StartHelp which is the email from unc
 		StartHelp startHelp = new StartHelp();
 		
 		//create inventory 
@@ -200,7 +200,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		
 	}
 	
-	//end scene
+	//change scene to end scene
 	public static void endScene() {
 		End.updateEnd();
 		primaryStageRef.setScene(endScene);

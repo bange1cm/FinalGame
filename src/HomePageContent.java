@@ -129,7 +129,6 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 	    footerButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, footerbug));
 
 		HBox footerBox = new HBox(footerLabel, footerButton);
-		// footerBox.setAlignment(Pos.CENTER);
 		footerBox.setAlignment(Pos.BOTTOM_CENTER);
 		footerBox.setStyle("-fx-background-color: #e6e6e6;");
 		this.setBottom(footerBox);
@@ -144,7 +143,8 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		imageView.setPreserveRatio(true);
 		return imageView;
 	}
-
+	
+	//contract to remove 2 bugs
 	@Override
 	public void removeBug() {
 		if(bug.isDead()) {
