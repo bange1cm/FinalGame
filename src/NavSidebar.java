@@ -13,9 +13,9 @@ public class NavSidebar extends VBox{
 		Button aboutButton = new Button("About");
 		Button contactButton = new Button("Contact");
 		
-		Button itemButton = new Button("Item");
-		itemButton.setAlignment(Pos.BOTTOM_LEFT);
-		itemButton.setOnAction(e -> System.out.println("Item collected"));
+//		Button itemButton = new Button("Item");
+//		itemButton.setAlignment(Pos.BOTTOM_LEFT);
+//		itemButton.setOnAction(e -> System.out.println("Item collected"));
 		
         navigationButtons[0] = homeButton;
         navigationButtons[1] = productsButton;
@@ -28,7 +28,7 @@ public class NavSidebar extends VBox{
         	this.getChildren().add(navigationButtons[i]);
         }
         
-        this.getChildren().add(itemButton);
+//        this.getChildren().add(itemButton);
         this.setStyle("-fx-background-color: indianred");
         this.setPadding(new Insets(10));
         

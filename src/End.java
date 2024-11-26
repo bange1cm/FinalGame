@@ -31,8 +31,7 @@ public class End extends VBox{
 		msg.setFocusTraversable(false);
 		msg.setPrefHeight(80);
 		
-		Image img = new Image(file.toURI().toString());
-		ImageView image = new ImageView(img);
+		ImageView image = new ImageView(new Image(file.toURI().toString()));
 		image.setFitWidth(300);
 		image.setPreserveRatio(true);
 		

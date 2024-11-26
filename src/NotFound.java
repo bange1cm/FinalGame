@@ -30,7 +30,7 @@ public class NotFound extends VBox implements HasBug, EnemyConstants{
 	    bugButton.setScaleX(.5);
 	    bugButton.setScaleY(.5);
 	    bugButton.getStyleClass().add("enemy-buttons");
-	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, bug));
 	    
 	    this.getChildren().addAll(title, bugButton);
 	    this.setSpacing(100);

@@ -50,7 +50,7 @@ public class Reviews extends BorderPane implements HasBug{
 		
 		//trojan virus
 		Trojan trojan = Trojan.getInstance();
-		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, trojan));
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, trojan));
 		
 		this.getStyleClass().add("main-padding");
 		this.setCenter(reviews);
