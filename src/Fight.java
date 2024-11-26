@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -102,7 +101,7 @@ public class Fight extends VBox {
 			endFight.setOnAction(e -> WebsiteTemplate.endFight(mainPage));
 			attackEnemy.setOnAction(e -> attackEnemy());
 			scanEnemy.setOnAction(e -> scanEnemy());
-			useItem.setOnAction(e -> WebsiteTemplate.enterInventory());
+			useItem.setOnAction(e -> WebsiteTemplate.enterInventory("fight"));
 			
 			if(enemy instanceof BossDev) {
 				endFight.setVisible(false);
