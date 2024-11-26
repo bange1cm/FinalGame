@@ -96,6 +96,7 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
         });
     }
     
+    //counter method to keep track of clicks, lagwitch bug is revealed after 3 clicks
     public boolean clicks3() {
     	counter++;
     	if(counter == 3) 
@@ -104,7 +105,9 @@ public class ContactPage extends GridPane implements HasBug, EnemyConstants{
     		return false;
     		
     }
-
+    
+    
+    //contract to remove bug
 	@Override
 	public void removeBug() {
 		defeated = true;
