@@ -34,11 +34,14 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	private static End end;
 	private static TabPane tabPane;
 	private static Tab mainTab;
+	private static Tab inventoryTab;
 	private static Scene websiteScene;
 	private static Scene fightScene;
 	private static Scene inventoryScene;
 	private static Scene endScene;
 	private static Stage primaryStageRef;
+	
+	private static String enterInventoryFrom;
 	
 	
 	public void start(Stage primaryStage) {
@@ -53,6 +56,9 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		
 		//create inventory 
 		inventory = new InventoryMenu();
+		
+		//create stats
+		StatsView statsView = new StatsView();
 		
         //create Header
         header = new Header();
@@ -93,8 +99,8 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
         mainTab.setClosable(false);
         tabPane.getTabs().add(mainTab);
         //tab 3 for inventory
-        Tab inventoryTab = new Tab("fightinginventory.local");
-        inventoryTab.setContent(inventory);
+        inventoryTab = new Tab("fightinginventory.local");
+        inventoryTab.setContent(statsView);
         inventoryTab.setClosable(false);
         tabPane.getTabs().add(inventoryTab);
         
@@ -157,19 +163,21 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	}
 	
 	//start scene for inventory
-	public static void enterInventory() {
+	public static void enterInventory(String where) {
 		InventoryMenu.updateMenu();
-		primaryStageRef.setScene(inventoryScene);
+		enterInventoryFrom = where;
+		primaryStageRef.setScene(inventoryScene);		
 	}
 	
 	//end scene or switch tabs for inventory
 	public static void backInventory() {
-		Scene currentScene = primaryStageRef.getScene();
-		if(currentScene.equals(inventoryScene)) {
+		StatsView.update();
+		if(enterInventoryFrom.equals("fight")) {
 			primaryStageRef.setScene(fightScene);
 		}
-		else if(currentScene.equals(websiteScene)) {
-			 tabPane.getSelectionModel().select(mainTab);
+		else if(enterInventoryFrom.equals("tab")) {
+			 primaryStageRef.setScene(websiteScene);
+			 tabPane.getSelectionModel().select(inventoryTab);
 		}
 		
 	}
@@ -186,6 +194,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	public static void endFight(HasBug page) {
 		Utility.resetTempStats();
 		InventoryMenu.updateMenu();
+		StatsView.update();
 		primaryStageRef.setScene(websiteScene);
 	}
 	
