@@ -15,6 +15,17 @@ public abstract class Item {
 	public String getDescription() {
 		return this.description;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Item item = (Item) obj;
+		return this.name.equals(item.name);
+	}
+	
+	@Override
+	public int hashCode() {
+		return name != null ? name.hashCode() : 0;
+	}
 
 }
 
@@ -39,10 +50,6 @@ class Cookie extends Item {
 		}
 	}
 
-	public void useCookie() {
-		
-	}
-
 }
 
 class Extension extends Item {
@@ -52,15 +59,15 @@ class Extension extends Item {
 		switch(id) {
 			case 0:
 				this.name = "RNG Seed";
-				this.description = "Extension: Gain advantage against a certain virus.";
+				this.description = "Extension: Makes Samsa more likely to reset his stats.";
 				break;
 			case 1:
 				this.name = "High-Speed Connection";
-				this.description = "Extension: Gain advantage against a certain virus.";
+				this.description = "Extension: Disables Lag Witch's venom.";
 				break;
 			case 2:
 				this.name = "Firewall";
-				this.description = "Extension: Gain advantage against a certain virus.";
+				this.description = "Extension: Sets Trojan Horse's DEF to 0.";
 				break;
 			case 3:
 				this.name = "AI Assistant";

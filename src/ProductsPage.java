@@ -6,7 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+
 public class ProductsPage extends GridPane implements HasBug, EnemyConstants {
+
 
     public ProductsPage() {
         // Set up the layout

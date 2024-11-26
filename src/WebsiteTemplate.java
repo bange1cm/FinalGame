@@ -1,9 +1,10 @@
 /*
  * WebsiteTemplate.java
- * This outlines the overall look of the website. Edit the body to change the individual webpage
+ * This is the main controller for the entire game, connecting different UI scenes and panes and calling methods from different classes
  */
 
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 
@@ -27,6 +29,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	private static ProductsPage mainProducts;
 	private static Reviews mainReviews;
 	private static ContactPage mainContact;
+	private static NotFound mainNotFound;
 	private static InventoryMenu inventory;
 	private static End end;
 	private static TabPane tabPane;
@@ -45,7 +48,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		//create reference to stage so we can change the scenes outside of start method
 		primaryStageRef = primaryStage;
 		
-		//create StartHelp
+		//create StartHelp which is the email from unc
 		StartHelp startHelp = new StartHelp();
 		
 		//create inventory 
@@ -64,6 +67,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
         mainAbout = new About();
         mainReviews = new Reviews();
         mainContact = new ContactPage();
+        mainNotFound = new NotFound();
         
 		//create website layout
         layout = new BorderPane();
@@ -144,13 +148,17 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		case "Reviews":
 			layout.setCenter(mainReviews);
 			break;
+		case "110010100":
+			layout.setCenter(mainNotFound);
+			break;
 		}
 		
 		
 	}
 	
 	//start scene for inventory
-	public static void enterInventory(ActionEvent e) {
+	public static void enterInventory() {
+		InventoryMenu.updateMenu();
 		primaryStageRef.setScene(inventoryScene);
 	}
 	
@@ -167,7 +175,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	}
 	
 	//change scene to start fight
-	public static void startFight(ActionEvent e, HasBug page, Enemy enemy) {
+	public static void startFight(HasBug page, Enemy enemy) {
 		fightScene = new Scene(new Fight(enemy));
 		primaryStageRef.setScene(fightScene);
 		Fight.startedFightPage(page);
@@ -175,20 +183,32 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	}
 	
 	//change scenes when the fight in done, whether won or loss
-	public static void endFight(ActionEvent e, HasBug page) {
+	public static void endFight(HasBug page) {
+		Utility.resetTempStats();
+		InventoryMenu.updateMenu();
 		primaryStageRef.setScene(websiteScene);
 	}
 	
 	//remove bug if the fight is won
-	public static void winFight(ActionEvent e, HasBug page) {
-		endFight(e, page);
+	public static void winFight(HasBug page) {
 		page.removeBug();
+		// Create a 1-second delay before ending the fight
+	    PauseTransition delay = new PauseTransition(Duration.seconds(1));
+	    delay.setOnFinished(event -> endFight(page)); 
+	    delay.play(); 
+	    System.out.println(Utility.bugsDefeated);
 		
 	}
 	
-	//end scene
+	//change scene to end scene
 	public static void endScene() {
+		End.updateEnd();
 		primaryStageRef.setScene(endScene);
+	}
+	
+	//navigate away from 404 page
+	public static void toAbout() {
+		layout.setCenter(mainAbout);
 	}
 }
 

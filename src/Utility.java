@@ -1,13 +1,14 @@
+import java.util.concurrent.TimeUnit;
 
 public class Utility {
 
 	public static int bugsDefeated = 0;
-	public static int totalBugs = 5;
+	public static int totalBugs = 8;
 
 	//keeps track of turns
 	private static int combatTurn = 0;
 	private static boolean hasAttacked = false;
-	public static boolean bugAttacked = true;
+	private static boolean bugAttacked = true;
 
 	private static int playerMaxHP;
 	private static int playerHP;
@@ -26,10 +27,10 @@ public class Utility {
 
 	public static void initialize() {
 		ItemMap.initializeMap();
-		playerMaxHP = 10;
+		playerMaxHP = 50;
 		playerHP = playerMaxHP;
 		playerATK = 10;
-		playerDEF = 10;
+		playerDEF = 3;
 	}
 
 	public static void damage(int dmg) {
@@ -37,6 +38,10 @@ public class Utility {
 		hasAttacked = false;
 		bugAttacked = true;
 		combatTurn++;
+		
+		if(playerHP <= 0) {
+			WebsiteTemplate.endScene();
+		}
 	}
 
 	public static void heal(int hp) {
@@ -65,6 +70,10 @@ public class Utility {
 			e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
 			hasAttacked = true;
 			bugAttacked = false;
+			if(e.isDead()) {
+				hasAttacked = false;
+				bugAttacked = true;
+			}
 		}
 	}
 
@@ -122,6 +131,14 @@ public class Utility {
 
 	public static int getTempDEF() {
 		return tempDEF;
+	}
+	
+	public static boolean getBugAttacked() {
+		return bugAttacked;
+	}
+	
+	public static int getCombatTurn() {
+		return combatTurn;
 	}
 
 	public static boolean hasRngSeed() {

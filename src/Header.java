@@ -12,9 +12,11 @@ import javafx.scene.text.Text;
 public class Header extends HBox implements HasBug, EnemyConstants{
 	static  Button bugButton;
 	public Header() {
+		//logo
 		Text logo = new Text("Your Unc's Clothing");
 	    logo.setId("logo");
 	    
+	    //bug
 	    Bug bug = new Bug(20, 5, 1, TROJAN_HORSE_BUG);
 	    bugButton = new Button();
 	    File file1 = new File(bug.getImgURL());
@@ -28,7 +30,7 @@ public class Header extends HBox implements HasBug, EnemyConstants{
 	    bugButton.setScaleX(0.1);
 	    bugButton.setScaleY(0.1);    
 	    bugButton.getStyleClass().add("enemy-buttons");
-	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+	    bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, bug));
 	    
 		StackPane stackPane = new StackPane(logo, bugButton);
 	    
@@ -37,6 +39,7 @@ public class Header extends HBox implements HasBug, EnemyConstants{
 	    this.setStyle("-fx-background-color: grey");
 	}
 
+	//contract to remove bug
 	@Override
 	public void removeBug() {
 		 bugButton.setVisible(false);		
