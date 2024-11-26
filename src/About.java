@@ -33,11 +33,11 @@ public class About extends VBox implements HasBug, EnemyConstants {
 
 		// img of unc
 		File file = new File("src/Images/uncle.jpg");
-		Image image = new Image(file.toURI().toString());
-		ImageView uncImg = new ImageView(image);
+		ImageView uncImg = new ImageView(new Image(file.toURI().toString() ));
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);
 
+		//bug
 		Bug bug = new Bug(20, 5, 5, BUG1);
 		bugButton = new Button("Bug");
 		File file1 = new File(bug.getImgURL());
@@ -46,12 +46,12 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		bugButton.setScaleX(0.1);
 		bugButton.setScaleY(0.1);
 		bugButton.getStyleClass().add("enemy-buttons");
-		bugButton.setOnAction(e -> WebsiteTemplate.startFight(e, this, bug));
+		bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, bug));
 		
 		StackPane uncleStack = new StackPane(uncImg, bugButton);
 
-		Button itemButton = new Button("Item");
-		itemButton.setOnAction(e -> System.out.println("Item collected"));
+//		Button itemButton = new Button("Item");
+//		itemButton.setOnAction(e -> System.out.println("Item collected"));
 
 		// create a flowpane for this section
 		FlowPane flow = new FlowPane(aboutText, uncleStack);
@@ -88,17 +88,19 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		randomHolder = new FlowPane(Orientation.VERTICAL , emptyRec, randomNavButton);
 		
 
-		this.getChildren().add(itemButton);
+//		this.getChildren().add(itemButton);
 		this.getChildren().add(randomHolder);
 		this.getStyleClass().add("main-padding");
 		this.setSpacing(20);
 	}
-
+	
+	//contract to remove bug
 	@Override
 	public void removeBug() {
 		bugButton.setVisible(false);
 	}
 	
+	//method to remove button that leads to notfound
 	public static void removeRandom() {
 		randomHolder.setVisible(false);
 	}

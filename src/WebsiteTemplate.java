@@ -1,6 +1,6 @@
 /*
  * WebsiteTemplate.java
- * This outlines the overall look of the website. Edit the body to change the individual webpage
+ * This is the main controller for the entire game, connecting different UI scenes and panes and calling methods from different classes
  */
 
 
@@ -34,11 +34,14 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	private static End end;
 	private static TabPane tabPane;
 	private static Tab mainTab;
+	private static Tab inventoryTab;
 	private static Scene websiteScene;
 	private static Scene fightScene;
 	private static Scene inventoryScene;
 	private static Scene endScene;
 	private static Stage primaryStageRef;
+	
+	private static String enterInventoryFrom;
 	
 	
 	public void start(Stage primaryStage) {
@@ -48,11 +51,14 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		//create reference to stage so we can change the scenes outside of start method
 		primaryStageRef = primaryStage;
 		
-		//create StartHelp
+		//create StartHelp which is the email from unc
 		StartHelp startHelp = new StartHelp();
 		
 		//create inventory 
 		inventory = new InventoryMenu();
+		
+		//create stats
+		StatsView statsView = new StatsView();
 		
         //create Header
         header = new Header();
@@ -93,8 +99,8 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
         mainTab.setClosable(false);
         tabPane.getTabs().add(mainTab);
         //tab 3 for inventory
-        Tab inventoryTab = new Tab("fightinginventory.local");
-        inventoryTab.setContent(inventory);
+        inventoryTab = new Tab("fightinginventory.local");
+        inventoryTab.setContent(statsView);
         inventoryTab.setClosable(false);
         tabPane.getTabs().add(inventoryTab);
         
@@ -157,24 +163,27 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	}
 	
 	//start scene for inventory
-	public static void enterInventory(ActionEvent e) {
-		primaryStageRef.setScene(inventoryScene);
+	public static void enterInventory(String where) {
+		InventoryMenu.updateMenu();
+		enterInventoryFrom = where;
+		primaryStageRef.setScene(inventoryScene);		
 	}
 	
 	//end scene or switch tabs for inventory
 	public static void backInventory() {
-		Scene currentScene = primaryStageRef.getScene();
-		if(currentScene.equals(inventoryScene)) {
+		StatsView.update();
+		if(enterInventoryFrom.equals("fight")) {
 			primaryStageRef.setScene(fightScene);
 		}
-		else if(currentScene.equals(websiteScene)) {
-			 tabPane.getSelectionModel().select(mainTab);
+		else if(enterInventoryFrom.equals("tab")) {
+			 primaryStageRef.setScene(websiteScene);
+			 tabPane.getSelectionModel().select(inventoryTab);
 		}
 		
 	}
 	
 	//change scene to start fight
-	public static void startFight(ActionEvent e, HasBug page, Enemy enemy) {
+	public static void startFight(HasBug page, Enemy enemy) {
 		fightScene = new Scene(new Fight(enemy));
 		primaryStageRef.setScene(fightScene);
 		Fight.startedFightPage(page);
@@ -183,6 +192,9 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 	
 	//change scenes when the fight in done, whether won or loss
 	public static void endFight(HasBug page) {
+		Utility.resetTempStats();
+		InventoryMenu.updateMenu();
+		StatsView.update();
 		primaryStageRef.setScene(websiteScene);
 	}
 	
@@ -197,7 +209,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		
 	}
 	
-	//end scene
+	//change scene to end scene
 	public static void endScene() {
 		End.updateEnd();
 		primaryStageRef.setScene(endScene);
