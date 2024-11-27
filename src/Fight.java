@@ -22,7 +22,7 @@ public class Fight extends VBox {
 	static Enemy enemy;
 
 	public static Text updateText;
-	private static Label hpLabel, ppLabel, enemyName;
+	public static Label hpLabel, ppLabel, enemyName;
 
 	// get the main page from websitetemplate
 	public static void startedFightPage(HasBug page) {
@@ -106,6 +106,7 @@ public class Fight extends VBox {
 			if(enemy instanceof BossDev) {
 				endFight.setVisible(false);
 				enemyName.setText("BOSS DEV");
+				updateText.setText("YOU...\nDID YOU DO THIS..?\nI NEVER THOUGHT HE WOULD HIRE SOMEONE TO FIX WHAT I DID.\nVERY WELL THEN. GO AHEAD. TRY TO GET RID OF ME.");
 				background.setStyle("-fx-background-color: black");
 				background.setPrefSize(USE_COMPUTED_SIZE, BASELINE_OFFSET_SAME_AS_HEIGHT);
 				background.setMinSize(4000, 4000);
@@ -169,7 +170,7 @@ public class Fight extends VBox {
 			System.out.println("player hp reduced");
 			ppLabel.setText("PP: " + Utility.getPlayerHP());
 			if(Utility.getPlayerHP() <= 0) {
-				WebsiteTemplate.endFight(mainPage);
+				WebsiteTemplate.endScene();
 			}
 		} else {
 			updateText.setText(updateText.getText() + "\nYOU win!");

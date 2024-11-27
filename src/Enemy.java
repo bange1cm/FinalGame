@@ -82,6 +82,7 @@ class Bug extends Enemy {
 			ItemMap.obtain(new Extension(2));
 		}
 
+		ItemMap.obtain(new Cookie(0));
 		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
 	}
 }
@@ -99,7 +100,10 @@ abstract class Virus extends Enemy {
 	// drop item method, used to gain items to help with other boss fights
 	public void dropItem() {
 		ItemMap.obtain(new Extension(extId));
-		ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
+		for (int i = 0; i < 4; i++) {
+			ItemMap.obtain(new Cookie(0));
+			ItemMap.obtain(new Cookie((int) (Math.random() * 3)));
+		}
 	}
 
 	// abstract attack method to be implemented by children
@@ -174,7 +178,7 @@ class LagWitch extends Virus {
 		}
 		// call utility method to attack player
 		Utility.damage(atk);
-		if(!Utility.hasConnection()) {
+		if (!Utility.hasConnection()) {
 			trackVenom = true;
 		}
 	}
@@ -242,7 +246,7 @@ class BossDev extends Virus {
 			this.def -= 5;
 			statsLowered = true;
 			Fight.updateText.setText(Fight.updateText.getText() + "\nBOSS DEV defense lowered by FIREWALL!");
-			
+
 		}
 
 		if (metaRNG == 0 || (metaRNG == 1 && Utility.hasRngSeed())) {
@@ -264,11 +268,11 @@ class BossDev extends Virus {
 				trackVenom = false;
 			}
 		}
-		
+
 		// call utility method to attack player
-		
+
 		Utility.damage(atk);
-		if(!Utility.hasConnection()) {
+		if (!Utility.hasConnection()) {
 			trackVenom = true;
 		}
 	}

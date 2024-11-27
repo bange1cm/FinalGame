@@ -2,7 +2,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Utility implements HasBug {
 
-	public static int bugsDefeated = 8;
+	public static int bugsDefeated = 0;
 	public static int totalBugs = 8;
 
 	//keeps track of turns
@@ -45,6 +45,7 @@ public class Utility implements HasBug {
 		} else {
 			playerHP += hp;
 		}
+		Fight.ppLabel.setText("PP: " + playerHP);
 	}
 
 	public static void useSearch() {

@@ -33,7 +33,7 @@ public class ItemMap {
 
 		switch (item.getName()) {
 		case "Web Cookie":
-			Utility.heal(5);
+			Utility.heal(7);
 			itemMap.put(item, itemMap.get(item) - 1);
 			break;
 		case "Search":
