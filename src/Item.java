@@ -36,7 +36,7 @@ class Cookie extends Item {
 		switch(id) {
 			case 0:
 				this.name = "Web Cookie";
-				this.description = "Cookie: Restore 5 HP.";
+				this.description = "Cookie: Restore 7 HP.";
 				break;
 			case 1:
 				this.name = "Search";

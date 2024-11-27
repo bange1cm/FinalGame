@@ -103,9 +103,9 @@ public class ProductsPage extends GridPane implements HasBug, EnemyConstants {
             // Set action for the image button
             imageButton.setOnAction(e -> System.out.println("Clicked on: " + title));
             
-            Virus samsa = new Trojan(100, 10, 10, SAMSA);
+            Enemy samsa = Samsa.getInstance();
             imageButton.setOnAction(e -> {
-                WebsiteTemplate.startFight(e, this, samsa);
+                WebsiteTemplate.startFight(this, samsa);
             });
             Button buyButton = new Button("Buy Now");
             buyButton.getStyleClass().add("buy-button");

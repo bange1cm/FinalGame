@@ -93,6 +93,5 @@ public class StartHelp extends ScrollPane implements HasBug {
 	@Override
 	public void removeBug() {
 		WebsiteTemplate.endScene();
-
 	}
 }

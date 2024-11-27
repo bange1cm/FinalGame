@@ -195,7 +195,8 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		Utility.resetTempStats();
 		InventoryMenu.updateMenu();
 		StatsView.update();
-		primaryStageRef.setScene(websiteScene);
+		if(!(Utility.bugsDefeated > Utility.totalBugs))
+			primaryStageRef.setScene(websiteScene);
 	}
 	
 	//remove bug if the fight is won
