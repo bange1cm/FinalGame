@@ -1,8 +1,8 @@
 import java.util.concurrent.TimeUnit;
 
-public class Utility {
+public class Utility implements HasBug {
 
-	public static int bugsDefeated = 0;
+	public static int bugsDefeated = 8;
 	public static int totalBugs = 8;
 
 	//keeps track of turns
@@ -37,11 +37,6 @@ public class Utility {
 		playerHP -= (dmg - ((playerDEF + tempDEF) / 2));
 		hasAttacked = false;
 		bugAttacked = true;
-		combatTurn++;
-		
-		if(playerHP <= 0) {
-			WebsiteTemplate.endScene();
-		}
 	}
 
 	public static void heal(int hp) {
@@ -70,6 +65,7 @@ public class Utility {
 			e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
 			hasAttacked = true;
 			bugAttacked = false;
+			combatTurn++;
 			if(e.isDead()) {
 				hasAttacked = false;
 				bugAttacked = true;
@@ -151,5 +147,11 @@ public class Utility {
 
 	public static boolean hasFirewall() {
 		return hasFirewall;
+	}
+
+	@Override
+	public void removeBug() {
+		WebsiteTemplate.endScene();
+		
 	}
 }
