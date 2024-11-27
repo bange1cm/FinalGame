@@ -102,6 +102,10 @@ public class InventoryMenu extends BorderPane{ // Class for displaying inventory
             if (selectedEntry != null) { // if player has item in inventory
                 Item selectedItem = selectedEntry.getKey(); // get item from data map
                 ItemMap.use(selectedItem); // use item
+                
+                if(selectedItem instanceof Extension) {
+                	StatsView.addExtension(selectedItem.id, selectedItem.name, selectedItem.description);
+                }
 
                 updateMenu(); // refresh menu
             }
