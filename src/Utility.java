@@ -1,7 +1,6 @@
-import java.util.concurrent.TimeUnit;
-
 public class Utility implements HasBug {
 
+	//tracks defeated bugs
 	public static int bugsDefeated = 0;
 	public static int totalBugs = 8;
 
@@ -10,6 +9,7 @@ public class Utility implements HasBug {
 	private static boolean hasAttacked = false;
 	private static boolean bugAttacked = true;
 
+	//player stats
 	private static int playerMaxHP;
 	private static int playerHP;
 	private static int playerATK;
@@ -18,6 +18,7 @@ public class Utility implements HasBug {
 	private static int tempATK = 0;
 	private static int tempDEF = 0;
 
+	//extension trackers
 	private static boolean hasRngSeed = false;
 	private static boolean hasConnection = false;
 	private static boolean hasFirewall = false;
@@ -25,7 +26,7 @@ public class Utility implements HasBug {
 	private static boolean hasVpn = false;
 	private static boolean hasAdBlock = false;
 
-	public static void initialize() {
+	public static void initialize() { //initialize player stats and inventory
 		ItemMap.initializeMap();
 		playerMaxHP = 50;
 		playerHP = playerMaxHP;
@@ -33,13 +34,13 @@ public class Utility implements HasBug {
 		playerDEF = 3;
 	}
 
-	public static void damage(int dmg) {
+	public static void damage(int dmg) { //take damage
 		playerHP -= (dmg - ((playerDEF + tempDEF) / 2));
 		hasAttacked = false;
 		bugAttacked = true;
 	}
 
-	public static void heal(int hp) {
+	public static void heal(int hp) { //heal
 		if (playerHP + hp > playerMaxHP) {
 			playerHP = playerMaxHP;
 		} else {
@@ -48,20 +49,20 @@ public class Utility implements HasBug {
 		Fight.ppLabel.setText("PP: " + playerHP);
 	}
 
-	public static void useSearch() {
+	public static void useSearch() { //use search item
 		tempATK += 5;
 	}
 
-	public static void usePassword() {
+	public static void usePassword() { //use password item
 		tempDEF += 5;
 	}
 
-	public static void resetTempStats() {
+	public static void resetTempStats() { //reset temporary stat boosts to 0
 		tempATK = 0;
 		tempDEF = 0;
 	}
 
-	public static void attack(Enemy e) {
+	public static void attack(Enemy e) { //attack enemy
 		if (!hasAttacked) {
 			e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
 			hasAttacked = true;
@@ -74,7 +75,7 @@ public class Utility implements HasBug {
 		}
 	}
 
-	public static void install(int id) {
+	public static void install(int id) { //use extension
 		switch (id) {
 		case 0:
 			hasRngSeed = true;
