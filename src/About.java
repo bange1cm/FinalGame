@@ -32,7 +32,7 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		aboutText.getStyleClass().add("p");
 
 		// img of unc
-		File file = new File("src/Images/uncle.jpg");
+		File file = new File("Images/uncle.jpg");
 		ImageView uncImg = new ImageView(new Image(file.toURI().toString() ));
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);

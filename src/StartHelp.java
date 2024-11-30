@@ -21,7 +21,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		VBox email1 = new VBox();
 
 		// create everything for email 1
-		File file1 = new File("src/Images/unc.png");
+		File file1 = new File("Images/unc.png");
 		ImageView uncImg = new ImageView(new Image(file1.toURI().toString()));
 		Label toFrom1 = new Label("From: Unc \nTo: You ", uncImg);
 		toFrom1.setWrapText(true);
@@ -51,7 +51,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		VBox email2 = new VBox();
 
 		// create everything for email 2
-		File file2 = new File("src/Images/you.png");
+		File file2 = new File("Images/you.png");
 		ImageView youImg = new ImageView(new Image(file2.toURI().toString()));
 		Label toFrom2 = new Label("From: You \nTo: Unc ", youImg);
 		toFrom2.setWrapText(true);
