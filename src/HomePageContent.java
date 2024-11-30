@@ -1,7 +1,4 @@
 
-import java.io.File;
-
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -115,8 +112,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
         //footer bug
 		footerButton = new Button();
 		footerbug = new Bug(10, 6, 2, BUG4);
-	    File file2 = new File(footerbug.getImgURL());
-	    ImageView img2 = new ImageView(new Image(file2.toURI().toString()));
+	    ImageView img2 = new ImageView(new Image(getClass().getResource(footerbug.getImgURL()).toExternalForm()));
 	    img2.setScaleX(2);
 	    img2.setScaleY(2);
 	    footerButton.setGraphic(img2);
@@ -137,7 +133,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 
 	// Helper method to create an ImageView with consistent sizing
 	private ImageView createImageView(String imagePath) {
-		ImageView imageView = new ImageView(new Image(imagePath));
+		ImageView imageView = new ImageView(new Image(getClass().getResource(imagePath).toExternalForm()));
 		imageView.setFitWidth(150);
 		imageView.setFitHeight(200);
 		imageView.setPreserveRatio(true);

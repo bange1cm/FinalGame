@@ -1,6 +1,3 @@
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -32,8 +29,7 @@ public class Fight extends VBox {
 	public Fight(Enemy newEnemy) {
 		enemy = newEnemy;
 		try {
-			File file1 = new File(enemy.getImgURL());
-			ImageView img = new ImageView(new Image(file1.toURI().toString()));
+			ImageView img = new ImageView(new Image(getClass().getResource(enemy.getImgURL()).toExternalForm()));
 			
 			Pane background = new Pane();
 			

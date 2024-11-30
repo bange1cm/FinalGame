@@ -1,6 +1,3 @@
-
-import java.io.File;
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,8 +18,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		VBox email1 = new VBox();
 
 		// create everything for email 1
-		File file1 = new File("Images/unc.png");
-		ImageView uncImg = new ImageView(new Image(file1.toURI().toString()));
+		ImageView uncImg = new ImageView(new Image(getClass().getResource("Images/unc.png").toExternalForm()));
 		Label toFrom1 = new Label("From: Unc \nTo: You ", uncImg);
 		toFrom1.setWrapText(true);
 		toFrom1.setStyle("-fx-font: 20 arial");
@@ -51,8 +47,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		VBox email2 = new VBox();
 
 		// create everything for email 2
-		File file2 = new File("Images/you.png");
-		ImageView youImg = new ImageView(new Image(file2.toURI().toString()));
+		ImageView youImg = new ImageView(new Image(getClass().getResource("Images/you.png").toExternalForm()));
 		Label toFrom2 = new Label("From: You \nTo: Unc ", youImg);
 		toFrom2.setWrapText(true);
 		toFrom2.setStyle("-fx-font: 20 arial");

@@ -1,7 +1,3 @@
-
-import java.io.File;
-
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,16 +28,14 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		aboutText.getStyleClass().add("p");
 
 		// img of unc
-		File file = new File("Images/uncle.jpg");
-		ImageView uncImg = new ImageView(new Image(file.toURI().toString() ));
+		ImageView uncImg = new ImageView(new Image(getClass().getResource("Images/uncle.jpg").toExternalForm()));
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);
 
 		//bug
 		Bug bug = new Bug(20, 5, 5, BUG1);
 		bugButton = new Button("Bug");
-		File file1 = new File(bug.getImgURL());
-		ImageView img = new ImageView(new Image(file1.toURI().toString()));
+		ImageView img = new ImageView(new Image(getClass().getResource(bug.getImgURL()).toExternalForm()));
 		bugButton.setGraphic(img);
 		bugButton.setScaleX(0.1);
 		bugButton.setScaleY(0.1);
