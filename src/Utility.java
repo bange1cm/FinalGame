@@ -98,6 +98,7 @@ public class Utility implements HasBug {
 			if (!hasAIAssistant) {
 				hasAIAssistant = true;
 				playerMaxHP *= 2;
+				playerHP *= 2;
 			}
 			break;
 		case 4:
