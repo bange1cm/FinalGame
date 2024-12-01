@@ -1,4 +1,7 @@
 /*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
  * WebsiteTemplate.java
  * This is the main controller for the entire game, connecting different UI scenes and panes and calling methods from different classes
  */
@@ -123,6 +126,7 @@ public class WebsiteTemplate extends Application implements EnemyConstants{
 		primaryStage.setWidth(1200);
 		primaryStage.setHeight(800);
 		primaryStage.setMaximized(true);
+		primaryStage.setTitle("Family Fix Up");		
 		primaryStage.show();
 	}
 	

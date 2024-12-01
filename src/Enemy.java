@@ -1,3 +1,10 @@
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * Enemy.java
+ * This is the Enemy class, which is abstract and has Bug and Virus(Samsa, LagWitch, Trojan, BossDev) children and has hp, atk, def, and imgURL properties
+ */
 
 public abstract class Enemy implements EnemyConstants {
 	// health, attack, and defense variables
@@ -60,6 +67,7 @@ public abstract class Enemy implements EnemyConstants {
 		return this.hp <= 0;
 	}
 
+	//abstract method for enemy to drop an item
 	public abstract void dropItem();
 
 }
@@ -287,6 +295,7 @@ class BossDev extends Virus {
 
 	}
 
+	//bossdev doesnt drop anything but needs to make commitment to abstract enemy method
 	@Override
 	public void dropItem() {
 		return;

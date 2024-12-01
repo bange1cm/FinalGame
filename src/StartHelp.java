@@ -1,3 +1,10 @@
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * StartHelp.java
+ * The start page of the game which extends ScrollPane, contains a virus, and can be created as an instance so it can be added to the scene in WebsiteTemplate
+ */
 
 import java.io.File;
 
