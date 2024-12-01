@@ -1,3 +1,4 @@
+
 /*
  * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
  * Final Project, 12/1
@@ -28,8 +29,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		VBox email1 = new VBox();
 
 		// create everything for email 1
-		File file1 = new File("src/Images/unc.png");
-		ImageView uncImg = new ImageView(new Image(file1.toURI().toString()));
+		ImageView uncImg = new ImageView(new Image(getClass().getResource("Images/unc.png").toExternalForm()));
 		Label toFrom1 = new Label("From: Unc \nTo: You ", uncImg);
 		toFrom1.setWrapText(true);
 		toFrom1.setStyle("-fx-font: 20 arial");
@@ -58,8 +58,7 @@ public class StartHelp extends ScrollPane implements HasBug {
 		VBox email2 = new VBox();
 
 		// create everything for email 2
-		File file2 = new File("src/Images/you.png");
-		ImageView youImg = new ImageView(new Image(file2.toURI().toString()));
+		ImageView youImg = new ImageView(new Image(getClass().getResource("Images/you.png").toExternalForm()));
 		Label toFrom2 = new Label("From: You \nTo: Unc ", youImg);
 		toFrom2.setWrapText(true);
 		toFrom2.setStyle("-fx-font: 20 arial");
