@@ -1,13 +1,13 @@
 
 
 public interface EnemyConstants {
-	public static String BUG1 = "src/Images/Bug1FixUp.png";
-	public static String BUG2 = "src/Images/Bug2FixUp.png";
-	public static String BUG3 = "src/Images/Bug3.png";
-	public static String BUG4 = "src/Images/Bug4.png";
-	public static String TROJAN_HORSE_BUG = "src/Images/TrojanHorseBug.png";
-	public static String LAG_WITCH = "src/Images/LagWitchFixUp.png";
-	public static String SAMSA = "src/Images/SamsaFixUp.png";
-	public static String TROJAN_HORSE = "src/Images/TrojanHorseVirus.png";
-	public static String BOSS_DEV = "src/Images/BossDev.png";
+	public static String BUG1 = "Images/Bug1FixUp.png";
+	public static String BUG2 = "Images/Bug2FixUp.png";
+	public static String BUG3 = "Images/Bug3.png";
+	public static String BUG4 = "Images/Bug4.png";
+	public static String TROJAN_HORSE_BUG = "Images/TrojanHorseBug.png";
+	public static String LAG_WITCH = "Images/LagWitchFixUp.png";
+	public static String SAMSA = "Images/SamsaFixUp.png";
+	public static String TROJAN_HORSE = "Images/TrojanHorseVirus.png";
+	public static String BOSS_DEV = "Images/BossDev.png";
 }
