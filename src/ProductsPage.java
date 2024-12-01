@@ -1,3 +1,11 @@
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * ProductsPage.java
+ * The products page of the website which extends GridPane, contains a virus, and can be created as an instance so it can be added to the scene in WebsiteTemplate
+ */
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -6,148 +14,121 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+public class ProductsPage extends GridPane implements HasBug {
 
-public class ProductsPage extends GridPane implements HasBug, EnemyConstants {
+	public ProductsPage() {
+		// Set up the layout
+		this.setPadding(new Insets(20));
+		this.setVgap(15);
+		this.setHgap(15);
 
+		// Header for the page
+		Label productsHeader = new Label("Exclusive Deals Just for You!");
+		productsHeader.getStyleClass().add("products-header");
+		this.add(productsHeader, 0, 0, 3, 1);
 
-    public ProductsPage() {
-        // Set up the layout
-        this.setPadding(new Insets(20));
-        this.setVgap(15);
-        this.setHgap(15);
+		// Add products
 
-        // Header for the page
-        Label productsHeader = new Label("Exclusive Deals Just for You!");
-        productsHeader.getStyleClass().add("products-header");
-        this.add(productsHeader, 0, 0, 3, 1);
+		addProduct("Luxury Bag - 99% Off!", "Gucci bag replica", "aiProductPic.png", 0, 1, true);
 
-        // Add products
-      
-        
-        
-        
-        addProduct(
-                "Luxury Bag - 99% Off!",
-                "Gucci bag replica",
-                "aiProductPic.png",
-                0, 1,true
-            );
+		addProduct("Exclusive Brand Pants - Only $19.99!", "Super comfortable pants", "productPants.png", 1, 1, false);
 
-        addProduct(
-            "Exclusive Brand Pants - Only $19.99!",
-            "Super comfortable pants",
-            "productPants.png",
-            1, 1,false
-        );
+		addProduct("Fire Hat - 90% Discount!", "Fits any head", "productHat.png", 0, 2, false);
 
-        addProduct(
-            "Fire Hat - 90% Discount!",
-            "Fits any head",
-            "productHat.png",
-            0, 2,false
-        );
+		addProduct("Designer T-shirt - Only $40.99!", "Perfect for any weather  ", "productShirt.png", 1, 2, false);
 
-        addProduct(
-            "Designer T-shirt - Only $40.99!",
-            "Perfect for any weather  ",
-            "productShirt.png",
-            1, 2,false
-        );
+		// Reviews Section
+		VBox reviewsSection = new VBox(10);
+		reviewsSection.setPadding(new Insets(10));
+		reviewsSection.getStyleClass().add("reviews-section");
 
-        // Reviews Section
-        VBox reviewsSection = new VBox(10);
-        reviewsSection.setPadding(new Insets(10));
-        reviewsSection.getStyleClass().add("reviews-section");
+		Label reviewsCaption = new Label("Customers love us! Rated 4.9/5 by thousands.");
+		reviewsCaption.getStyleClass().add("reviews-caption");
 
-        Label reviewsCaption = new Label("Customers love us! Rated 4.9/5 by thousands.");
-        reviewsCaption.getStyleClass().add("reviews-caption");
+		Button reviewsButton = new Button("Reviews");
+		reviewsButton.getStyleClass().add("reviews-button");
 
-        Button reviewsButton = new Button("Reviews");
-        reviewsButton.getStyleClass().add("reviews-button");
+		reviewsSection.getChildren().addAll(reviewsCaption, reviewsButton);
+		this.add(reviewsSection, 2, 1, 1, 2); // Add to the right, spanning two rows
+		GridPane.setMargin(reviewsSection, new Insets(0, 0, 0, 20));
+		reviewsButton.setOnAction(e -> WebsiteTemplate.navigation(e));
+	}
 
-        reviewsSection.getChildren().addAll(reviewsCaption, reviewsButton);
-        this.add(reviewsSection, 2, 1, 1, 2); // Add to the right, spanning two rows
-        GridPane.setMargin(reviewsSection, new Insets(0, 0, 0, 20));
-        reviewsButton.setOnAction(e -> WebsiteTemplate.navigation(e));
-    }
+	// adds and formats products to the page
+	private void addProduct(String title, String description, String imageFileName, int col, int row,
+			boolean isImageClickable) {
+		VBox productBox = new VBox(5);
+		productBox.setPadding(new Insets(10));
+		productBox.getStyleClass().add("product-box");
 
-    private void addProduct(String title, String description, String imageFileName, int col, int row, boolean isImageClickable) {
-        VBox productBox = new VBox(5);
-        productBox.setPadding(new Insets(10));
-        productBox.getStyleClass().add("product-box");
+		// Title
+		Label titleLabel = new Label(title);
+		titleLabel.getStyleClass().add("product-title");
 
-        // Title
-        Label titleLabel = new Label(title);
-        titleLabel.getStyleClass().add("product-title");
+		// Description
+		Label descriptionLabel = new Label(description);
+		descriptionLabel.getStyleClass().add("product-description");
 
-        // Description
-        Label descriptionLabel = new Label(description);
-        descriptionLabel.getStyleClass().add("product-description");
+		if (isImageClickable) {
+			// Image as a button
+			Button imageButton = new Button();
+			try {
+				String resourcePath = "Images/" + imageFileName; // Relative path to the image
+				Image image = new Image(getClass().getResourceAsStream(resourcePath));
+				ImageView productImage = new ImageView(image);
+				productImage.setFitHeight(120);
+				productImage.setPreserveRatio(true);
+				imageButton.setGraphic(productImage);
+			} catch (Exception e) {
+				System.err.println("Could not load image: " + imageFileName);
+				e.printStackTrace();
+			}
+			imageButton.getStyleClass().add("image-button");
 
-        if (isImageClickable) {
-            // Image as a button
-            Button imageButton = new Button();
-            try {
-                String resourcePath = "Images/" + imageFileName; // Relative path to the image
-                Image image = new Image(getClass().getResourceAsStream(resourcePath));
-                ImageView productImage = new ImageView(image);
-                productImage.setFitHeight(120);
-                productImage.setPreserveRatio(true);
-                imageButton.setGraphic(productImage);
-            } catch (Exception e) {
-                System.err.println("Could not load image: " + imageFileName);
-                e.printStackTrace();
-            }
-            imageButton.getStyleClass().add("image-button");
+			// Set action for the image button
+			imageButton.setOnAction(e -> System.out.println("Clicked on: " + title));
 
-            // Set action for the image button
-            imageButton.setOnAction(e -> System.out.println("Clicked on: " + title));
-            
-            Enemy samsa = Samsa.getInstance();
-            imageButton.setOnAction(e -> {
-                WebsiteTemplate.startFight(this, samsa);
-            });
-            Button buyButton = new Button("Buy Now");
-            buyButton.getStyleClass().add("buy-button");
+			Enemy samsa = Samsa.getInstance();
+			imageButton.setOnAction(e -> {
+				WebsiteTemplate.startFight(this, samsa);
+			});
+			Button buyButton = new Button("Buy Now");
+			buyButton.getStyleClass().add("buy-button");
 
-            // Add elements to product box
-            productBox.getChildren().addAll(imageButton, titleLabel, descriptionLabel, buyButton);
-        } else {
-            // Product Image
-            ImageView productImage = new ImageView();
-            try {
-                String resourcePath = "Images/" + imageFileName; // Relative path to the image
-                Image image = new Image(getClass().getResourceAsStream(resourcePath));
-                productImage.setImage(image);
-            } catch (Exception e) {
-                System.err.println("Could not load image: " + imageFileName);
-                e.printStackTrace();
-                // Optionally set a placeholder image
-                productImage.setImage(new Image(getClass().getResourceAsStream("Images/placeholder.png")));
-            }
-            productImage.setFitHeight(120);
-            productImage.setPreserveRatio(true);
+			// Add elements to product box
+			productBox.getChildren().addAll(imageButton, titleLabel, descriptionLabel, buyButton);
+		} else {
+			// Product Image
+			ImageView productImage = new ImageView();
+			try {
+				String resourcePath = "Images/" + imageFileName; // Relative path to the image
+				Image image = new Image(getClass().getResourceAsStream(resourcePath));
+				productImage.setImage(image);
+			} catch (Exception e) {
+				System.err.println("Could not load image: " + imageFileName);
+				e.printStackTrace();
+				// Optionally set a placeholder image
+				productImage.setImage(new Image(getClass().getResourceAsStream("Images/placeholder.png")));
+			}
+			productImage.setFitHeight(120);
+			productImage.setPreserveRatio(true);
 
-            // "Buy Now" Button
-            Button buyButton = new Button("Buy Now");
-            buyButton.getStyleClass().add("buy-button");
+			// "Buy Now" Button
+			Button buyButton = new Button("Buy Now");
+			buyButton.getStyleClass().add("buy-button");
 
-            // Add elements to product box
-            productBox.getChildren().addAll(productImage, titleLabel, descriptionLabel, buyButton);
-        }
+			// Add elements to product box
+			productBox.getChildren().addAll(productImage, titleLabel, descriptionLabel, buyButton);
+		}
 
-        // Place product box in the grid
-        this.add(productBox, col, row);
-        
-    }
+		// Place product box in the grid
+		this.add(productBox, col, row);
 
-    public void removeBug() {
-    	addProduct(
-                "Luxury Bag - 99% Off!",
-                "Gucci bag replica",
-                "productBag.png",
-                0, 1,false
-            );
-		
+	}
+
+	// contract to remove bug
+	public void removeBug() {
+		addProduct("Luxury Bag - 99% Off!", "Gucci bag replica", "productBag.png", 0, 1, false);
+
 	}
 }

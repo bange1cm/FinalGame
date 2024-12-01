@@ -1,3 +1,11 @@
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * ItemMap.java
+ * The ItemMap class which holds the map that acts as the player's inventory and allows the player to find and use items by adding or removing them from the map
+ */
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -5,16 +13,19 @@ public class ItemMap {
 
 	private static Map<Item, Integer> itemMap = new LinkedHashMap<Item, Integer>();
 
+	// initializes map
 	public static void initializeMap() {
 		itemMap.put(new Cookie(0), 0);
 		itemMap.put(new Cookie(1), 0);
 		itemMap.put(new Cookie(2), 0);
 	}
 
+	// returns map
 	public static Map<Item, Integer> getItemMap() {
 		return itemMap;
 	}
 
+	// adds item to the map
 	public static void obtain(Item item) {
 		if (itemMap.containsKey(item)) {
 			itemMap.put(item, itemMap.get(item) + 1);
@@ -23,9 +34,10 @@ public class ItemMap {
 			itemMap.put(item, 1);
 			System.out.println("Item added to map");
 		}
-		
+
 	}
 
+	// uses an item and removes it from the map
 	public static void use(Item item) {
 		if (itemMap.get(item) == 0) {
 			return;

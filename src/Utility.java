@@ -1,15 +1,23 @@
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * Utility.java
+ * The controller of the game which manages player stats and fights
+ */
+
 public class Utility implements HasBug {
 
-	//tracks defeated bugs
+	// tracks defeated bugs
 	public static int bugsDefeated = 0;
 	public static int totalBugs = 8;
 
-	//keeps track of turns
+	// keeps track of turns
 	private static int combatTurn = 0;
 	private static boolean hasAttacked = false;
 	private static boolean bugAttacked = true;
 
-	//player stats
+	// player stats
 	private static int playerMaxHP;
 	private static int playerHP;
 	private static int playerATK;
@@ -18,7 +26,7 @@ public class Utility implements HasBug {
 	private static int tempATK = 0;
 	private static int tempDEF = 0;
 
-	//extension trackers
+	// extension trackers
 	private static boolean hasRngSeed = false;
 	private static boolean hasConnection = false;
 	private static boolean hasFirewall = false;
@@ -26,7 +34,7 @@ public class Utility implements HasBug {
 	private static boolean hasVpn = false;
 	private static boolean hasAdBlock = false;
 
-	public static void initialize() { //initialize player stats and inventory
+	public static void initialize() { // initialize player stats and inventory
 		ItemMap.initializeMap();
 		playerMaxHP = 50;
 		playerHP = playerMaxHP;
@@ -34,13 +42,13 @@ public class Utility implements HasBug {
 		playerDEF = 3;
 	}
 
-	public static void damage(int dmg) { //take damage
+	public static void damage(int dmg) { // take damage
 		playerHP -= (dmg - ((playerDEF + tempDEF) / 2));
 		hasAttacked = false;
 		bugAttacked = true;
 	}
 
-	public static void heal(int hp) { //heal
+	public static void heal(int hp) { // heal
 		if (playerHP + hp > playerMaxHP) {
 			playerHP = playerMaxHP;
 		} else {
@@ -49,33 +57,33 @@ public class Utility implements HasBug {
 		Fight.ppLabel.setText("PP: " + playerHP);
 	}
 
-	public static void useSearch() { //use search item
+	public static void useSearch() { // use search item
 		tempATK += 5;
 	}
 
-	public static void usePassword() { //use password item
+	public static void usePassword() { // use password item
 		tempDEF += 5;
 	}
 
-	public static void resetTempStats() { //reset temporary stat boosts to 0
+	public static void resetTempStats() { // reset temporary stat boosts to 0
 		tempATK = 0;
 		tempDEF = 0;
 	}
 
-	public static void attack(Enemy e) { //attack enemy
+	public static void attack(Enemy e) { // attack enemy
 		if (!hasAttacked) {
 			e.setHp(e.getHp() - ((playerATK + tempATK) - (e.getDef() / 2)));
 			hasAttacked = true;
 			bugAttacked = false;
 			combatTurn++;
-			if(e.isDead()) {
+			if (e.isDead()) {
 				hasAttacked = false;
 				bugAttacked = true;
 			}
 		}
 	}
 
-	public static void install(int id) { //use extension
+	public static void install(int id) { // use extension
 		switch (id) {
 		case 0:
 			hasRngSeed = true;
@@ -107,6 +115,7 @@ public class Utility implements HasBug {
 		}
 	}
 
+	// getters and setters
 	public static int getPlayerMaxHP() {
 		return playerMaxHP;
 	}
@@ -130,11 +139,11 @@ public class Utility implements HasBug {
 	public static int getTempDEF() {
 		return tempDEF;
 	}
-	
+
 	public static boolean getBugAttacked() {
 		return bugAttacked;
 	}
-	
+
 	public static int getCombatTurn() {
 		return combatTurn;
 	}
@@ -154,6 +163,6 @@ public class Utility implements HasBug {
 	@Override
 	public void removeBug() {
 		WebsiteTemplate.endScene();
-		
+
 	}
 }

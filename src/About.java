@@ -1,3 +1,15 @@
+
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * About.java
+ * This is the About page of the website which contains a bug and extends VBox so an instance can be created and added to the stage in WebsiteTemplate
+ */
+
+import java.io.File;
+
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,7 +44,7 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		uncImg.setFitWidth(300);
 		uncImg.setPreserveRatio(true);
 
-		//bug
+		// bug
 		Bug bug = new Bug(20, 5, 5, BUG1);
 		bugButton = new Button("Bug");
 		ImageView img = new ImageView(new Image(getClass().getResource(bug.getImgURL()).toExternalForm()));
@@ -41,11 +53,8 @@ public class About extends VBox implements HasBug, EnemyConstants {
 		bugButton.setScaleY(0.1);
 		bugButton.getStyleClass().add("enemy-buttons");
 		bugButton.setOnAction(e -> WebsiteTemplate.startFight(this, bug));
-		
-		StackPane uncleStack = new StackPane(uncImg, bugButton);
 
-//		Button itemButton = new Button("Item");
-//		itemButton.setOnAction(e -> System.out.println("Item collected"));
+		StackPane uncleStack = new StackPane(uncImg, bugButton);
 
 		// create a flowpane for this section
 		FlowPane flow = new FlowPane(aboutText, uncleStack);
@@ -73,28 +82,26 @@ public class About extends VBox implements HasBug, EnemyConstants {
 			FAQs[i].getStyleClass().add("p");
 			FAQs[i].setWrapText(true);
 		}
-		
-		//navigation to notfound
+
+		// navigation to notfound
 		randomNavButton = new Button("110010100");
 		randomNavButton.setOnAction(e -> WebsiteTemplate.navigation(e));
 		Rectangle emptyRec = new Rectangle(1, 350);
 		emptyRec.setFill(Color.TRANSPARENT);
-		randomHolder = new FlowPane(Orientation.VERTICAL , emptyRec, randomNavButton);
-		
+		randomHolder = new FlowPane(Orientation.VERTICAL, emptyRec, randomNavButton);
 
-//		this.getChildren().add(itemButton);
 		this.getChildren().add(randomHolder);
 		this.getStyleClass().add("main-padding");
 		this.setSpacing(20);
 	}
-	
-	//contract to remove bug
+
+	// contract to remove bug
 	@Override
 	public void removeBug() {
 		bugButton.setVisible(false);
 	}
-	
-	//method to remove button that leads to notfound
+
+	// method to remove button that leads to notfound
 	public static void removeRandom() {
 		randomHolder.setVisible(false);
 	}

@@ -1,4 +1,15 @@
 
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * HomePageContent.java
+ * The Home page of the website which extends BorderPane, contains a bug, and can be created as an instance so it can be added to the scene in WebsiteTemplate
+ */
+
+import java.io.File;
+
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,16 +24,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-
 public class HomePageContent extends BorderPane implements HasBug, EnemyConstants {
 	static Button bugButton;
-    static Button footerButton;
+	static Button footerButton;
 	static ImageView imageView4;
 	GridPane productsGrid;
 	VBox productBox3;
 	Label productLabel3;
-    static Bug footerbug;
-    static Bug bug;
+	static Bug footerbug;
+	static Bug bug;
 
 	public HomePageContent() {
 		this.setMinHeight(1000);
@@ -32,6 +42,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		headerLabel.setTextFill(Color.DARKRED);
 		headerLabel.setPadding(new Insets(20));
 
+		// VBos to hold header content
 		VBox headerBox = new VBox(headerLabel);
 		headerBox.setAlignment(Pos.CENTER);
 		headerBox.setStyle("-fx-background-color: #f2f2f2;");
@@ -64,6 +75,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		VBox productBox2 = new VBox(10, imageView2, productLabel2);
 		productBox2.setAlignment(Pos.CENTER);
 
+		// fake sample product which contains a bug
 		ImageView imageView3 = createImageView("Images/homeBugPic.png");
 		bugButton = new Button();
 		bug = new Bug(10, 6, 2, BUG2);
@@ -75,6 +87,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		productBox3 = new VBox(10, bugButton, productLabel3);
 		productBox3.setAlignment(Pos.CENTER);
 
+		// ImageView for when the bug is defeated
 		imageView4 = createImageView("Images/productPants.png");
 
 		// Add products to the grid
@@ -108,8 +121,8 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		footerLabel.setFont(Font.font("Arial", 12));
 		footerLabel.setTextFill(Color.GRAY);
 		footerLabel.setPadding(new Insets(10, 0, 10, 0));
-    
-        //footer bug
+
+		// footer bug
 		footerButton = new Button();
 		footerbug = new Bug(10, 6, 2, BUG4);
 	    ImageView img2 = new ImageView(new Image(getClass().getResource(footerbug.getImgURL()).toExternalForm()));
@@ -128,7 +141,7 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		footerBox.setAlignment(Pos.BOTTOM_CENTER);
 		footerBox.setStyle("-fx-background-color: #e6e6e6;");
 		this.setBottom(footerBox);
-    
+
 	}
 
 	// Helper method to create an ImageView with consistent sizing
@@ -139,15 +152,16 @@ public class HomePageContent extends BorderPane implements HasBug, EnemyConstant
 		imageView.setPreserveRatio(true);
 		return imageView;
 	}
-	
-	//contract to remove 2 bugs
+
+	// contract to remove 2 bugs
 	@Override
 	public void removeBug() {
-		if(bug.isDead()) {
+		if (bug.isDead()) {
 			bugButton.setVisible(false);
 			productBox3 = new VBox(10, imageView4, productLabel3);
 			productsGrid.add(productBox3, 2, 0);
-		}if(footerbug.isDead()) {
+		}
+		if (footerbug.isDead()) {
 			footerButton.setVisible(false);
 		}
 	}

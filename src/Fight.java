@@ -1,3 +1,14 @@
+
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * Fight.java
+ * This is the Fight scene of the game which calls the Utility class to manage the fights between the enemies and the player and extends VBox so it can be added to the stage in WebsiteTemplate
+ */
+
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

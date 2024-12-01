@@ -1,4 +1,10 @@
-
+/*
+ * GCAM Devs - Cora Bangert, Meagan Callahan, Adam Kuhn, Gage Lefevre
+ * Final Project, 12/1
+ * 
+ * EnemyConstants.java
+ * This is the EnemyConstants interface which contains all image URLs for the enemies
+ */
 
 public interface EnemyConstants {
 	public static String BUG1 = "Images/Bug1FixUp.png";
