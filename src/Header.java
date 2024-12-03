@@ -19,8 +19,7 @@ public class Header extends HBox implements HasBug, EnemyConstants{
 	    //bug
 	    Bug bug = new Bug(20, 5, 1, TROJAN_HORSE_BUG);
 	    bugButton = new Button();
-	    File file1 = new File(bug.getImgURL());
-	    ImageView img = new ImageView(new Image(file1.toURI().toString()));
+	    ImageView img = new ImageView(new Image(bug.getImgURL()));
 	    img.setScaleX(2);
 	    img.setScaleY(2);
 	    bugButton.setGraphic(img);
