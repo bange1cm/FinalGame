@@ -27,8 +27,7 @@ public class NotFound extends VBox implements HasBug, EnemyConstants {
 		// bug and bug button
 		bugButton = new Button();
 		bug = new Bug(20, 4, 5, BUG3);
-		File file = new File(bug.getImgURL());
-		ImageView img = new ImageView(new Image(file.toURI().toString()));
+		ImageView img = new ImageView(new Image(getClass().getResource(bug.getImgURL()).toExternalForm()));
 		img.setScaleX(2);
 		img.setScaleY(2);
 		bugButton.setGraphic(img);
