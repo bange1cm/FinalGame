@@ -71,7 +71,7 @@ public class End extends VBox{
 		else {
 			msg.setText("Great job! You found all of the bugs and saved Unc's website.\nUnc thanks you <3");
 			msg.setStyle("-fx-text-fill: green; -fx-font: 20 arial");
-			image = new ImageView(new Image(End.class.getResource("Images/uncle_happy.jpg").toExternalForm()));
+			image = new ImageView(new Image(End.class.getResource("Images/uncle_happy.png").toExternalForm()));
 		}
 	}
 }
