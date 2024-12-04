@@ -136,7 +136,7 @@ class Samsa extends Virus {
 	// does when attacking
 	@Override
 	public void attack() {
-		metaRNG = (int) Math.random() * 3;
+		metaRNG = (int) (Math.random() * 3);
 
 		if (metaRNG == 0 || (metaRNG == 1 && Utility.hasRngSeed())) {
 			this.atk = this.atk - trackBoost;
@@ -248,7 +248,7 @@ class BossDev extends Virus {
 
 	// boss attack method
 	public void attack() {
-		metaRNG = (int) Math.random() * 3;
+		metaRNG = (int) (Math.random() * 3);
 
 		if (!statsLowered && Utility.hasFirewall()) {
 			this.def -= 5;
